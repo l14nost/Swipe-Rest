@@ -2,10 +2,17 @@ package com.example.SwipeRest.service.impl;
 
 //import com.example.Swipe.Admin.entity.Contractor;
 import com.example.SwipeRest.dto.BlackListDTO;
+import com.example.SwipeRest.dto.UserDTO;
+import com.example.SwipeRest.entity.Agent;
 import com.example.SwipeRest.entity.User;
+import com.example.SwipeRest.entity.UserAddInfo;
 import com.example.SwipeRest.enums.TypeUser;
+import com.example.SwipeRest.mapper.AgentMapper;
 import com.example.SwipeRest.mapper.BlackLIstMapper;
+import com.example.SwipeRest.mapper.UserAddInfoMapper;
 import com.example.SwipeRest.mapper.UserMapper;
+import com.example.SwipeRest.repository.AgentRepo;
+import com.example.SwipeRest.repository.UserAddInfoRepo;
 import com.example.SwipeRest.repository.UserRepo;
 import com.example.SwipeRest.service.UserService;
 import com.example.SwipeRest.specification.BlackListSpecification;
@@ -23,14 +30,18 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    private final UserAddInfoRepo userAddInfoRepo;
     private final UserRepo userRepo;
     private final UserMapper userMapper;
+    private final AgentMapper agentMapper;
     private final BlackLIstMapper blackLIstMapper;
+    private final AgentRepo agentRepo;
+    private final UserAddInfoMapper userAddInfoMapper;
 
 
 
-    public List<User> findAllByType(TypeUser typeUser){
-        return userRepo.findAllByTypeUserAndBlackListIsFalse(typeUser);
+    public List<UserDTO> findAllByType(TypeUser typeUser){
+        return userRepo.findAllByTypeUserAndBlackListIsFalse(typeUser).stream().map(userMapper).toList();
     }
 //    public Page<UserDTO> specificationForBlackList(String keyWord, Pageable pageable){
 //        BlackListSpecification blackListSpecification = BlackListSpecification.builder().keyWord(keyWord).build();
@@ -58,12 +69,40 @@ public class UserServiceImpl implements UserService {
 //        }
 //        else return userRepo.findAllByBlackListIsTrue(pageable).map(blackLIstMapper);
 //    }
-
+    public String addDTO(UserDTO userDTO){
+        try {
+            User user = userMapper.toEntity(userDTO);
+            if (userDTO.getAgent()!=null) {
+                Agent agent = agentMapper.toEntity(userDTO.getAgent());
+                agentRepo.saveAndFlush(agent);
+                user.setAgent(agent);
+            }
+            userRepo.save(user);
+            return "Save";
+        }
+        catch (Exception e){
+            return "No Save";
+        }
+    }
+    public List<UserDTO> findAllDTO() {
+    return userRepo.findAll().stream().map(userMapper).toList();
+}
+    public List<BlackListDTO> blackListDTO(){
+        return userRepo.findAllByBlackListIsTrue().stream().map(blackLIstMapper).toList();
+    }
     @Override
     public List<User> findAll() {
         return userRepo.findAll();
     }
-
+    public UserDTO findByIdDTO(int id) {
+        Optional<User> user = userRepo.findById(id);
+        if(user.isPresent()){
+            return userMapper.apply(user.get());
+        }
+        else {
+            return null;
+        }
+    }
     @Override
     public User findById(int id) {
         Optional<User> user = userRepo.findById(id);
@@ -71,7 +110,7 @@ public class UserServiceImpl implements UserService {
             return user.get();
         }
         else {
-            return User.builder().build();
+            return null;
         }
     }
 
@@ -107,9 +146,9 @@ public class UserServiceImpl implements UserService {
             if (user.getNumber() != null) {
                 updateUser.setNumber(user.getNumber());
             }
-            if(user.getAgent()!=null){
-                updateUser.setAgent(user.getAgent());
-            }
+//            if(user.getAgent()!=null){
+//                updateUser.setAgent(user.getAgent());
+//            }
             updateUser.setBlackList(user.isBlackList());
 
 

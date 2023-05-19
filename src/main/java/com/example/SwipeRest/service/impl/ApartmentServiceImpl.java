@@ -1,11 +1,14 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.entity.Apartment;
 import com.example.SwipeRest.entity.Frame;
+import com.example.SwipeRest.mapper.ApartmentClientMapper;
 import com.example.SwipeRest.repository.ApartmentRepo;
 import com.example.SwipeRest.service.ApartmentService;
 import com.example.SwipeRest.specification.ApartmentForFrameSpecification;
 import com.example.SwipeRest.specification.ApartmentForLcdSpecification;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,12 +17,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ApartmentServiceImpl implements ApartmentService {
     private final ApartmentRepo apartmentRepo;
+    private final ApartmentClientMapper apartmentClientMapper;
 
-    public ApartmentServiceImpl(ApartmentRepo apartmentRepo) {
-        this.apartmentRepo = apartmentRepo;
-    }
 
     @Override
     public List<Apartment> findAll() {
@@ -45,7 +47,18 @@ public class ApartmentServiceImpl implements ApartmentService {
         }
         return apartmentRepo.findAllByFrame(frame,pageable);
     }
-
+    public List<ApartmentDTO> findAllDTO(){
+        return apartmentRepo.findAllByFrameIsNull().stream().map(apartmentClientMapper).toList();
+    }
+    public ApartmentDTO findByIdDTO(int id) {
+        Optional<Apartment> apartment = apartmentRepo.findById(id);
+        if(apartment.isPresent()){
+            return apartmentClientMapper.apply(apartment.get());
+        }
+        else {
+            return null;
+        }
+    }
     @Override
     public Apartment findById(int id) {
         Optional<Apartment> apartment = apartmentRepo.findById(id);

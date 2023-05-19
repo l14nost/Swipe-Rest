@@ -1,9 +1,12 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.dto.LcdDTO;
 import com.example.SwipeRest.entity.LCD;
+import com.example.SwipeRest.mapper.LcdMapper;
 import com.example.SwipeRest.repository.LCDRepo;
 import com.example.SwipeRest.service.LCDService;
 import com.example.SwipeRest.specification.LcdSpecification;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,12 +15,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class LCDServiceImpl implements LCDService {
     private final LCDRepo lcdRepo;
+    private final LcdMapper lcdMapper;
 
-    public LCDServiceImpl(LCDRepo lcdRepo) {
-        this.lcdRepo = lcdRepo;
-    }
     public Page<LCD> findAllPagination(Pageable pageable, String keyWord){
         if(!keyWord.equals("null")){
             LcdSpecification lcdSpecification = LcdSpecification.builder().keyWord(keyWord).build();
@@ -25,7 +27,19 @@ public class LCDServiceImpl implements LCDService {
         }
         return lcdRepo.findAll(pageable);
     }
+    public LcdDTO findByIdDTO(int id) {
+        Optional<LCD> lcd = lcdRepo.findById(id);
+        if(lcd.isPresent()){
+            return lcdMapper.apply(lcd.get());
+        }
+        else {
+            return null;
+        }
+    }
 
+    public List<LcdDTO> findAllDTO() {
+        return lcdRepo.findAll().stream().map(lcdMapper).toList();
+    }
     @Override
     public List<LCD> findAll() {
         return lcdRepo.findAll();
@@ -57,9 +71,9 @@ public class LCDServiceImpl implements LCDService {
         Optional<LCD> lcdOptional = lcdRepo.findById(id);
         if(lcdOptional.isPresent()){
             LCD lcdUpdate = lcdOptional.get();
-            if(lcd.getPhotoList()!=null){
-                lcdUpdate.setPhotoList(lcd.getPhotoList());
-            }
+//            if(lcd.getPhotoList()!=null){
+//                lcdUpdate.setPhotoList(lcd.getPhotoList());
+//            }
             if(lcd.getMainPhoto()!=null){
                 lcdUpdate.setMainPhoto(lcd.getMainPhoto());
             }

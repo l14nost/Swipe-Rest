@@ -4,6 +4,8 @@ import com.example.SwipeRest.enums.*;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class LcdDTO {
@@ -28,5 +30,6 @@ public class LcdDTO {
     String description;
     ClassType classType;
     String formalization;
+    List<FrameDTO> frames;
 
 }

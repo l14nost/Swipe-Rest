@@ -12,8 +12,9 @@ public class UserDTO {
     String name;
     String surname;
     String fileName;
-    AgentDTO agentDTO;
+    String number;
+    AgentDTO agent;
     TypeUser typeUser;
-    UserAddInfoDTO userAddInfoDTO;
+    UserAddInfoDTO userAddInfo;
     boolean black_list;
 }

@@ -1,6 +1,7 @@
 package com.example.SwipeRest.service;
 
 
+import com.example.SwipeRest.dto.UserDTO;
 import com.example.SwipeRest.entity.User;
 
 import java.util.Optional;

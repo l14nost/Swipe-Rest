@@ -12,7 +12,7 @@ public class ApartmentDTO {
     int  idApartment;
     Calculation calculation;
     Commission commission;
-    CommunalType communalType;
+    CommunicationType communicationType;
     CountRoom countRoom;
     String description;
     HeatingType heatingType;
@@ -22,11 +22,10 @@ public class ApartmentDTO {
     State state;
     int totalArea;
     TypeApartment type;
-    LcdDTO lcdDTO;
+    int idLcd;
     int number;
     String mainPhoto;
     FoundingDocument foundingDocument;
-    List<FrameDTO> frames;
     UserDTO userDTO;
 
 }

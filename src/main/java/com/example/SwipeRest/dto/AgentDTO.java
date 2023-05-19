@@ -15,6 +15,5 @@ public class AgentDTO {
     String number;
     String surname;
     TypeAgent typeAgent;
-    List<UserDTO> users;
 
 }

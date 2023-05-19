@@ -10,12 +10,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-//, JpaSpecificationExecutor<User>
-@Repository
-public interface UserRepo extends JpaRepository<User, Integer>  {
-    Optional<User> findByMail(String mail);
-    List<User> findAllByTypeUserAndBlackListIsFalse(TypeUser typeUser);
-//    Page<User> findAllByBlackListIsTrue(Pageable pageable);
 //
-//    Page<User> findAllByTypeUserAndBlackListIsFalse(TypeUser typeUser, Pageable pageable);
+@Repository
+public interface UserRepo extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User>  {
+    Optional<User> findByMail(String mail);
+    List<User> findAllByBlackListIsTrue();
+    List<User> findAllByTypeUserAndBlackListIsFalse(TypeUser typeUser);
+    Page<User> findAllByBlackListIsTrue(Pageable pageable);
+
+    Page<User> findAllByTypeUserAndBlackListIsFalse(TypeUser typeUser, Pageable pageable);
 }
