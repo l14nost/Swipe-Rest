@@ -3,11 +3,13 @@ package com.example.SwipeRest.service.impl;
 import com.example.SwipeRest.entity.Photo;
 import com.example.SwipeRest.repository.PhotosRepo;
 import com.example.SwipeRest.service.PhotosService;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Log4j2
 @Service
 public class PhotosServiceImpl implements PhotosService {
     private final PhotosRepo photosRepo;
@@ -18,6 +20,7 @@ public class PhotosServiceImpl implements PhotosService {
 
     @Override
     public List<Photo> findAll() {
+        log.info("All photo");
         return photosRepo.findAll();
     }
 
@@ -25,21 +28,28 @@ public class PhotosServiceImpl implements PhotosService {
     public Photo findById(int id) {
         Optional<Photo> photos = photosRepo.findById(id);
         if(photos.isPresent()){
+            log.info("Photo find "+id);
             return photos.get();
         }
         else {
-            return Photo.builder().build();
+            log.info("Photo not find "+id);
+
+            return null;
         }
     }
 
     @Override
     public void saveEntity(Photo photo) {
         photosRepo.save(photo);
+        log.info("Photo save");
+
     }
 
     @Override
     public void deleteById(int id) {
         photosRepo.deleteById(id);
+        log.info("Photo delete "+id);
+
     }
 
     @Override
@@ -47,16 +57,12 @@ public class PhotosServiceImpl implements PhotosService {
         Optional<Photo> photosOptional = photosRepo.findById(id);
         if(photosOptional.isPresent()){
             Photo photoUpdate = photosOptional.get();
-            if(photo.getApartment()!=null){
-                photoUpdate.setApartment(photo.getApartment());
-            }
-            if (photo.getLcd()!=null){
-                photoUpdate.setLcd(photo.getLcd());
-            }
             if(photo.getFileName()!=null){
                 photoUpdate.setFileName(photo.getFileName());
             }
             photosRepo.saveAndFlush(photoUpdate);
+            log.info("Photo update "+id);
+
         }
     }
 }

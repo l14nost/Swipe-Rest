@@ -9,11 +9,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
-@Component
-@RequiredArgsConstructor
-public class UserAddInfoMapper implements Function<UserAddInfo, UserAddInfoDTO> {
-    private final UserDtoMapper userMapper;
-    public UserAddInfo toEntity(UserAddInfoDTO userAddInfoDTO){
+
+public class UserAddInfoMapper {
+
+    public static UserAddInfo toEntity(UserAddInfoDTO userAddInfoDTO){
         return UserAddInfo.builder()
                 .callSms(userAddInfoDTO.isCallSms())
                 .dateSub(userAddInfoDTO.getDateSub())
@@ -21,8 +20,8 @@ public class UserAddInfoMapper implements Function<UserAddInfo, UserAddInfoDTO> 
                 .build();
     }
 
-    @Override
-    public UserAddInfoDTO apply(UserAddInfo userAddInfo) {
+
+    public static UserAddInfoDTO apply(UserAddInfo userAddInfo) {
         return UserAddInfoDTO.builder()
                 .callSms(userAddInfo.isCallSms())
                 .dateSub(userAddInfo.getDateSub())

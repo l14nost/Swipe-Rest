@@ -1,45 +1,34 @@
 package com.example.SwipeRest.mapper;
 
 import com.example.SwipeRest.dto.ClientDTO;
-import com.example.SwipeRest.dto.UserDTO;
 import com.example.SwipeRest.entity.User;
-import com.example.SwipeRest.entity.UserAddInfo;
 import com.example.SwipeRest.enums.Role;
-import com.example.SwipeRest.enums.TypeUser;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
-@Component
-@RequiredArgsConstructor
-public class UserMapper implements Function<User, UserDTO> {
-    private final AgentMapper agentMapper;
-    private final UserAddInfoMapper userAddInfoMapper;
-    public User toEntity(UserDTO userDTO){
+public class UserMapper{
+    public static User toEntity(ClientDTO clientDTO){
         User user = User.builder()
-//                .idUser(userDTO.getIdUser())
-                .name(userDTO.getName())
-                .surname(userDTO.getSurname())
-                .typeUser(userDTO.getTypeUser())
-//                .agent(agentMapper.toEntity(userDTO.getAgent()))
+                .idUser(clientDTO.getIdUser())
+                .name(clientDTO.getName())
+                .surname(clientDTO.getSurname())
+                .typeUser(clientDTO.getTypeUser())
                 .role(Role.USER)
-                .mail(userDTO.getMail())
-                .filename(userDTO.getFileName())
-//                .userAddInfo(userAddInfoMapper.toEntity(userDTO.getUserAddInfo()))
+                .mail(clientDTO.getMail())
+                .filename(clientDTO.getFileName())
+                .number(clientDTO.getNumber())
+                .blackList(false)
                 .build();
-        if (userDTO.getAgent()!=null){
-            user.setAgent(agentMapper.toEntity(userDTO.getAgent()));
+        if (clientDTO.getAgent()!=null){
+            user.setAgent(AgentMapper.toEntity(clientDTO.getAgent()));
         }
-        if(userDTO.getUserAddInfo()!=null){
-            user.setUserAddInfo(userAddInfoMapper.toEntity(userDTO.getUserAddInfo()));
+        if(clientDTO.getUserAddInfo()!=null){
+            user.setUserAddInfo(UserAddInfoMapper.toEntity(clientDTO.getUserAddInfo()));
         }
         return user;
     }
 
-    @Override
-    public UserDTO apply(User user) {
+    public static ClientDTO apply(User user) {
 
-        UserDTO build = UserDTO.builder().idUser(user.getIdUser())
+        ClientDTO build = ClientDTO.builder().idUser(user.getIdUser())
                 .name(user.getName())
                 .mail(user.getMail())
                 .surname(user.getSurname())
@@ -48,13 +37,14 @@ public class UserMapper implements Function<User, UserDTO> {
                 .typeUser(user.getTypeUser())
                 .fileName(user.getFilename())
                 .number(user.getNumber())
+                .blackList(user.isBlackList())
 //                .black_list(user.isBlackList())
                 .build();
         if (user.getAgent()!=null){
-            build.setAgent(agentMapper.apply(user.getAgent()));
+            build.setAgent(AgentMapper.apply(user.getAgent()));
         }
         if (user.getUserAddInfo()!=null){
-            build.setUserAddInfo(userAddInfoMapper.apply(user.getUserAddInfo()));
+            build.setUserAddInfo(UserAddInfoMapper.apply(user.getUserAddInfo()));
         }
 
         return build;

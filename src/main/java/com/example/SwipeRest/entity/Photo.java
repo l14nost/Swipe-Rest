@@ -11,6 +11,7 @@ import lombok.Builder;
 @AllArgsConstructor
 @Entity
 @Table(name = "photos")
+@EqualsAndHashCode
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

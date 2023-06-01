@@ -3,13 +3,16 @@ package com.example.SwipeRest.service.impl;
 import com.example.SwipeRest.entity.Agent;
 import com.example.SwipeRest.repository.AgentRepo;
 import com.example.SwipeRest.service.AgentService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class AgentServiceImpl implements AgentService {
+
     private final AgentRepo agentRepo;
 
 
@@ -19,6 +22,7 @@ public class AgentServiceImpl implements AgentService {
 
     @Override
     public List<Agent> findAll() {
+        log.info("All agent");
         return agentRepo.findAll();
     }
 
@@ -26,21 +30,25 @@ public class AgentServiceImpl implements AgentService {
     public Agent findById(int id) {
         Optional<Agent> agent = agentRepo.findById(id);
         if(agent.isPresent()){
+            log.info("Find agent:"+id);
             return agent.get();
         }
         else {
-            return Agent.builder().name("").surname("").mail("").number("").build();
+            log.info("Not find agent:"+id);
+            return null;
         }
     }
 
     @Override
     public void saveEntity(Agent agent) {
         agentRepo.save(agent);
+        log.info("Agent save");
     }
 
     @Override
     public void deleteById(int id) {
         agentRepo.deleteById(id);
+        log.info("Agent delete");
     }
 
     @Override
@@ -60,14 +68,8 @@ public class AgentServiceImpl implements AgentService {
             if(agent.getSurname()!=null){
                 agentUpdate.setSurname(agent.getSurname());
             }
-//            if(agent.getUsers()!=null){
-//                agentUpdate.setUsers(agent.getUsers());
-//            }
             agentRepo.saveAndFlush(agentUpdate);
-        }
-        else {
-            Agent agentUpdate = Agent.builder().name("").surname("").mail("").number("").build();
-            agentRepo.saveAndFlush(agentUpdate);
+            log.info("Agent:"+id+" update");
         }
     }
 }

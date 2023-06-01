@@ -1,34 +1,53 @@
 package com.example.SwipeRest.mapper;
 
-import com.example.SwipeRest.dto.AgentDTO;
 import com.example.SwipeRest.dto.LcdDTO;
-import com.example.SwipeRest.entity.Agent;
 import com.example.SwipeRest.entity.LCD;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
 
-@Component
-@RequiredArgsConstructor
-public class LcdMapper implements Function<LCD, LcdDTO> {
-    private final UserMapper userMapper;
-    private final FrameMapper frameMapper;
-//    private final UserDtoMapper userMapper;
-//    public Agent toEntity(AgentDTO agentDTO){
-//        return Agent.builder()
-////                .idAgent(agentDTO.get)
-//                .number(agentDTO.getNumber())
-//                .mail(agentDTO.getMail())
-//                .surname(agentDTO.getSurname())
-//                .name(agentDTO.getName())
-//                .type(agentDTO.getTypeAgent())
-////                .users(agentDTO.getUsers().stream().map(userMapper).toList())
-//                .build();
-//    }
+public class LcdMapper  {
 
-    @Override
-    public LcdDTO apply(LCD lcd) {
+    public static LCD toEntity(LcdDTO lcdDTO){
+        LCD lcd = LCD.builder()
+                .idLcd(lcdDTO.getIdLcd())
+                .name(lcdDTO.getName())
+                .description(lcdDTO.getDescription())
+                .distanceSea(lcdDTO.getDistanceSea())
+                .formalization(lcdDTO.getFormalization())
+                .communal(lcdDTO.getCommunal())
+                .status(lcdDTO.getStatus())
+                .height(lcdDTO.getHeight())
+                .advantages(lcdDTO.getAdvantages())
+                .appointment(lcdDTO.getAppointment())
+                .sewerage(lcdDTO.getSewerage())
+                .gas(lcdDTO.getGasType())
+                .waterSupply(lcdDTO.getWatterSupply())
+                .heating(lcdDTO.getHeatingType())
+                .lcdClass(lcdDTO.getClassType())
+                .mainPhoto(lcdDTO.getMainPhoto())
+                .address(lcdDTO.getAddress())
+                .technology(lcdDTO.getTechnology())
+                .territory(lcdDTO.getTerritory())
+                .type(lcdDTO.getType())
+                .sumContract(lcdDTO.getSumContractor())
+                .status(lcdDTO.getStatus())
+                .typePayment(lcdDTO.getTypePayment())
+                .build();
+        if (lcdDTO.getDocuments()!=null){
+            lcd.setDocuments(lcdDTO.getDocuments().stream().map(DocumentMapper::toEntity).toList());
+        }
+        if (lcdDTO.getFrames()!=null){
+            lcd.setFrames(lcdDTO.getFrames().stream().map(FrameMapper::toEntity).toList());
+        }
+        if (lcdDTO.getPhotos()!=null){
+            lcd.setPhotoList(lcdDTO.getPhotos().stream().map(PhotoMapper::toEntity).toList());
+        }
+        if (lcdDTO.getNewsList()!=null){
+            lcd.setNewsList(lcdDTO.getNewsList().stream().map(NewsMapper::toEntity).toList());
+        }
+        return lcd;
+    }
+
+    public static LcdDTO apply(LCD lcd) {
         LcdDTO lcdDTO = LcdDTO.builder()
                 .idLcd(lcd.getIdLcd())
                 .advantages(lcd.getAdvantages())
@@ -38,23 +57,33 @@ public class LcdMapper implements Function<LCD, LcdDTO> {
                 .description(lcd.getDescription())
                 .distanceSea(lcd.getDistanceSea())
                 .formalization(lcd.getFormalization())
-                .frames(lcd.getFrames().stream().map(frameMapper).toList())
                 .gasType(lcd.getGas())
                 .heatingType(lcd.getHeating())
                 .height(lcd.getHeight())
                 .status(lcd.getStatus())
                 .mainPhoto(lcd.getMainPhoto())
                 .sewerage(lcd.getSewerage())
+                .address(lcd.getAddress())
                 .sumContractor(lcd.getSumContract())
                 .technology(lcd.getTechnology())
                 .territory(lcd.getTerritory())
                 .typePayment(lcd.getTypePayment())
                 .watterSupply(lcd.getWaterSupply())
                 .name(lcd.getName())
+                .type(lcd.getType())
                 .build();
 
         if (lcd.getUser()!=null){
-            lcdDTO.setUserDTO(userMapper.apply(lcd.getUser()));
+            lcdDTO.setContractor(lcd.getUser().getIdUser());
+        }
+        if (lcd.getFrames()!=null){
+            lcdDTO.setFrames(lcd.getFrames().stream().map(FrameMapper::apply).toList());
+        }
+        if (lcd.getPhotoList()!=null){
+            lcdDTO.setPhotos(lcd.getPhotoList().stream().map(PhotoMapper::apply).toList());
+        }
+        if (lcd.getDocuments()!=null){
+            lcdDTO.setDocuments(lcd.getDocuments().stream().map(DocumentMapper::apply).toList());
         }
         return lcdDTO;
 

@@ -7,6 +7,7 @@ import lombok.Builder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Builder
 @Getter
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 public class Apartment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,15 +58,13 @@ public class Apartment {
     @JoinColumn(name = "id_lcd")
     private LCD lcd;
 
-    @ManyToOne
-    @JoinColumn(name="id_address")
-    private Address address;
+    private String address;
 
 
     @OneToMany(mappedBy = "apartment", cascade = CascadeType.ALL)
     private List<Photo> photoList = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_frame")
     private Frame frame;
 
@@ -72,4 +72,54 @@ public class Apartment {
     @JoinColumn(name = "id_client")
     private User user;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Apartment apartment = (Apartment) o;
+
+        if (idApartment != apartment.idApartment) return false;
+        if (number != apartment.number) return false;
+        if (totalArea != apartment.totalArea) return false;
+        if (kitchenArea != apartment.kitchenArea) return false;
+        if (price != apartment.price) return false;
+        if (type != apartment.type) return false;
+        if (countRoom != apartment.countRoom) return false;
+        if (layout != apartment.layout) return false;
+        if (state != apartment.state) return false;
+        if (balconyType != apartment.balconyType) return false;
+        if (heatingType != apartment.heatingType) return false;
+        if (calculation != apartment.calculation) return false;
+        if (foundingDocument != apartment.foundingDocument) return false;
+        if (commission != apartment.commission) return false;
+        if (!Objects.equals(mainPhoto, apartment.mainPhoto)) return false;
+        if (communicationType != apartment.communicationType) return false;
+        if (!Objects.equals(description, apartment.description))
+            return false;
+        return Objects.equals(address, apartment.address);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idApartment;
+        result = 31 * result + number;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (countRoom != null ? countRoom.hashCode() : 0);
+        result = 31 * result + (layout != null ? layout.hashCode() : 0);
+        result = 31 * result + (state != null ? state.hashCode() : 0);
+        result = 31 * result + totalArea;
+        result = 31 * result + kitchenArea;
+        result = 31 * result + (balconyType != null ? balconyType.hashCode() : 0);
+        result = 31 * result + (heatingType != null ? heatingType.hashCode() : 0);
+        result = 31 * result + (calculation != null ? calculation.hashCode() : 0);
+        result = 31 * result + (foundingDocument != null ? foundingDocument.hashCode() : 0);
+        result = 31 * result + (commission != null ? commission.hashCode() : 0);
+        result = 31 * result + (mainPhoto != null ? mainPhoto.hashCode() : 0);
+        result = 31 * result + (communicationType != null ? communicationType.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + price;
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        return result;
+    }
 }

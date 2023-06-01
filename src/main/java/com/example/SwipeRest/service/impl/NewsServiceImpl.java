@@ -1,57 +1,64 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.dto.NewsDto;
 import com.example.SwipeRest.entity.News;
+import com.example.SwipeRest.mapper.NewsMapper;
 import com.example.SwipeRest.repository.NewsRepo;
 import com.example.SwipeRest.service.NewsService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Log4j2
 @Service
+@RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService {
     private final NewsRepo newsRepo;
 
-    public NewsServiceImpl(NewsRepo newsRepo) {
-        this.newsRepo = newsRepo;
-    }
 
-    public int countNews(int monthNum){
-        int count = 0;
-        List<News> news = newsRepo.findAll();
-        for (News news1 : news
-        ) {
-            if(news1.getDate().getMonthValue() == monthNum){
-                count++;
-            }
-        }
-        return count;
-    }
 
     @Override
     public List<News> findAll() {
+        log.info("All news");
         return newsRepo.findAll();
+    }
+    public NewsDto findByIdDTO(int id) {
+        Optional<News> news = newsRepo.findById(id);
+        if(news.isPresent()){
+            log.info("News find "+id);
+            return NewsMapper.apply(news.get());
+        }
+        else {
+            log.info("News not find "+id);
+            return null;
+        }
     }
 
     @Override
     public News findById(int id) {
         Optional<News> news = newsRepo.findById(id);
         if(news.isPresent()){
+            log.info("News find "+id);
             return  news.get();
         }
         else {
-            return News.builder().build();
+            log.info("News not find "+id);
+            return null;
         }
     }
 
     @Override
     public void saveEntity(News news) {
         newsRepo.save(news);
+        log.info("News save");
     }
 
     @Override
     public void deleteById(int id) {
         newsRepo.deleteById(id);
+        log.info("News delete "+id);
     }
 
     @Override
@@ -62,9 +69,6 @@ public class NewsServiceImpl implements NewsService {
             if(news.getDate()!=null){
                 updateNews.setDate(news.getDate());
             }
-            if(news.getLcd()!=null){
-                updateNews.setLcd(news.getLcd());
-            }
             if(news.getDescription()!=null){
                 updateNews.setDescription(news.getDescription());
             }
@@ -72,6 +76,8 @@ public class NewsServiceImpl implements NewsService {
                 updateNews.setTitle(news.getTitle());
             }
             newsRepo.saveAndFlush(updateNews);
+            log.info("News update  "+id);
+
         }
 
     }

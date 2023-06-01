@@ -1,6 +1,8 @@
 package com.example.SwipeRest.controller.auth;
 
 import com.example.SwipeRest.token.TokenRepo;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authenticate")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final TokenRepo tokenRepo;
@@ -21,6 +24,7 @@ public class AuthenticationController {
 //    public  String logPage(Model model){
 //        return "admin/login";
 //    }
+    @Hidden
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
         return ResponseEntity.ok(authenticationService.register(request));

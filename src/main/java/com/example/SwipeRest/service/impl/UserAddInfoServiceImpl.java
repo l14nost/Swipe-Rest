@@ -5,11 +5,12 @@ import com.example.SwipeRest.entity.UserAddInfo;
 import com.example.SwipeRest.repository.UserAddInfoRepo;
 import com.example.SwipeRest.service.UserAddInfoService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class UserAddInfoServiceImpl implements UserAddInfoService {
@@ -18,24 +19,28 @@ public class UserAddInfoServiceImpl implements UserAddInfoService {
 
     @Override
     public List<UserAddInfo> findAll() {
+        log.info("All userAddInfo");
         return userAddInfoRepo.findAll();
     }
 
     @Override
     public UserAddInfo findById(int id) {
-        return null;
+        log.info("Find userAddInfo "+id);
+        return userAddInfoRepo.findById(id).orElse(null);
     }
 
     @Override
     public void saveEntity(UserAddInfo userAddInfo) {
         userAddInfoRepo.save(userAddInfo);
+        log.info("UserAddInfo save");
     }
 
     @Override
     public void deleteById(int id) {
         userAddInfoRepo.deleteById(id);
-    }
+        log.info("UserAddInfo delete "+id);
 
+    }
     @Override
     public void updateEntity(UserAddInfo userAddInfo, int id) {
         Optional<UserAddInfo> userOptional = userAddInfoRepo.findById(id);
@@ -49,6 +54,8 @@ public class UserAddInfoServiceImpl implements UserAddInfoService {
             }
             updateUser.setCallSms(userAddInfo.isCallSms());
             userAddInfoRepo.saveAndFlush(updateUser);
+            log.info("UserAddInfo update "+id);
+
         }
     }
 }

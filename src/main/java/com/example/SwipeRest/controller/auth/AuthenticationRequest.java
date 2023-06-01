@@ -1,5 +1,6 @@
 package com.example.SwipeRest.controller.auth;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthenticationRequest {
+    @Schema(example = "amirbanor@gmail.com")
     private String login;
+    @Schema(example = "pass")
     private String password;
 }

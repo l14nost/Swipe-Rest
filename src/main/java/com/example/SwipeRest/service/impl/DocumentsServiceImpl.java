@@ -3,12 +3,14 @@ package com.example.SwipeRest.service.impl;
 import com.example.SwipeRest.entity.Documents;
 import com.example.SwipeRest.repository.DocumentsRepo;
 import com.example.SwipeRest.service.DocumentsService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class DocumentsServiceImpl implements DocumentsService {
     private final DocumentsRepo documentsRepo;
 
@@ -18,6 +20,7 @@ public class DocumentsServiceImpl implements DocumentsService {
 
     @Override
     public List<Documents> findAll() {
+        log.info("All Documents");
         return documentsRepo.findAll();
     }
 
@@ -25,21 +28,25 @@ public class DocumentsServiceImpl implements DocumentsService {
     public Documents findById(int id) {
         Optional<Documents> documents = documentsRepo.findById(id);
         if(documents.isPresent()){
+            log.info("Document find:"+id);
             return documents.get();
         }
         else {
-            return Documents.builder().build();
+            log.info("Document not find:"+id);
+            return null;
         }
     }
 
     @Override
     public void saveEntity(Documents documents) {
         documentsRepo.save(documents);
+        log.info("Document save");
     }
 
     @Override
     public void deleteById(int id) {
         documentsRepo.deleteById(id);
+        log.info("Document delete "+id);
     }
 
     @Override
@@ -54,6 +61,7 @@ public class DocumentsServiceImpl implements DocumentsService {
                 documentsUpdate.setFileName(documents.getFileName());
             }
             documentsRepo.saveAndFlush(documentsUpdate);
+            log.info("Document update "+id);
         }
     }
 }

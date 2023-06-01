@@ -10,6 +10,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode
 public class Documents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

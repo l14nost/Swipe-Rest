@@ -1,44 +1,53 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.entity.Apartment;
 import com.example.SwipeRest.entity.Frame;
 import com.example.SwipeRest.repository.FrameRepo;
 import com.example.SwipeRest.service.FrameService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class FrameServiceImpl implements FrameService {
     private final FrameRepo frameRepo;
+    private final ApartmentServiceImpl apartmentService;
 
 
     @Override
     public List<Frame> findAll() {
+        log.info("All frame");
         return frameRepo.findAll();
+
     }
 
     @Override
     public Frame findById(int id) {
         Optional<Frame> frame = frameRepo.findById(id);
         if(frame.isPresent()){
+            log.info("Frame find "+id);
             return frame.get();
         }
         else {
-            return Frame.builder().build();
+            log.info("Frame not find "+id);
+            return null;
         }
     }
 
     @Override
     public void saveEntity(Frame frame) {
         frameRepo.save(frame);
+        log.info("Frame save");
     }
 
     @Override
     public void deleteById(int id) {
         frameRepo.deleteById(id);
+        log.info("Frame delete "+id);
     }
 
     @Override
@@ -47,15 +56,17 @@ public class FrameServiceImpl implements FrameService {
         if(frameOptional.isPresent()){
             Frame frameUpdate = frameOptional.get();
             if(frame.getApartmentList()!=null){
-                frameUpdate.setApartmentList(frame.getApartmentList());
-            }
-            if (frame.getLcd()!=null){
-                frameUpdate.setLcd(frame.getLcd());
+                List<Apartment> apartments = frame.getApartmentList();
+                apartments.stream().forEach(apartment -> {
+                    apartmentService.updateEntity(apartment, apartment.getIdApartment());
+                    log.info("Apartment update "+apartment.getIdApartment());
+                });
             }
             if(frame.getNum()!=0){
                 frameUpdate.setNum(frame.getNum());
             }
             frameRepo.saveAndFlush(frameUpdate);
+            log.info("Frame update "+id);
         }
     }
 }

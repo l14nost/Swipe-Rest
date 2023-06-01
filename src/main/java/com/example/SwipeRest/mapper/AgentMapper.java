@@ -1,23 +1,13 @@
 package com.example.SwipeRest.mapper;
 
 import com.example.SwipeRest.dto.AgentDTO;
-import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.entity.Agent;
-import com.example.SwipeRest.entity.User;
-import com.example.SwipeRest.enums.Role;
-import com.example.SwipeRest.enums.TypeUser;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
 
-@Component
-@RequiredArgsConstructor
-public class AgentMapper implements Function<Agent, AgentDTO> {
-    private final UserDtoMapper userMapper;
-    public Agent toEntity(AgentDTO agentDTO){
+public class AgentMapper{
+    public static Agent toEntity(AgentDTO agentDTO){
         return Agent.builder()
-//                .idAgent(agentDTO.get)
+                .idAgent(agentDTO.getIdAgent())
                 .number(agentDTO.getNumber())
                 .mail(agentDTO.getMail())
                 .surname(agentDTO.getSurname())
@@ -27,9 +17,10 @@ public class AgentMapper implements Function<Agent, AgentDTO> {
                 .build();
     }
 
-    @Override
-    public AgentDTO apply(Agent agent) {
+    public static AgentDTO apply(Agent agent) {
         return AgentDTO.builder()
+                .idAgent(agent.getIdAgent())
+                .mail(agent.getMail())
                 .number(agent.getNumber())
                 .typeAgent(agent.getType())
                 .surname(agent.getSurname())

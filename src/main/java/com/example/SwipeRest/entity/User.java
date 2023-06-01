@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 
 @Builder
@@ -45,7 +46,7 @@ public class User implements UserDetails {
     private String filename;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Agent agent;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -82,5 +83,39 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (idUser != user.idUser) return false;
+        if (blackList != user.blackList) return false;
+        if (!Objects.equals(name, user.name)) return false;
+        if (!Objects.equals(password, user.password)) return false;
+        if (!Objects.equals(surname, user.surname)) return false;
+        if (!Objects.equals(number, user.number)) return false;
+        if (!Objects.equals(mail, user.mail)) return false;
+        if (role != user.role) return false;
+        if (typeUser != user.typeUser) return false;
+        return Objects.equals(filename, user.filename);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idUser;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (typeUser != null ? typeUser.hashCode() : 0);
+        result = 31 * result + (filename != null ? filename.hashCode() : 0);
+        result = 31 * result + (blackList ? 1 : 0);
+        return result;
     }
 }

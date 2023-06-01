@@ -6,9 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
-@Component
-public class BlackLIstMapper implements Function<User, BlackListDTO> {
-    public User toEntity(BlackListDTO userDTO){
+public class BlackLIstMapper {
+    public static User toEntity(BlackListDTO userDTO){
         return User.builder()
                 .idUser(userDTO.getIdUser())
                 .name(userDTO.getName())
@@ -18,8 +17,7 @@ public class BlackLIstMapper implements Function<User, BlackListDTO> {
                 .build();
     }
 
-    @Override
-    public BlackListDTO apply(User user) {
+    public static BlackListDTO apply(User user) {
         return BlackListDTO.builder()
                 .idUser(user.getIdUser())
                 .name(user.getName())

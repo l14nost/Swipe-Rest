@@ -9,28 +9,24 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
-@Component
-@RequiredArgsConstructor
-public class FrameMapper implements Function<Frame, FrameDTO> {
-    private final ApartmentMapper apartmentMapper;
-//    private final UserDtoMapper userMapper;
-//    public Agent toEntity(AgentDTO agentDTO){
-//        return Agent.builder()
-////                .idAgent(agentDTO.get)
-//                .number(agentDTO.getNumber())
-//                .mail(agentDTO.getMail())
-//                .surname(agentDTO.getSurname())
-//                .name(agentDTO.getName())
-//                .type(agentDTO.getTypeAgent())
-////                .users(agentDTO.getUsers().stream().map(userMapper).toList())
-//                .build();
-//    }
 
-    @Override
-    public FrameDTO apply(Frame frame) {
+public class FrameMapper  {
+    public static Frame toEntity(FrameDTO frameDTO){
+        Frame frame = Frame.builder()
+                .idFrame(frameDTO.getIdFrame())
+                .num(frameDTO.getNum())
+                .build();
+        if (frameDTO.getApartments()!=null){
+            frame.setApartmentList(frameDTO.getApartments().stream().map(ApartmentMapper::toEntity).toList());
+        }
+        return frame;
+    }
+
+    public static FrameDTO apply(Frame frame) {
         return FrameDTO.builder()
+                .idFrame(frame.getIdFrame())
                 .num(frame.getNum())
-                .apartments(frame.getApartmentList().stream().map(apartmentMapper).toList())
+                .apartments(frame.getApartmentList().stream().map(ApartmentMapper::apply).toList())
                 .build();
 
     }

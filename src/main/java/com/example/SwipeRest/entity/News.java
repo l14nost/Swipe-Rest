@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
