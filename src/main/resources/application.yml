@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/swipe'
+    username: 'root'
+    password: 'amir22828_Sql'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8082
+
+upload:
+  path: '/C:/Users/Amir Banov/IdeaProjects/Swipe-Admin/uploads/'
+
+application:
+  security:
+    jwt:
+      security-key: '2F423F4528482B4D6251655368566D597133743677397A24432646294A404E63'
+      expiration: '86400000'
+      refresh-token:
+        expiration: '604800000'
+
+logging:
+  file:
+    name: '/C:/Users/Amir Banov/IdeaProjects/Swipe-Rest/logging/logRest.log'
