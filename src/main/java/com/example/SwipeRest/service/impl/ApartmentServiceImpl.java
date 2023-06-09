@@ -61,7 +61,7 @@ public class ApartmentServiceImpl implements ApartmentService {
             return null;
         }
     }
-    public String saveDTO(ApartmentDTO apartmentDTO) {
+    public ApartmentDTO saveDTO(ApartmentDTO apartmentDTO) {
             Apartment apartment = ApartmentMapper.toEntity(apartmentDTO);
             apartment.setUser(User.builder().idUser(apartmentDTO.getClient()).build());
             if (apartment.getPhotoList() != null) {
@@ -70,7 +70,7 @@ public class ApartmentServiceImpl implements ApartmentService {
             }
             apartmentRepo.save(apartment);
             log.info("Apartment save");
-            return "Success:\n" + apartmentDTO;
+            return apartmentDTO;
     }
     @Override
     public void saveEntity(Apartment apartment) {
@@ -155,7 +155,7 @@ public class ApartmentServiceImpl implements ApartmentService {
             log.info("Apartment update:"+id);
         }
     }
-    public String updateDto(ApartmentDTO apartmentDTO, int id) {
+    public ApartmentDTO updateDto(ApartmentDTO apartmentDTO, int id) {
         Apartment apartment = ApartmentMapper.toEntity(apartmentDTO);
         System.out.println(apartment);
         Optional<Apartment> apartmentOptional = apartmentRepo.findById(id);
@@ -232,8 +232,8 @@ public class ApartmentServiceImpl implements ApartmentService {
             System.out.println(apartmentUpdate);
             apartmentRepo.saveAndFlush(apartmentUpdate);
             log.info("Apartment update:"+id);
-            return "Success:\n"+ApartmentMapper.apply(apartmentUpdate);
+            return ApartmentMapper.apply(apartmentUpdate);
         }
-        return "Something wrong";
+        return ApartmentDTO.builder().build();
     }
 }

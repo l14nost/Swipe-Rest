@@ -3,10 +3,7 @@ package com.example.SwipeRest.dto;
 import com.example.SwipeRest.enums.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,15 +17,19 @@ public class LcdDTO {
     @Schema(example = "Advantages")
     @NotBlank
     @NotEmpty
+    @Size(min = 3,max = 150)
     String advantages;
     @Schema(example = "Appointment")
     @NotBlank
     @NotEmpty
+    @Size(min = 3,max = 150)
     String appointment;
     @Schema(example = "PAYMENTS")
     @NotNull
     CommunalType communal;
     @Schema(example = "25")
+            @Min(10)
+            @Max(200)
     int distanceSea;
     @NotNull
     @Schema(example = "YES")
@@ -37,10 +38,13 @@ public class LcdDTO {
     @Schema(example = "AUTONOMOUS")
     HeatingType heatingType;
     @Schema(example = "2")
+            @Min(2)
+            @Max(5)
     int height;
     @Schema(example = "LcdName")
     @NotBlank
     @NotEmpty
+    @Pattern(regexp = "^[А-ЯЁA-Z][а-яёa-zA-Z]*$")
     String name;
     @NotNull
     @Schema(example = "AUTONOMOUS")
@@ -51,6 +55,7 @@ public class LcdDTO {
     @Schema(example = "Sum Contract")
     @NotBlank
     @NotEmpty
+    @Size(min = 3,max = 150)
     String sumContractor;
     @Schema(example = "MONOLITH")
     @NotNull
@@ -61,6 +66,7 @@ public class LcdDTO {
     @Schema(example = "HALF")
     @NotBlank
     @NotEmpty
+    @Size(min = 3,max = 150)
     String typePayment;
     @Schema(example = "AUTONOMOUS")
     @NotNull
@@ -74,6 +80,7 @@ public class LcdDTO {
     @Schema(example = "Description")
     @NotBlank
     @NotEmpty
+    @Size(min = 3,max = 250)
     String description;
     @Schema(example = "ELITE")
     @NotNull
@@ -89,6 +96,7 @@ public class LcdDTO {
     @Schema(example = "Formalization")
     @NotBlank
     @NotEmpty
+    @Size(min = 3,max = 150)
     String formalization;
     @Valid
     List<FrameDTO> frames;

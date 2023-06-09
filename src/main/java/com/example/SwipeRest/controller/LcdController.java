@@ -38,7 +38,7 @@ public class LcdController {
         }
     }
     @PostMapping("/add")
-    public ResponseEntity saveLcd(@RequestBody LcdDTO lcdDTO){
+    public ResponseEntity saveLcd(@RequestBody @Valid LcdDTO lcdDTO){
         log.info("Request save lcd");
         return ResponseEntity.ok(lcdService.saveDTO(lcdDTO));
     }

@@ -1,5 +1,6 @@
-package com.example.SwipeRest.controller;
+package com.example.SwipeRest.oldController;
 
+import com.example.SwipeRest.controller.ClientController;
 import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;

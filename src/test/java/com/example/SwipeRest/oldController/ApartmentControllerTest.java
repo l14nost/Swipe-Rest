@@ -1,16 +1,20 @@
-package com.example.SwipeRest.controller;
+package com.example.SwipeRest.oldController;
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.enums.*;
 import com.example.SwipeRest.repository.ApartmentRepo;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -22,8 +26,6 @@ import static org.mockito.Mockito.when;
 class ApartmentControllerTest {
     @Mock
     private ApartmentServiceImpl apartmentService;
-    @Mock
-    private ApartmentRepo apartmentRepo;
     @InjectMocks
     private ApartmentController apartmentController;
     @Test
@@ -94,7 +96,7 @@ class ApartmentControllerTest {
                 .heatingType(HeatingType.INDIVIDUAL)
                 .mainPhoto("123")
                 .build();
-        when(apartmentService.saveDTO(apartmentDTO)).thenReturn("Success:\n"+apartmentDTO);
+        when(apartmentService.saveDTO(apartmentDTO)).thenReturn(apartmentDTO);
         ResponseEntity response = apartmentController.saveApartment(apartmentDTO);
         assertNotNull(response);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -179,7 +181,7 @@ class ApartmentControllerTest {
                 .heatingType(HeatingType.INDIVIDUAL)
                 .mainPhoto("123")
                 .build();
-        when(apartmentService.updateDto(apartmentDTOUpdate,1)).thenReturn("Success:\n"+apartmentDTOUpdate);
+        when(apartmentService.updateDto(apartmentDTOUpdate,1)).thenReturn(apartmentDTOUpdate);
         ResponseEntity response = apartmentController.updateApartment(1,apartmentDTOUpdate);
         assertNotNull(response);
         assertEquals(HttpStatus.OK,response.getStatusCode());

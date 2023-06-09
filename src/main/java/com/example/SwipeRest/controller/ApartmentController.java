@@ -4,6 +4,7 @@ import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +42,7 @@ public class ApartmentController {
     @PostMapping("/add")
     public ResponseEntity saveApartment(@RequestBody @Valid ApartmentDTO apartmentDTO){
         log.info("Request save apartment");
-        return ResponseEntity.ok(apartmentService.saveDTO(apartmentDTO));
+        return ResponseEntity.ok("Success:\n"+apartmentService.saveDTO(apartmentDTO));
     }
     @DeleteMapping("/delete/{id}")
     public  ResponseEntity deleteApartment(@PathVariable int id){
@@ -61,7 +62,7 @@ public class ApartmentController {
         ApartmentDTO apartmentDTO1 = apartmentService.findByIdDTO(id);
         if (apartmentDTO1!=null){
             log.info("Request update apartment "+id);
-            return ResponseEntity.ok(apartmentService.updateDto(apartmentDTO,id));
+            return ResponseEntity.ok("Success:\n"+apartmentService.updateDto(apartmentDTO,id));
         }
         else{ log.info("Apartment not found "+id);
             return ResponseEntity.badRequest().body("Apartment not found");}

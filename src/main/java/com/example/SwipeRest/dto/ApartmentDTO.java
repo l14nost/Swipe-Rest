@@ -4,12 +4,13 @@ import com.example.SwipeRest.enums.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ApartmentDTO {
     @Schema(example = "1")
     int idApartment;
@@ -33,22 +34,30 @@ public class ApartmentDTO {
     @NotNull
     HeatingType heatingType;
     @Schema(example = "20")
+    @Min(5)
+    @Max(25)
     int kitchenArea;
     @Schema(example = "CLASSICAL")
     @NotNull
     LayoutType layout;
     @Schema(example = "10000")
+    @Min(200000)
+    @Max(2000000)
     int price;
     @Schema(example = "REPAIR")
     @NotNull
     State state;
     @Schema(example = "100")
+    @Min(20)
+    @Max(200)
     int totalArea;
     @Schema(example = "COMMUNAL")
     TypeApartment type;
     @Schema(example = "4")
     int idLcd;
     @Schema(example = "100")
+    @Min(1)
+    @Max(500)
     int number;
     @Schema(example = "../admin/dist/img/default.jpg")
     @NotBlank

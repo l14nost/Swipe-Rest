@@ -1,5 +1,6 @@
-package com.example.SwipeRest.controller;
+package com.example.SwipeRest.oldController;
 
+import com.example.SwipeRest.controller.LcdController;
 import com.example.SwipeRest.dto.*;
 import com.example.SwipeRest.enums.ClassType;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;

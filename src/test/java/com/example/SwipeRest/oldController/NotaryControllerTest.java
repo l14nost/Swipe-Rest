@@ -1,5 +1,6 @@
-package com.example.SwipeRest.controller;
+package com.example.SwipeRest.oldController;
 
+import com.example.SwipeRest.controller.NotaryController;
 import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
@@ -18,23 +19,23 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class ContractorControllerTest {
+class NotaryControllerTest {
     @Mock
     private UserServiceImpl userService;
     @InjectMocks
-    private ContractorController contractorController;
+    private NotaryController notaryController;
 
     @Test
-    void findAllContractor() {
+    void findAllNotary() {
         List<ClientDTO> clients = List.of(
-                ClientDTO.builder().typeUser(TypeUser.CONTRACTOR).build(),
-                ClientDTO.builder().typeUser(TypeUser.CONTRACTOR).build(),
-                ClientDTO.builder().typeUser(TypeUser.CONTRACTOR).build(),
-                ClientDTO.builder().typeUser(TypeUser.CONTRACTOR).build()
+                ClientDTO.builder().typeUser(TypeUser.NOTARY).build(),
+                ClientDTO.builder().typeUser(TypeUser.NOTARY).build(),
+                ClientDTO.builder().typeUser(TypeUser.NOTARY).build(),
+                ClientDTO.builder().typeUser(TypeUser.NOTARY).build()
         );
-        when(userService.findAllByType(TypeUser.CONTRACTOR)).thenReturn(clients);
+        when(userService.findAllByType(TypeUser.NOTARY)).thenReturn(clients);
 
-        ResponseEntity response = contractorController.findAllContractor();
+        ResponseEntity response = notaryController.findAllNotary();
 
         assertNotNull(response);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -42,124 +43,123 @@ class ContractorControllerTest {
     }
 
     @Test
-    void findByIdContractor_Success() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).build();
+    void findByIdNotary_Success() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
-        ResponseEntity response = contractorController.findByIdContractor(2);
+        ResponseEntity response = notaryController.findByIdNotary(2);
         assertNotNull(response);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(clientDTO,response.getBody());
     }
 
     @Test
-    void findByIdContractor_UserNotFound() {
-        ResponseEntity response = contractorController.findByIdContractor(1);
+    void findByIdNotary_UserNotFound() {
+        ResponseEntity response = notaryController.findByIdNotary(1);
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
         assertEquals("User by this id not found",response.getBody());
     }
 
     @Test
-    void findByIdContractor_UserNotContractor() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).build();
+    void findByIdNotary_UserNotNotary() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
-        ResponseEntity response = contractorController.findByIdContractor(2);
+        ResponseEntity response = notaryController.findByIdNotary(2);
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
-        assertEquals("User by this id isn't CONTRACTOR",response.getBody());
+        assertEquals("User by this id isn't NOTARY",response.getBody());
     }
     @Test
-    void findByIdContractor_Admin() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CLIENT).build();
+    void findByIdNotary_Admin() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CONTRACTOR).build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
-        ResponseEntity response = contractorController.findByIdContractor(1);
+        ResponseEntity response = notaryController.findByIdNotary(1);
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
         assertEquals("User by this id ADMIN",response.getBody());
     }
 
-
     @Test
-    void addContractor() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CONTRACTOR).name("Name").surname("Surname").number("123123123").mail("mail").build();
+    void addNotary() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.NOTARY).name("Name").surname("Surname").number("123123123").mail("mail").build();
         when(userService.addDTO(clientDTO)).thenReturn("Success:\n"+ clientDTO);
-        ResponseEntity response = contractorController.addContractor(clientDTO);
+        ResponseEntity response = notaryController.addNotary(clientDTO);
         assertNotNull(response);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals("Success:\n"+ clientDTO,response.getBody());
 
     }
     @Test
-    void deleteContractor_Success() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).build();
+    void deleteNotary_Success() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
-        ResponseEntity response = contractorController.deleteClient(2);
+        ResponseEntity response = notaryController.deleteClient(2);
         assertNotNull(response);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals("Success delete:"+ clientDTO,response.getBody());
     }
     @Test
-    void deleteContractor_NotContractor() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).build();
+    void deleteNotary_NotClient() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
-        ResponseEntity response = contractorController.deleteClient(2);
+        ResponseEntity response = notaryController.deleteClient(2);
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
-        assertEquals("User by this id isn't CONTRACTOR",response.getBody());
+        assertEquals("User by this id isn't NOTARY",response.getBody());
     }
     @Test
-    void deleteContractor_Admin() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CLIENT).build();
+    void deleteNotary_Admin() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CONTRACTOR).build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
-        ResponseEntity response = contractorController.deleteClient(1);
+        ResponseEntity response = notaryController.deleteClient(1);
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
         assertEquals("User by this id ADMIN",response.getBody());
     }
 
     @Test
-    void deleteContractor_NotFound() {
+    void deleteNotary_NotFound() {
 
-        ResponseEntity response = contractorController.deleteClient(1);
+        ResponseEntity response = notaryController.deleteClient(1);
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
         assertEquals("User NOT found",response.getBody());
     }
     @Test
-    void updateContractor_UserNotContractor() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).build();
+    void updateNotary_UserNotNotary() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
-        ResponseEntity response = contractorController.updateClient(2, ClientDTO.builder().build());
+        ResponseEntity response = notaryController.updateClient(2, ClientDTO.builder().build());
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
-        assertEquals("User by this id isn't CONTRACTOR",response.getBody());
+        assertEquals("User by this id isn't NOTARY",response.getBody());
     }
     @Test
-    void updateContractor_Admin() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CLIENT).build();
+    void updateNotary_Admin() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CONTRACTOR).build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
-        ResponseEntity response = contractorController.updateClient(1, ClientDTO.builder().build());
+        ResponseEntity response = notaryController.updateClient(1, ClientDTO.builder().build());
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
         assertEquals("User by this id ADMIN",response.getBody());
     }
     @Test
-    void updateContractor_NotFound() {
-        ResponseEntity response = contractorController.updateClient(1, ClientDTO.builder().build());
+    void updateNotary_NotFound() {
+        ResponseEntity response = notaryController.updateClient(1, ClientDTO.builder().build());
         assertNotNull(response);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
         assertEquals("User NOT found",response.getBody());
     }
 
     @Test
-    void updateContractor_Success() {
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).name("Name").surname("Surname").number("123123123").mail("mail").build();
-        ClientDTO clientDTOUpdate = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).name("Name1").surname("Surname1").number("123123123").mail("mail").build();
+    void updateNotary_Success() {
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).name("Name").surname("Surname").number("123123123").mail("mail").build();
+        ClientDTO clientDTOUpdate = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).name("Name1").surname("Surname1").number("123123123").mail("mail").build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         when(userService.updateDto(clientDTOUpdate,2)).thenReturn("Success update:\n" +
                 "Update user:\n"+ clientDTOUpdate);
-        ResponseEntity response = contractorController.updateClient(2, clientDTOUpdate);
+        ResponseEntity response = notaryController.updateClient(2, clientDTOUpdate);
         assertNotNull(response);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals("Success update:\n" +
