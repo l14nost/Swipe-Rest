@@ -5,7 +5,8 @@ import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/black/list")
 @RequiredArgsConstructor
 @Tag(name = "Blacklist")
-@Log4j2
 public class BlackListController {
+    private Logger log = LoggerFactory.getLogger(BlackListController.class);
     private final UserServiceImpl userService;
 
     @GetMapping("/all")

@@ -1,13 +1,15 @@
 package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.dto.ClientDTO;
+import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
-import com.example.SwipeRest.service.impl.*;
+import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/client")
 @Tag(name = "Client")
-@Log4j2
 public class ClientController {
+    private Logger log = LoggerFactory.getLogger(ClientController.class);
     private final UserServiceImpl userService;
     @GetMapping("/all")
     public ResponseEntity findAllClient(){
@@ -27,7 +29,7 @@ public class ClientController {
     public ResponseEntity findByIdClient(@PathVariable int id){
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
-            if (id!=1) {
+            if (user.getRole().equals(Role.USER)) {
                 if (user.getTypeUser().equals(TypeUser.CLIENT)) {
                     log.info("Request find Client " + id);
                     return ResponseEntity.ok(userService.findByIdDTO(id));
@@ -59,6 +61,7 @@ public class ClientController {
                     "    \"typeAgent\": \"SALES\"\n" +
                     "  },\n" +
                     "  \"typeUser\": \"CLIENT\",\n" +
+                    "  \"role\": \"USER\",\n" +
                     " \"userAddInfo\": {\n" +
                     "    \"callSms\": true,\n" +
                     "    \"dateSub\": \"2023-05-05\",\n" +
@@ -74,7 +77,7 @@ public class ClientController {
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "92") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
         if (clientDTO != null) {
-            if (id!=1) {
+            if (clientDTO.getRole().equals(Role.USER)) {
                 if (clientDTO.getTypeUser().equals(TypeUser.CLIENT)) {
                     log.info("Request delete Client " + id);
                     userService.deleteById(id);
@@ -107,6 +110,7 @@ public class ClientController {
                     "    \"typeAgent\": \"SALES\"\n" +
                     "  },\n" +
                     "  \"typeUser\": \"CLIENT\",\n" +
+                    "  \"role\": \"USER\",\n" +
                     " \"userAddInfo\": {\n" +
                     "    \"callSms\": true,\n" +
                     "    \"dateSub\": \"2023-05-05\",\n" +
@@ -116,7 +120,7 @@ public class ClientController {
                     "}") ClientDTO clientDTO){
         ClientDTO client = userService.findByIdDTO(id);
         if(client!=null){
-            if (id!=1) {
+            if (client.getRole().equals(Role.USER)) {
                 if (client.getTypeUser().equals(TypeUser.CLIENT)) {
                     log.info("Request update Client " + id);
                     return ResponseEntity.ok(userService.updateDto(clientDTO, id));

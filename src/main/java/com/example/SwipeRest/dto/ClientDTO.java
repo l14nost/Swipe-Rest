@@ -1,5 +1,6 @@
 package com.example.SwipeRest.dto;
 
+import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -40,6 +41,8 @@ public class ClientDTO {
     AgentDTO agent;
     @NotNull
     TypeUser typeUser;
+    @NotNull
+    Role role;
     @Valid
     UserAddInfoDTO userAddInfo;
     @Schema(type = "boolean",example = "false")

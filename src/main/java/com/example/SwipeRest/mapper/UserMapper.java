@@ -16,6 +16,7 @@ public class UserMapper{
                 .filename(clientDTO.getFileName())
                 .number(clientDTO.getNumber())
                 .blackList(false)
+                .role(clientDTO.getRole())
                 .build();
         if (clientDTO.getAgent()!=null){
             user.setAgent(AgentMapper.toEntity(clientDTO.getAgent()));
@@ -38,6 +39,7 @@ public class UserMapper{
                 .fileName(user.getFilename())
                 .number(user.getNumber())
                 .blackList(user.isBlackList())
+                .role(user.getRole())
 //                .black_list(user.isBlackList())
                 .build();
         if (user.getAgent()!=null){

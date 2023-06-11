@@ -21,8 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Optional<User> user = userRepo.findByMail(username);
 
         if (user.isPresent()){
-            System.out.println(user.get().getRole());
-
             User authAdmin = User.builder().mail(user.get().getMail()).password(user.get().getPassword()).role(user.get().getRole()).build();
             return authAdmin;
         }

@@ -2,24 +2,21 @@ package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
-import com.example.SwipeRest.service.impl.LCDServiceImpl;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/apartment")
 @RequiredArgsConstructor
 @Tag(name = "Apartment")
-@Log4j2
 public class ApartmentController {
     private final ApartmentServiceImpl apartmentService;
+    private Logger log = LoggerFactory.getLogger(ApartmentController.class);
 
     @GetMapping("/all")
     public ResponseEntity findAllApartment(){

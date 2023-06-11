@@ -1,5 +1,6 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.dto.LcdDTO;
 import com.example.SwipeRest.entity.*;
 import com.example.SwipeRest.mapper.LcdMapper;
@@ -8,6 +9,8 @@ import com.example.SwipeRest.service.LCDService;
 import com.example.SwipeRest.specification.LcdSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +18,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Log4j2
 @Service
 @RequiredArgsConstructor
 public class LCDServiceImpl implements LCDService {
+    private Logger log = LoggerFactory.getLogger(LCDServiceImpl.class);
     private final LCDRepo lcdRepo;
     private final PhotosServiceImpl photosService;
     private final FrameServiceImpl frameService;

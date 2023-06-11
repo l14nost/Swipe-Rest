@@ -1,5 +1,6 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.dto.NewsDto;
 import com.example.SwipeRest.entity.News;
 import com.example.SwipeRest.mapper.NewsMapper;
@@ -7,16 +8,18 @@ import com.example.SwipeRest.repository.NewsRepo;
 import com.example.SwipeRest.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Log4j2
+
 @Service
 @RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService {
     private final NewsRepo newsRepo;
-
+    private Logger log = LoggerFactory.getLogger(NewsServiceImpl.class);
 
 
     @Override

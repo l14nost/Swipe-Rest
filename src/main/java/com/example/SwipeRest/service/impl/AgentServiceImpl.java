@@ -1,18 +1,20 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.entity.Agent;
 import com.example.SwipeRest.repository.AgentRepo;
 import com.example.SwipeRest.service.AgentService;
 import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Log4j2
 public class AgentServiceImpl implements AgentService {
-
+    private Logger log = LoggerFactory.getLogger(AgentServiceImpl.class);
     private final AgentRepo agentRepo;
 
 

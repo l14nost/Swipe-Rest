@@ -1,6 +1,7 @@
 package com.example.SwipeRest.service.impl;
 
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.dto.BlackListDTO;
 import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.entity.Agent;
@@ -13,18 +14,19 @@ import com.example.SwipeRest.repository.UserRepo;
 import com.example.SwipeRest.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Log4j2
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserAddInfoServiceImpl userAddInfoService;
     private final AgentServiceImpl agentService;
     private final UserRepo userRepo;
-
+    private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
 
 

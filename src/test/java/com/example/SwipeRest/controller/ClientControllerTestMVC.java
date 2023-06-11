@@ -53,6 +53,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -74,6 +75,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("1011231")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -95,6 +97,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("1011231")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -116,6 +119,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -137,6 +141,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.ADMIN)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -157,6 +162,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.NOTARY)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -179,6 +185,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -204,6 +211,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -223,6 +231,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -242,6 +251,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.CLIENT)
+                .role(Role.ADMIN)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -262,6 +272,7 @@ public class ClientControllerTestMVC {
                 .surname("Surname")
                 .number("101123123")
                 .typeUser(TypeUser.NOTARY)
+                .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
@@ -303,7 +314,7 @@ public class ClientControllerTestMVC {
 //
     @Test
     public void findByIdClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).build();
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/client/2")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -323,7 +334,7 @@ public class ClientControllerTestMVC {
     }
     @Test
     public void findByIdClient_ADMIN() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CLIENT).build();
+        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CLIENT).role(Role.ADMIN).build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/client/1")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -333,7 +344,7 @@ public class ClientControllerTestMVC {
     }
     @Test
     public void findByIdClient_NotClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).build();
+        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/client/2")
                 .contentType(MediaType.APPLICATION_JSON));

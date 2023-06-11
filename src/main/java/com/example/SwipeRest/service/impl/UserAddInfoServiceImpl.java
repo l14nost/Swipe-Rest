@@ -1,21 +1,24 @@
 package com.example.SwipeRest.service.impl;
 
 //import com.example.Swipe.Admin.entity.SalesDepartment;
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.entity.UserAddInfo;
 import com.example.SwipeRest.repository.UserAddInfoRepo;
 import com.example.SwipeRest.service.UserAddInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Log4j2
+
 @Service
 @RequiredArgsConstructor
 public class UserAddInfoServiceImpl implements UserAddInfoService {
     private final UserAddInfoRepo userAddInfoRepo;
-
+    private Logger log = LoggerFactory.getLogger(UserAddInfoServiceImpl.class);
 
     @Override
     public List<UserAddInfo> findAll() {

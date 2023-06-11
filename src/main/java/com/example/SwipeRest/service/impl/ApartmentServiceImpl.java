@@ -1,5 +1,6 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.entity.Apartment;
 import com.example.SwipeRest.entity.LCD;
@@ -12,15 +13,17 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Log4j2
+
 @Service
 @RequiredArgsConstructor
 public class ApartmentServiceImpl implements ApartmentService {
+    private Logger log = LoggerFactory.getLogger(ApartmentServiceImpl.class);
     private final ApartmentRepo apartmentRepo;
     private final UserServiceImpl userService;
     private final PhotosServiceImpl photosService;

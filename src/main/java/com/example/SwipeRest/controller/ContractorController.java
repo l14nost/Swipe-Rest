@@ -1,14 +1,15 @@
 package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.dto.ClientDTO;
+import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
-import com.example.SwipeRest.service.impl.*;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
+import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/contractor")
 @Tag(name = "Contractor")
-@Log4j2
 public class ContractorController {
-
+    private Logger log = LoggerFactory.getLogger(ContractorController.class);
     private final UserServiceImpl userService;
     @GetMapping("/all")
     public ResponseEntity findAllContractor(){
@@ -29,7 +29,7 @@ public class ContractorController {
     public ResponseEntity findByIdContractor(@PathVariable @Schema(example = "90") int id){
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
-            if (id != 1) {
+            if (user.getRole().equals(Role.USER)) {
                 if (user.getTypeUser().equals(TypeUser.CONTRACTOR)) {
                     log.info("Request find Contractor " + id);
 
@@ -65,6 +65,7 @@ public class ContractorController {
                     "    \"typeAgent\": \"SALES\"\n" +
                     "  },\n" +
                     "  \"typeUser\": \"CONTRACTOR\",\n" +
+                    "  \"role\": \"USER\",\n" +
                     "  \"userAddInfo\": null,\n" +
                     "  \"blackList\": false\n" +
                     "}"
@@ -76,7 +77,7 @@ public class ContractorController {
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "89") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
         if (clientDTO != null) {
-            if (id!=1) {
+            if (clientDTO.getRole().equals(Role.USER)) {
                 if (clientDTO.getTypeUser().equals(TypeUser.CONTRACTOR)) {
                     log.info("Request delete Contractor " + id);
                     userService.deleteById(id);
@@ -110,13 +111,14 @@ public class ContractorController {
                     "    \"typeAgent\": \"SALES\"\n" +
                     "  },\n" +
                     "  \"typeUser\": \"CONTRACTOR\",\n" +
+                    "  \"role\": \"USER\",\n" +
                     "  \"userAddInfo\": null,\n"  +
                     "  \"blackList\": false\n" +
                     "}"
     ) ClientDTO clientDTO){
         ClientDTO client = userService.findByIdDTO(id);
         if(client!=null) {
-            if (id!=1) {
+            if (client.getRole().equals(Role.USER)) {
                 if (client.getTypeUser().equals(TypeUser.CONTRACTOR)) {
                     log.info("Request update Contractor " + id);
                     return ResponseEntity.ok(userService.updateDto(clientDTO, id));

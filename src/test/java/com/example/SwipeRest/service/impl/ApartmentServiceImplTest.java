@@ -281,6 +281,6 @@ class ApartmentServiceImplTest {
                 .mainPhoto("123")
                 .build();
         verify(apartmentRepo).saveAndFlush(apartmentSave);
-        assertEquals("Something wrong",apartmentService.updateDto(apartmentUpdate,2));
+        assertEquals(ApartmentDTO.builder().build(),apartmentService.updateDto(apartmentUpdate,2));
     }
 }

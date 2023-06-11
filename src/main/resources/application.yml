@@ -23,5 +23,6 @@ application:
         expiration: '604800000'
 
 logging:
-  file:
-    name: '/C:/Users/Amir Banov/IdeaProjects/Swipe-Rest/logging/logRest.log'
+  config: classpath:logback.xml
+#  file:
+#    name: '/C:/Users/Amir Banov/IdeaProjects/Swipe-Rest/logging/logRest.log'

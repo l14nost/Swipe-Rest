@@ -1,19 +1,22 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.entity.Apartment;
 import com.example.SwipeRest.entity.Frame;
 import com.example.SwipeRest.repository.FrameRepo;
 import com.example.SwipeRest.service.FrameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Log4j2
 @Service
 @RequiredArgsConstructor
 public class FrameServiceImpl implements FrameService {
+    private Logger log = LoggerFactory.getLogger(FrameServiceImpl.class);
     private final FrameRepo frameRepo;
     private final ApartmentServiceImpl apartmentService;
 

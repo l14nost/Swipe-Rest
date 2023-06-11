@@ -1,17 +1,21 @@
 package com.example.SwipeRest.service.impl;
 
+import com.example.SwipeRest.controller.ApartmentController;
 import com.example.SwipeRest.entity.Photo;
 import com.example.SwipeRest.repository.PhotosRepo;
 import com.example.SwipeRest.service.PhotosService;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Log4j2
+
 @Service
 public class PhotosServiceImpl implements PhotosService {
+    private Logger log = LoggerFactory.getLogger(PhotosServiceImpl.class);
     private final PhotosRepo photosRepo;
 
     public PhotosServiceImpl(PhotosRepo photosRepo) {

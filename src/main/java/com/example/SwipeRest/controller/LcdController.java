@@ -1,23 +1,21 @@
 package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.dto.LcdDTO;
-import com.example.SwipeRest.entity.LCD;
-import com.example.SwipeRest.mapper.LcdMapper;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/lcd")
 @RequiredArgsConstructor
 @Tag(name = "LCD")
-@Log4j2
 public class LcdController {
+    private Logger log = LoggerFactory.getLogger(LcdController.class);
     private final LCDServiceImpl lcdService;
 
     @GetMapping("/all")
