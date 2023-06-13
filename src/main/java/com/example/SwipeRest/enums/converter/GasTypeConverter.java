@@ -1,8 +1,8 @@
 package com.example.SwipeRest.enums.converter;
 
 import com.example.SwipeRest.enums.GasType;
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 import java.util.stream.Stream;
 

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.7</version>
+		<version>2.7.12</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -61,15 +61,17 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.1.0</version>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
 		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.4.7</version>
+			<version>1.2.9</version>
 		</dependency>
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>

@@ -2,8 +2,8 @@ package com.example.SwipeRest.dto;
 
 import com.example.SwipeRest.enums.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 

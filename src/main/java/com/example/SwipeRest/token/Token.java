@@ -1,7 +1,7 @@
 package com.example.SwipeRest.token;
 
 import com.example.SwipeRest.entity.User;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Data

@@ -2,10 +2,8 @@ package com.example.SwipeRest.specification;
 
 import com.example.SwipeRest.entity.Apartment;
 import com.example.SwipeRest.entity.Frame;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+
 import lombok.Builder;
 import org.springframework.data.jpa.domain.Specification;
 

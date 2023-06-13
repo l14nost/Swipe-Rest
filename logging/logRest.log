@@ -20049,3 +20049,640 @@ This generated password is for development use only. Your security configuration
 2023-06-13 15:31:07,083 INFO  [main] c.e.S.c.BlackListController - User not found 3
 2023-06-13 15:31:07,086 INFO  [main] c.e.S.c.BlackListController - User not valid for add to blacklist
 2023-06-13 15:31:07,089 INFO  [main] c.e.S.c.BlackListController - User not valid for add to blacklist
+2023-06-13 15:54:20,352 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2023-06-13 15:54:20,379 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - Starting SwipeRestApplication using Java 17.0.6 with PID 13396 (C:\Users\Amir Banov\IdeaProjects\Swipe-Rest\target\classes started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 15:54:20,379 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 15:54:20,407 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-13 15:54:20,407 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-13 15:54:20,950 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-13 15:54:21,022 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 10 JPA repository interfaces.
+2023-06-13 15:54:21,499 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-06-13 15:54:21,506 INFO  [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-06-13 15:54:21,506 INFO  [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-06-13 15:54:21,506 INFO  [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-13 15:54:21,551 INFO  [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-06-13 15:54:21,552 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1144 ms
+2023-06-13 15:54:21,627 INFO  [restartedMain] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-13 15:54:21,661 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-06-13 15:54:21,872 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-06-13 15:54:22,066 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@30c1c4e6
+2023-06-13 15:54:22,068 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-06-13 15:54:22,112 INFO  [restartedMain] SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-06-13 15:54:22,915 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 15:54:22,922 INFO  [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 15:54:23,526 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-13 15:54:23,691 INFO  [restartedMain] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1e9871d4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2bd7da78, org.springframework.security.web.context.SecurityContextHolderFilter@687f96f6, org.springframework.security.web.header.HeaderWriterFilter@61821b6, org.springframework.security.web.authentication.logout.LogoutFilter@3e5c9e21, com.example.SwipeRest.config.JWTAuthenticationFilter@7ceea4a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@716a32, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@38b638e7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4193f634, org.springframework.security.web.session.SessionManagementFilter@1cd71d23, org.springframework.security.web.access.ExceptionTranslationFilter@6473714, org.springframework.security.web.access.intercept.AuthorizationFilter@68abaa3d]
+2023-06-13 15:54:23,863 INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-06-13 15:54:23,875 INFO  [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-06-13 15:54:23,889 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-06-13 15:54:23,896 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - Started SwipeRestApplication in 3.793 seconds (process running for 4.369)
+2023-06-13 15:54:31,652 INFO  [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-13 15:54:31,652 INFO  [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-06-13 15:54:31,653 INFO  [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-06-13 15:54:32,303 INFO  [http-nio-8082-exec-9] o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 355 ms
+2023-06-13 16:02:22,608 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 16:02:22,611 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-06-13 16:02:22,615 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-06-13 16:14:36,634 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-06-13 16:14:36,637 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - Starting SwipeRestApplication using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 21580 (C:\Users\Amir Banov\IdeaProjects\Swipe-Rest\target\classes started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:14:36,637 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:14:36,667 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-13 16:14:36,667 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-13 16:14:37,217 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-13 16:14:37,309 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 86 ms. Found 10 JPA repository interfaces.
+2023-06-13 16:14:37,688 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-06-13 16:14:37,695 INFO  [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-06-13 16:14:37,695 INFO  [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-06-13 16:14:37,695 INFO  [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.75]
+2023-06-13 16:14:37,747 INFO  [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-06-13 16:14:37,748 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1080 ms
+2023-06-13 16:14:37,839 INFO  [restartedMain] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-13 16:14:37,874 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-06-13 16:14:37,992 INFO  [restartedMain] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-13 16:14:38,061 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-06-13 16:14:38,251 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-06-13 16:14:38,271 INFO  [restartedMain] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-06-13 16:14:38,911 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 16:14:38,918 INFO  [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 16:14:39,441 INFO  [restartedMain] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7592942f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32854121, org.springframework.security.web.context.SecurityContextPersistenceFilter@2a8d14cc, org.springframework.security.web.header.HeaderWriterFilter@12d3c029, org.springframework.security.web.authentication.logout.LogoutFilter@30f96ed5, com.example.SwipeRest.config.JWTAuthenticationFilter@6819270d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@269622b1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31649c6f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2915a1c2, org.springframework.security.web.session.SessionManagementFilter@6812cde8, org.springframework.security.web.access.ExceptionTranslationFilter@96365e, org.springframework.security.web.access.intercept.AuthorizationFilter@2a4db3b7]
+2023-06-13 16:14:39,494 WARN  [restartedMain] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration': Unsatisfied dependency expressed through method 'setConfigurers' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'swaggerWebMvcConfigurer' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Unsatisfied dependency expressed through method 'swaggerWebMvcConfigurer' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'indexPageTransformer' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Unsatisfied dependency expressed through method 'indexPageTransformer' parameter 3; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swaggerWelcome' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc]: Factory method 'swaggerWelcome' threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/http/HttpStatusCode
+2023-06-13 16:14:39,497 INFO  [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 16:14:39,498 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-06-13 16:14:39,503 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-06-13 16:14:39,504 INFO  [restartedMain] o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2023-06-13 16:14:39,512 INFO  [restartedMain] o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-06-13 16:14:39,528 ERROR [restartedMain] o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration': Unsatisfied dependency expressed through method 'setConfigurers' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'swaggerWebMvcConfigurer' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Unsatisfied dependency expressed through method 'swaggerWebMvcConfigurer' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'indexPageTransformer' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Unsatisfied dependency expressed through method 'indexPageTransformer' parameter 3; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swaggerWelcome' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc]: Factory method 'swaggerWelcome' threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/http/HttpStatusCode
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:768)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:720)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.example.SwipeRest.SwipeRestApplication.main(SwipeRestApplication.java:15)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'swaggerWebMvcConfigurer' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Unsatisfied dependency expressed through method 'swaggerWebMvcConfigurer' parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'indexPageTransformer' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Unsatisfied dependency expressed through method 'indexPageTransformer' parameter 3; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swaggerWelcome' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc]: Factory method 'swaggerWelcome' threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/http/HttpStatusCode
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:760)
+	... 25 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'indexPageTransformer' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Unsatisfied dependency expressed through method 'indexPageTransformer' parameter 3; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swaggerWelcome' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc]: Factory method 'swaggerWelcome' threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/http/HttpStatusCode
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 41 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swaggerWelcome' defined in class path resource [org/springdoc/webmvc/ui/SwaggerConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc]: Factory method 'swaggerWelcome' threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/http/HttpStatusCode
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 55 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc]: Factory method 'swaggerWelcome' threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/http/HttpStatusCode
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 69 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: org/springframework/http/HttpStatusCode
+	at org.springdoc.webmvc.ui.SwaggerConfig.swaggerWelcome(SwaggerConfig.java:83)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 70 common frames omitted
+Caused by: java.lang.ClassNotFoundException: org.springframework.http.HttpStatusCode
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	... 76 common frames omitted
+2023-06-13 16:18:53,657 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - Starting SwipeRestApplication using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 18372 (C:\Users\Amir Banov\IdeaProjects\Swipe-Rest\target\classes started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:18:53,657 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-06-13 16:18:53,659 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:18:53,694 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-13 16:18:53,694 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-13 16:18:54,240 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-13 16:18:54,304 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 10 JPA repository interfaces.
+2023-06-13 16:18:54,679 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-06-13 16:18:54,686 INFO  [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-06-13 16:18:54,686 INFO  [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-06-13 16:18:54,686 INFO  [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.75]
+2023-06-13 16:18:54,737 INFO  [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-06-13 16:18:54,737 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1042 ms
+2023-06-13 16:18:54,831 INFO  [restartedMain] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-13 16:18:54,864 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-06-13 16:18:54,979 INFO  [restartedMain] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-13 16:18:55,046 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-06-13 16:18:55,234 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-06-13 16:18:55,254 INFO  [restartedMain] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-06-13 16:18:55,893 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 16:18:55,900 INFO  [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 16:18:56,408 INFO  [restartedMain] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@f731816, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30231d20, org.springframework.security.web.context.SecurityContextPersistenceFilter@907e5ae, org.springframework.security.web.header.HeaderWriterFilter@2602c71f, org.springframework.security.web.authentication.logout.LogoutFilter@79316b7b, com.example.SwipeRest.config.JWTAuthenticationFilter@c1c5c04, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@733ee6d8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c66cd3c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72c7a682, org.springframework.security.web.session.SessionManagementFilter@2c93f522, org.springframework.security.web.access.ExceptionTranslationFilter@7c1b9527, org.springframework.security.web.access.intercept.AuthorizationFilter@28f2f3b3]
+2023-06-13 16:18:56,488 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-13 16:18:56,737 INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-06-13 16:18:56,750 INFO  [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-06-13 16:18:56,763 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-06-13 16:18:56,773 INFO  [restartedMain] c.e.SwipeRest.SwipeRestApplication - Started SwipeRestApplication in 3.389 seconds (JVM running for 3.947)
+2023-06-13 16:19:14,265 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News update  1
+2023-06-13 16:19:14,280 INFO  [main] c.e.S.service.impl.NewsServiceImpl - All news
+2023-06-13 16:19:14,285 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News find 5
+2023-06-13 16:19:14,287 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News save
+2023-06-13 16:19:14,291 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News find 5
+2023-06-13 16:19:14,293 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News not find 5
+2023-06-13 16:19:14,295 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News delete 1
+2023-06-13 16:19:14,298 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News not find 5
+2023-06-13 16:19:14,377 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.SwipeRest.controller.ClientControllerTestMVC], using SpringBootContextLoader
+2023-06-13 16:19:14,380 INFO  [main] o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.example.SwipeRest.controller.ClientControllerTestMVC]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-06-13 16:19:14,380 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.SwipeRest.controller.ClientControllerTestMVC]: ClientControllerTestMVC does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-13 16:19:14,482 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.SwipeRest.SwipeRestApplication for test class com.example.SwipeRest.controller.ClientControllerTestMVC
+2023-06-13 16:19:14,485 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-06-13 16:19:14,498 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@612e21b9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@302edb74, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@7efd28bd, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@672b72ba, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7718a40f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@312b34e3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@26844abb, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1a865273, org.springframework.test.context.event.EventPublishingTestExecutionListener@288ca5f0, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4068102e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@44bd4b0a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6c008c24, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@216e0771, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@21079a12, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@fcc6023]
+2023-06-13 16:19:14,841 INFO  [main] c.e.S.c.ClientControllerTestMVC - Starting ClientControllerTestMVC using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 1512 (started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:19:14,841 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-06-13 16:19:14,841 INFO  [main] c.e.S.c.ClientControllerTestMVC - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:19:15,992 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 59ec5f2f-11dd-49be-8c70-533ace19110c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-06-13 16:19:16,151 INFO  [main] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@adc8683, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4eac65db, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e5d5ac1, org.springframework.security.web.header.HeaderWriterFilter@7fc1fd31, org.springframework.security.web.csrf.CsrfFilter@3eee08f5, org.springframework.security.web.authentication.logout.LogoutFilter@2efcc0b3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@aedc426, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@116fc29e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@dde6f87, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5342eec5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@402f61f5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6480a063, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7884f722, org.springframework.security.web.session.SessionManagementFilter@da5d5e1, org.springframework.security.web.access.ExceptionTranslationFilter@ce2eaa7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b7c4734]
+2023-06-13 16:19:16,207 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2023-06-13 16:19:16,208 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2023-06-13 16:19:16,209 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2023-06-13 16:19:16,247 INFO  [main] c.e.S.c.ClientControllerTestMVC - Started ClientControllerTestMVC in 1.712 seconds (JVM running for 3.206)
+2023-06-13 16:19:16,491 INFO  [main] c.e.S.controller.ClientController - Request save Client
+2023-06-13 16:19:16,501 INFO  [main] c.e.S.controller.ClientController - Request all Client
+2023-06-13 16:19:16,512 INFO  [main] c.e.S.controller.ClientController - User 2not Client
+2023-06-13 16:19:16,518 INFO  [main] c.e.S.controller.ClientController - User 2not Client
+2023-06-13 16:19:16,528 INFO  [main] c.e.S.controller.ClientController - Request delete Client 2
+2023-06-13 16:19:16,544 INFO  [main] c.e.S.controller.ClientController - User 2not Client
+2023-06-13 16:19:16,549 INFO  [main] c.e.S.controller.ClientController - Request find Client 2
+2023-06-13 16:19:16,557 INFO  [main] c.e.S.controller.ClientController - Request update Client 2
+2023-06-13 16:19:16,563 INFO  [main] c.e.S.controller.ClientController - User not found 1
+2023-06-13 16:19:16,568 INFO  [main] c.e.S.controller.ClientController - User not found 1
+2023-06-13 16:19:16,603 INFO  [main] c.e.S.controller.ClientController - User not found 1
+2023-06-13 16:19:16,656 INFO  [main] c.e.S.service.impl.UserServiceImpl - UserAddInfo update 0
+2023-06-13 16:19:16,657 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent update 1
+2023-06-13 16:19:16,657 INFO  [main] c.e.S.service.impl.UserServiceImpl - User update 1
+2023-06-13 16:19:16,663 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent update 1
+2023-06-13 16:19:16,664 INFO  [main] c.e.S.service.impl.UserServiceImpl - User update 1
+2023-06-13 16:19:16,665 INFO  [main] c.e.S.service.impl.UserServiceImpl - All user
+2023-06-13 16:19:16,667 INFO  [main] c.e.S.service.impl.UserServiceImpl - User find 1
+2023-06-13 16:19:16,668 INFO  [main] c.e.S.service.impl.UserServiceImpl - User not find 2
+2023-06-13 16:19:16,670 INFO  [main] c.e.S.service.impl.UserServiceImpl - All NOTARY
+2023-06-13 16:19:16,673 INFO  [main] c.e.S.service.impl.UserServiceImpl - User save
+2023-06-13 16:19:16,674 INFO  [main] c.e.S.service.impl.UserServiceImpl - User find 1
+2023-06-13 16:19:16,675 INFO  [main] c.e.S.service.impl.UserServiceImpl - User not find 2
+2023-06-13 16:19:16,676 INFO  [main] c.e.S.service.impl.UserServiceImpl - All NOTARY
+2023-06-13 16:19:16,678 INFO  [main] c.e.S.service.impl.UserServiceImpl - User add to blackList 1
+2023-06-13 16:19:16,681 INFO  [main] c.e.S.service.impl.UserServiceImpl - Blacklist
+2023-06-13 16:19:16,683 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent for user save
+2023-06-13 16:19:16,683 INFO  [main] c.e.S.service.impl.UserServiceImpl - User save
+2023-06-13 16:19:16,684 INFO  [main] c.e.S.service.impl.UserServiceImpl - User delete 1
+2023-06-13 16:19:16,728 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame not find 1
+2023-06-13 16:19:16,731 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Apartment update 1
+2023-06-13 16:19:16,732 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame update 10
+2023-06-13 16:19:16,733 INFO  [main] c.e.S.service.impl.FrameServiceImpl - All frame
+2023-06-13 16:19:16,735 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame find 3
+2023-06-13 16:19:16,736 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame save
+2023-06-13 16:19:16,738 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame delete 1
+2023-06-13 16:19:16,761 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document update 1
+2023-06-13 16:19:16,763 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - All Documents
+2023-06-13 16:19:16,764 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document find:5
+2023-06-13 16:19:16,766 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document save
+2023-06-13 16:19:16,768 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document not find:1
+2023-06-13 16:19:16,770 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document delete 5
+2023-06-13 16:19:16,790 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Find agent:8
+2023-06-13 16:19:16,793 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent:1 update
+2023-06-13 16:19:16,795 INFO  [main] c.e.S.service.impl.AgentServiceImpl - All agent
+2023-06-13 16:19:16,797 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Not find agent:1
+2023-06-13 16:19:16,798 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent save
+2023-06-13 16:19:16,800 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent delete
+2023-06-13 16:19:16,860 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Frame update1
+2023-06-13 16:19:16,861 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Photo update0
+2023-06-13 16:19:16,862 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Document update1
+2023-06-13 16:19:16,862 INFO  [main] c.e.S.service.impl.LCDServiceImpl - News update1
+2023-06-13 16:19:16,862 INFO  [main] c.e.S.service.impl.LCDServiceImpl - User update12
+2023-06-13 16:19:16,863 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd update1
+2023-06-13 16:19:16,877 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd update1
+2023-06-13 16:19:16,879 INFO  [main] c.e.S.service.impl.LCDServiceImpl - All lcd
+2023-06-13 16:19:16,881 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd find 1
+2023-06-13 16:19:16,881 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd not find 2
+2023-06-13 16:19:16,882 INFO  [main] c.e.S.service.impl.LCDServiceImpl - All lcdDto
+2023-06-13 16:19:16,884 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd save
+2023-06-13 16:19:16,885 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd find 1
+2023-06-13 16:19:16,886 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd not find 2
+2023-06-13 16:19:16,887 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd delete
+2023-06-13 16:19:16,889 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Photo save
+2023-06-13 16:19:16,890 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Frame save
+2023-06-13 16:19:16,890 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Apartment save
+2023-06-13 16:19:16,890 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Document save
+2023-06-13 16:19:16,891 INFO  [main] c.e.S.service.impl.LCDServiceImpl - News save
+2023-06-13 16:19:16,891 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd save
+2023-06-13 16:19:16,910 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo update 1
+2023-06-13 16:19:16,912 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - All photo
+2023-06-13 16:19:16,913 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo find 1
+2023-06-13 16:19:16,914 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo save
+2023-06-13 16:19:16,916 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo not find 1
+2023-06-13 16:19:16,917 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo delete 1
+2023-06-13 16:19:16,918 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.SwipeRest.controller.ContractorControllerTestMVC], using SpringBootContextLoader
+2023-06-13 16:19:16,919 INFO  [main] o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.example.SwipeRest.controller.ContractorControllerTestMVC]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-06-13 16:19:16,919 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.SwipeRest.controller.ContractorControllerTestMVC]: ContractorControllerTestMVC does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-13 16:19:16,923 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.SwipeRest.SwipeRestApplication for test class com.example.SwipeRest.controller.ContractorControllerTestMVC
+2023-06-13 16:19:16,923 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-06-13 16:19:16,923 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@52dd1be2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@36857d32, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@24520a51, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2ae88712, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@10508ba6, org.springframework.test.context.support.DirtiesContextTestExecutionListener@da11873, org.springframework.test.context.transaction.TransactionalTestExecutionListener@39159b14, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@57ab4b33, org.springframework.test.context.event.EventPublishingTestExecutionListener@43b2e7db, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@46d51d5e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@530df3ab, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5e72c82a, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@aaa7000, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@64fba3e6, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@58d79479]
+2023-06-13 16:19:16,948 INFO  [main] c.e.S.c.ContractorControllerTestMVC - Starting ContractorControllerTestMVC using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 1512 (started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:19:16,948 INFO  [main] c.e.S.c.ContractorControllerTestMVC - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:19:17,334 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 26597ddb-0c81-431a-b42e-0a6f0d8ec547
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-06-13 16:19:17,400 INFO  [main] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@58041b11, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58189b85, org.springframework.security.web.context.SecurityContextPersistenceFilter@35e357b, org.springframework.security.web.header.HeaderWriterFilter@361483eb, org.springframework.security.web.csrf.CsrfFilter@bb38c49, org.springframework.security.web.authentication.logout.LogoutFilter@5464aeec, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6fbfd28b, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@350be5ec, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@49222187, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3fa50a24, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@724c26e0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6055e899, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e41e6ad, org.springframework.security.web.session.SessionManagementFilter@14983265, org.springframework.security.web.access.ExceptionTranslationFilter@4e67e090, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@20e41f13]
+2023-06-13 16:19:17,424 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2023-06-13 16:19:17,424 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2023-06-13 16:19:17,425 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+2023-06-13 16:19:17,433 INFO  [main] c.e.S.c.ContractorControllerTestMVC - Started ContractorControllerTestMVC in 0.508 seconds (JVM running for 4.392)
+2023-06-13 16:19:17,461 INFO  [main] c.e.S.c.ContractorController - Request save Contractor
+2023-06-13 16:19:17,471 INFO  [main] c.e.S.c.ContractorController - Request all Contractor
+2023-06-13 16:19:17,477 INFO  [main] c.e.S.c.ContractorController - User 2not Contractor
+2023-06-13 16:19:17,481 INFO  [main] c.e.S.c.ContractorController - User 2not Contractor
+2023-06-13 16:19:17,489 INFO  [main] c.e.S.c.ContractorController - Request delete Contractor 2
+2023-06-13 16:19:17,496 INFO  [main] c.e.S.c.ContractorController - User 2not Contractor
+2023-06-13 16:19:17,501 INFO  [main] c.e.S.c.ContractorController - Request find Contractor 2
+2023-06-13 16:19:17,508 INFO  [main] c.e.S.c.ContractorController - Request update Contractor 2
+2023-06-13 16:19:17,513 INFO  [main] c.e.S.c.ContractorController - User not found 1
+2023-06-13 16:19:17,517 INFO  [main] c.e.S.c.ContractorController - User not found 1
+2023-06-13 16:19:17,535 INFO  [main] c.e.S.c.ContractorController - User not found 1
+2023-06-13 16:19:17,539 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.SwipeRest.controller.ApartmentControllerTestMVC], using SpringBootContextLoader
+2023-06-13 16:19:17,540 INFO  [main] o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.example.SwipeRest.controller.ApartmentControllerTestMVC]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-06-13 16:19:17,540 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.SwipeRest.controller.ApartmentControllerTestMVC]: ApartmentControllerTestMVC does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-13 16:19:17,544 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.SwipeRest.SwipeRestApplication for test class com.example.SwipeRest.controller.ApartmentControllerTestMVC
+2023-06-13 16:19:17,545 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-06-13 16:19:17,545 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3bbdf835, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2d114d27, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@28fef9a2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7dfab58d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@29d29657, org.springframework.test.context.support.DirtiesContextTestExecutionListener@e0d9e3f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@516155b5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@799fc4c9, org.springframework.test.context.event.EventPublishingTestExecutionListener@44428583, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@265c0752, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7d4b32d1, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7a75183d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2acbe46d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6c6b00f1, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@48126a17]
+2023-06-13 16:19:17,574 INFO  [main] c.e.S.c.ApartmentControllerTestMVC - Starting ApartmentControllerTestMVC using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 1512 (started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:19:17,574 INFO  [main] c.e.S.c.ApartmentControllerTestMVC - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:19:17,923 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: bb8a1c7d-fc0d-4b48-b54f-30f756adf8c7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-06-13 16:19:17,984 INFO  [main] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f1e15de, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ea0161f, org.springframework.security.web.context.SecurityContextPersistenceFilter@cae4952, org.springframework.security.web.header.HeaderWriterFilter@63d75087, org.springframework.security.web.csrf.CsrfFilter@426940f9, org.springframework.security.web.authentication.logout.LogoutFilter@3b80bb63, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4c6fabba, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@61555218, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1f235a0a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3f2ab6ec, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@79aba813, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20a18cc9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75d402d4, org.springframework.security.web.session.SessionManagementFilter@4c8afba, org.springframework.security.web.access.ExceptionTranslationFilter@447630c4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b6f73d]
+2023-06-13 16:19:18,008 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2023-06-13 16:19:18,008 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2023-06-13 16:19:18,009 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2023-06-13 16:19:18,017 INFO  [main] c.e.S.c.ApartmentControllerTestMVC - Started ApartmentControllerTestMVC in 0.469 seconds (JVM running for 4.976)
+2023-06-13 16:19:18,022 INFO  [main] c.e.S.c.ApartmentController - Request all apartment
+2023-06-13 16:19:18,082 INFO  [main] c.e.S.c.ApartmentController - Request update apartment 1
+2023-06-13 16:19:18,096 INFO  [main] c.e.S.c.ApartmentController - Apartment not found 1
+2023-06-13 16:19:18,110 INFO  [main] c.e.S.c.ApartmentController - Request delete apartment 1
+2023-06-13 16:19:18,118 INFO  [main] c.e.S.c.ApartmentController - Apartment not found 1
+2023-06-13 16:19:18,128 INFO  [main] c.e.S.c.ApartmentController - Apartment not found 1
+2023-06-13 16:19:18,133 INFO  [main] c.e.S.c.ApartmentController - Request save apartment
+2023-06-13 16:19:18,138 INFO  [main] c.e.S.c.ApartmentController - Request find apartment 1
+2023-06-13 16:19:18,143 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.SwipeRest.controller.NotaryControllerTestMVC], using SpringBootContextLoader
+2023-06-13 16:19:18,143 INFO  [main] o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.example.SwipeRest.controller.NotaryControllerTestMVC]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-06-13 16:19:18,144 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.SwipeRest.controller.NotaryControllerTestMVC]: NotaryControllerTestMVC does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-13 16:19:18,146 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.SwipeRest.SwipeRestApplication for test class com.example.SwipeRest.controller.NotaryControllerTestMVC
+2023-06-13 16:19:18,147 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-06-13 16:19:18,147 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@35b79b1f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@664083f6, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5a8835c6, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@67216c33, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6ec77cab, org.springframework.test.context.support.DirtiesContextTestExecutionListener@c7a1db6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@17c72ffa, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7b6b99c5, org.springframework.test.context.event.EventPublishingTestExecutionListener@2e1c8027, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@72d7afff, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5c41f6a0, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7b43f95c, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@311453ab, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7ef3aa21, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2dd4a7a9]
+2023-06-13 16:19:18,168 INFO  [main] c.e.S.c.NotaryControllerTestMVC - Starting NotaryControllerTestMVC using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 1512 (started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:19:18,168 INFO  [main] c.e.S.c.NotaryControllerTestMVC - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:19:18,497 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 117a36dc-014c-438e-abed-e65daacbbbc8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-06-13 16:19:18,565 INFO  [main] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1e041848, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7097ead6, org.springframework.security.web.context.SecurityContextPersistenceFilter@4f72078d, org.springframework.security.web.header.HeaderWriterFilter@2262bc86, org.springframework.security.web.csrf.CsrfFilter@2fbb098f, org.springframework.security.web.authentication.logout.LogoutFilter@62fbefad, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@47cf65f1, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@19b8f1bd, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4c4be9d8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@156f0281, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e4d252, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3555d804, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21dd91da, org.springframework.security.web.session.SessionManagementFilter@3872867d, org.springframework.security.web.access.ExceptionTranslationFilter@7866a7a6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@121f9c52]
+2023-06-13 16:19:18,589 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2023-06-13 16:19:18,589 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2023-06-13 16:19:18,590 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2023-06-13 16:19:18,597 INFO  [main] c.e.S.c.NotaryControllerTestMVC - Started NotaryControllerTestMVC in 0.448 seconds (JVM running for 5.557)
+2023-06-13 16:19:18,623 INFO  [main] c.e.S.controller.NotaryController - Request save Notary
+2023-06-13 16:19:18,629 INFO  [main] c.e.S.controller.NotaryController - Request all Notary
+2023-06-13 16:19:18,634 INFO  [main] c.e.S.controller.NotaryController - User 2not Notary
+2023-06-13 16:19:18,638 INFO  [main] c.e.S.controller.NotaryController - User 2not Notary
+2023-06-13 16:19:18,644 INFO  [main] c.e.S.controller.NotaryController - Request delete Notary 2
+2023-06-13 16:19:18,649 INFO  [main] c.e.S.controller.NotaryController - User 2not Notary
+2023-06-13 16:19:18,653 INFO  [main] c.e.S.controller.NotaryController - Request find Notary 2
+2023-06-13 16:19:18,659 INFO  [main] c.e.S.controller.NotaryController - Request update Notary 2
+2023-06-13 16:19:18,663 INFO  [main] c.e.S.controller.NotaryController - User not found 1
+2023-06-13 16:19:18,667 INFO  [main] c.e.S.controller.NotaryController - User not found 1
+2023-06-13 16:19:18,681 INFO  [main] c.e.S.controller.NotaryController - User not found 1
+2023-06-13 16:19:18,683 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.SwipeRest.controller.LCDControllerTestMVC], using SpringBootContextLoader
+2023-06-13 16:19:18,684 INFO  [main] o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.example.SwipeRest.controller.LCDControllerTestMVC]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-06-13 16:19:18,684 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.SwipeRest.controller.LCDControllerTestMVC]: LCDControllerTestMVC does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-13 16:19:18,687 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.SwipeRest.SwipeRestApplication for test class com.example.SwipeRest.controller.LCDControllerTestMVC
+2023-06-13 16:19:18,687 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-06-13 16:19:18,687 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7fba492e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6eeeb9da, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@17635531, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2e488e45, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@396519b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@18ad085a, org.springframework.test.context.transaction.TransactionalTestExecutionListener@15ea0ca3, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7f3a92fd, org.springframework.test.context.event.EventPublishingTestExecutionListener@4e111e08, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3e0e3048, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7bc4ac3e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@504274c1, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@16e5c19f, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@59263f7b, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@7ddcd3d]
+2023-06-13 16:19:18,711 INFO  [main] c.e.S.c.LCDControllerTestMVC - Starting LCDControllerTestMVC using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 1512 (started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:19:18,712 INFO  [main] c.e.S.c.LCDControllerTestMVC - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:19:19,046 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: c0230026-3280-47b1-9d4b-43578030b1f5
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-06-13 16:19:19,106 INFO  [main] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@96448ee, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@59509393, org.springframework.security.web.context.SecurityContextPersistenceFilter@3c1d6ef0, org.springframework.security.web.header.HeaderWriterFilter@35217e0, org.springframework.security.web.csrf.CsrfFilter@7568134c, org.springframework.security.web.authentication.logout.LogoutFilter@7e0b68e5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6164b3a2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@63218586, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1d6dc2b8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@345af277, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e2c9e24, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3dd27116, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ec75228, org.springframework.security.web.session.SessionManagementFilter@95aeee4, org.springframework.security.web.access.ExceptionTranslationFilter@28c75c93, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e53c6ef]
+2023-06-13 16:19:19,129 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2023-06-13 16:19:19,129 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2023-06-13 16:19:19,130 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2023-06-13 16:19:19,137 INFO  [main] c.e.S.c.LCDControllerTestMVC - Started LCDControllerTestMVC in 0.448 seconds (JVM running for 6.097)
+2023-06-13 16:19:19,142 INFO  [main] c.e.S.controller.LcdController - Lcd not found 1
+2023-06-13 16:19:19,146 INFO  [main] c.e.S.controller.LcdController - Request all lcd
+2023-06-13 16:19:19,205 INFO  [main] c.e.S.controller.LcdController - Request delete lcd 1
+2023-06-13 16:19:19,215 INFO  [main] c.e.S.controller.LcdController - Request save lcd
+2023-06-13 16:19:19,224 INFO  [main] c.e.S.controller.LcdController - Request find lcd 1
+2023-06-13 16:19:19,230 INFO  [main] c.e.S.controller.LcdController - Lcd not found 1
+2023-06-13 16:19:19,235 INFO  [main] c.e.S.controller.LcdController - Lcd not found 2
+2023-06-13 16:19:19,240 INFO  [main] c.e.S.controller.LcdController - Request update lcd 1
+2023-06-13 16:19:19,273 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - User update:7
+2023-06-13 16:19:19,274 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Photo update:1
+2023-06-13 16:19:19,286 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment update:1
+2023-06-13 16:19:19,289 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - User update:1
+2023-06-13 16:19:19,289 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment update:1
+2023-06-13 16:19:19,291 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - All apartment
+2023-06-13 16:19:19,300 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment found by id:6
+2023-06-13 16:19:19,300 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment not found by id:2
+2023-06-13 16:19:19,301 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - All apartmentDTO
+2023-06-13 16:19:19,303 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment not found by id:1
+2023-06-13 16:19:19,305 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:19:19,306 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment found by id:6
+2023-06-13 16:19:19,307 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:19:19,308 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:19:19,328 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo update 1
+2023-06-13 16:19:19,330 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - All userAddInfo
+2023-06-13 16:19:19,332 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - Find userAddInfo 1
+2023-06-13 16:19:19,333 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - Find userAddInfo 2
+2023-06-13 16:19:19,335 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo save
+2023-06-13 16:19:19,336 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo delete 1
+2023-06-13 16:19:19,339 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.SwipeRest.controller.BlackListControllerTestMVC], using SpringBootContextLoader
+2023-06-13 16:19:19,340 INFO  [main] o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.example.SwipeRest.controller.BlackListControllerTestMVC]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-06-13 16:19:19,340 INFO  [main] o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.SwipeRest.controller.BlackListControllerTestMVC]: BlackListControllerTestMVC does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-13 16:19:19,344 INFO  [main] o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.SwipeRest.SwipeRestApplication for test class com.example.SwipeRest.controller.BlackListControllerTestMVC
+2023-06-13 16:19:19,345 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-06-13 16:19:19,345 INFO  [main] o.s.b.t.a.w.s.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3b171fbd, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1ece052b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@20dc763b, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4c81e7c2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4fe8e318, org.springframework.test.context.support.DirtiesContextTestExecutionListener@21e15093, org.springframework.test.context.transaction.TransactionalTestExecutionListener@62cf873a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@21b3d356, org.springframework.test.context.event.EventPublishingTestExecutionListener@294b045b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@285ac29, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1ced1d14, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@237b54bc, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5263f554, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7d28efd5, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@95958d9]
+2023-06-13 16:19:19,369 INFO  [main] c.e.S.c.BlackListControllerTestMVC - Starting BlackListControllerTestMVC using Java 17.0.6 on DESKTOP-C3SD9P3 with PID 1512 (started by Amir Banov in C:\Users\Amir Banov\IdeaProjects\Swipe-Rest)
+2023-06-13 16:19:19,369 INFO  [main] c.e.S.c.BlackListControllerTestMVC - No active profile set, falling back to 1 default profile: "default"
+2023-06-13 16:19:19,686 WARN  [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 9c46438b-aab8-47d7-8d8f-2375699ee3c6
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-06-13 16:19:19,747 INFO  [main] o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@94b5fe3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4417755b, org.springframework.security.web.context.SecurityContextPersistenceFilter@7a085d02, org.springframework.security.web.header.HeaderWriterFilter@3a75d9a1, org.springframework.security.web.csrf.CsrfFilter@6f5f892c, org.springframework.security.web.authentication.logout.LogoutFilter@5a0b550a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7e305953, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7cb4d4ee, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3811464b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@59d7d574, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6cee52e2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7842260f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f0a5848, org.springframework.security.web.session.SessionManagementFilter@698daff6, org.springframework.security.web.access.ExceptionTranslationFilter@1b2e841, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e00723b]
+2023-06-13 16:19:19,768 INFO  [main] o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2023-06-13 16:19:19,768 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2023-06-13 16:19:19,769 INFO  [main] o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2023-06-13 16:19:19,775 INFO  [main] c.e.S.c.BlackListControllerTestMVC - Started BlackListControllerTestMVC in 0.427 seconds (JVM running for 6.735)
+2023-06-13 16:19:19,779 INFO  [main] c.e.S.c.BlackListController - Request blacklist
+2023-06-13 16:19:19,786 INFO  [main] c.e.S.c.BlackListController - Request add to blacklist
+2023-06-13 16:19:19,791 INFO  [main] c.e.S.c.BlackListController - User not found 3
+2023-06-13 16:19:19,794 INFO  [main] c.e.S.c.BlackListController - User not valid for add to blacklist
+2023-06-13 16:19:19,797 INFO  [main] c.e.S.c.BlackListController - User not valid for add to blacklist
+2023-06-13 16:19:28,897 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 16:19:28,899 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-06-13 16:19:28,903 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-06-13 16:20:02,532 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Find agent:8
+2023-06-13 16:20:02,548 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent:1 update
+2023-06-13 16:20:02,550 INFO  [main] c.e.S.service.impl.AgentServiceImpl - All agent
+2023-06-13 16:20:02,551 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Not find agent:1
+2023-06-13 16:20:02,553 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent save
+2023-06-13 16:20:02,554 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent delete
+2023-06-13 16:20:02,659 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - User update:7
+2023-06-13 16:20:02,662 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Photo update:1
+2023-06-13 16:20:02,678 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment update:1
+2023-06-13 16:20:02,682 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - User update:1
+2023-06-13 16:20:02,682 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment update:1
+2023-06-13 16:20:02,685 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - All apartment
+2023-06-13 16:20:02,687 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment found by id:6
+2023-06-13 16:20:02,688 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment not found by id:2
+2023-06-13 16:20:02,689 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - All apartmentDTO
+2023-06-13 16:20:02,692 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment not found by id:1
+2023-06-13 16:20:02,693 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:20:02,695 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment found by id:6
+2023-06-13 16:20:02,696 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:20:02,698 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:20:02,726 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document update 1
+2023-06-13 16:20:02,728 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - All Documents
+2023-06-13 16:20:02,730 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document find:5
+2023-06-13 16:20:02,732 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document save
+2023-06-13 16:20:02,734 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document not find:1
+2023-06-13 16:20:02,735 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document delete 5
+2023-06-13 16:20:02,786 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame not find 1
+2023-06-13 16:20:02,790 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Apartment update 1
+2023-06-13 16:20:02,791 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame update 10
+2023-06-13 16:20:02,794 INFO  [main] c.e.S.service.impl.FrameServiceImpl - All frame
+2023-06-13 16:20:02,795 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame find 3
+2023-06-13 16:20:02,797 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame save
+2023-06-13 16:20:02,798 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame delete 1
+2023-06-13 16:20:02,880 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Frame update1
+2023-06-13 16:20:02,880 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Photo update0
+2023-06-13 16:20:02,881 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Document update1
+2023-06-13 16:20:02,881 INFO  [main] c.e.S.service.impl.LCDServiceImpl - News update1
+2023-06-13 16:20:02,882 INFO  [main] c.e.S.service.impl.LCDServiceImpl - User update12
+2023-06-13 16:20:02,882 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd update1
+2023-06-13 16:20:02,898 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd update1
+2023-06-13 16:20:02,901 INFO  [main] c.e.S.service.impl.LCDServiceImpl - All lcd
+2023-06-13 16:20:02,902 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd find 1
+2023-06-13 16:20:02,903 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd not find 2
+2023-06-13 16:20:02,904 INFO  [main] c.e.S.service.impl.LCDServiceImpl - All lcdDto
+2023-06-13 16:20:02,906 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd save
+2023-06-13 16:20:02,908 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd find 1
+2023-06-13 16:20:02,908 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd not find 2
+2023-06-13 16:20:02,910 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd delete
+2023-06-13 16:20:02,912 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Photo save
+2023-06-13 16:20:02,912 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Frame save
+2023-06-13 16:20:02,912 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Apartment save
+2023-06-13 16:20:02,913 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Document save
+2023-06-13 16:20:02,913 INFO  [main] c.e.S.service.impl.LCDServiceImpl - News save
+2023-06-13 16:20:02,913 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd save
+2023-06-13 16:20:02,953 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News update  1
+2023-06-13 16:20:02,955 INFO  [main] c.e.S.service.impl.NewsServiceImpl - All news
+2023-06-13 16:20:02,958 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News find 5
+2023-06-13 16:20:02,960 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News save
+2023-06-13 16:20:02,962 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News find 5
+2023-06-13 16:20:02,964 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News not find 5
+2023-06-13 16:20:02,966 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News delete 1
+2023-06-13 16:20:02,968 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News not find 5
+2023-06-13 16:20:02,995 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo update 1
+2023-06-13 16:20:02,997 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - All photo
+2023-06-13 16:20:02,999 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo find 1
+2023-06-13 16:20:03,002 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo save
+2023-06-13 16:20:03,004 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo not find 1
+2023-06-13 16:20:03,006 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo delete 1
+2023-06-13 16:20:03,032 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo update 1
+2023-06-13 16:20:03,034 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - All userAddInfo
+2023-06-13 16:20:03,035 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - Find userAddInfo 1
+2023-06-13 16:20:03,036 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - Find userAddInfo 2
+2023-06-13 16:20:03,038 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo save
+2023-06-13 16:20:03,040 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo delete 1
+2023-06-13 16:20:03,077 INFO  [main] c.e.S.service.impl.UserServiceImpl - UserAddInfo update 0
+2023-06-13 16:20:03,078 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent update 1
+2023-06-13 16:20:03,078 INFO  [main] c.e.S.service.impl.UserServiceImpl - User update 1
+2023-06-13 16:20:03,088 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent update 1
+2023-06-13 16:20:03,089 INFO  [main] c.e.S.service.impl.UserServiceImpl - User update 1
+2023-06-13 16:20:03,090 INFO  [main] c.e.S.service.impl.UserServiceImpl - All user
+2023-06-13 16:20:03,091 INFO  [main] c.e.S.service.impl.UserServiceImpl - User find 1
+2023-06-13 16:20:03,091 INFO  [main] c.e.S.service.impl.UserServiceImpl - User not find 2
+2023-06-13 16:20:03,092 INFO  [main] c.e.S.service.impl.UserServiceImpl - All NOTARY
+2023-06-13 16:20:03,094 INFO  [main] c.e.S.service.impl.UserServiceImpl - User save
+2023-06-13 16:20:03,095 INFO  [main] c.e.S.service.impl.UserServiceImpl - User find 1
+2023-06-13 16:20:03,095 INFO  [main] c.e.S.service.impl.UserServiceImpl - User not find 2
+2023-06-13 16:20:03,096 INFO  [main] c.e.S.service.impl.UserServiceImpl - All NOTARY
+2023-06-13 16:20:03,098 INFO  [main] c.e.S.service.impl.UserServiceImpl - User add to blackList 1
+2023-06-13 16:20:03,099 INFO  [main] c.e.S.service.impl.UserServiceImpl - Blacklist
+2023-06-13 16:20:03,101 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent for user save
+2023-06-13 16:20:03,102 INFO  [main] c.e.S.service.impl.UserServiceImpl - User save
+2023-06-13 16:20:03,103 INFO  [main] c.e.S.service.impl.UserServiceImpl - User delete 1
+2023-06-13 16:23:16,665 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Find agent:8
+2023-06-13 16:23:16,682 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent:1 update
+2023-06-13 16:23:16,683 INFO  [main] c.e.S.service.impl.AgentServiceImpl - All agent
+2023-06-13 16:23:16,685 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Not find agent:1
+2023-06-13 16:23:16,686 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent save
+2023-06-13 16:23:16,687 INFO  [main] c.e.S.service.impl.AgentServiceImpl - Agent delete
+2023-06-13 16:23:16,784 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - User update:7
+2023-06-13 16:23:16,787 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Photo update:1
+2023-06-13 16:23:16,802 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment update:1
+2023-06-13 16:23:16,806 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - User update:1
+2023-06-13 16:23:16,807 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment update:1
+2023-06-13 16:23:16,809 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - All apartment
+2023-06-13 16:23:16,811 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment found by id:6
+2023-06-13 16:23:16,811 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment not found by id:2
+2023-06-13 16:23:16,812 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - All apartmentDTO
+2023-06-13 16:23:16,814 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment not found by id:1
+2023-06-13 16:23:16,815 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:23:16,817 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment found by id:6
+2023-06-13 16:23:16,818 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:23:16,820 INFO  [main] c.e.S.s.impl.ApartmentServiceImpl - Apartment save
+2023-06-13 16:23:16,850 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document update 1
+2023-06-13 16:23:16,853 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - All Documents
+2023-06-13 16:23:16,854 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document find:5
+2023-06-13 16:23:16,856 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document save
+2023-06-13 16:23:16,857 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document not find:1
+2023-06-13 16:23:16,859 INFO  [main] c.e.S.s.impl.DocumentsServiceImpl - Document delete 5
+2023-06-13 16:23:16,902 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame not find 1
+2023-06-13 16:23:16,904 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Apartment update 1
+2023-06-13 16:23:16,905 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame update 10
+2023-06-13 16:23:16,907 INFO  [main] c.e.S.service.impl.FrameServiceImpl - All frame
+2023-06-13 16:23:16,909 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame find 3
+2023-06-13 16:23:16,910 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame save
+2023-06-13 16:23:16,911 INFO  [main] c.e.S.service.impl.FrameServiceImpl - Frame delete 1
+2023-06-13 16:23:17,012 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Frame update1
+2023-06-13 16:23:17,013 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Photo update0
+2023-06-13 16:23:17,013 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Document update1
+2023-06-13 16:23:17,014 INFO  [main] c.e.S.service.impl.LCDServiceImpl - News update1
+2023-06-13 16:23:17,014 INFO  [main] c.e.S.service.impl.LCDServiceImpl - User update12
+2023-06-13 16:23:17,014 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd update1
+2023-06-13 16:23:17,030 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd update1
+2023-06-13 16:23:17,032 INFO  [main] c.e.S.service.impl.LCDServiceImpl - All lcd
+2023-06-13 16:23:17,034 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd find 1
+2023-06-13 16:23:17,034 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd not find 2
+2023-06-13 16:23:17,035 INFO  [main] c.e.S.service.impl.LCDServiceImpl - All lcdDto
+2023-06-13 16:23:17,037 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd save
+2023-06-13 16:23:17,039 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd find 1
+2023-06-13 16:23:17,039 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd not find 2
+2023-06-13 16:23:17,040 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd delete
+2023-06-13 16:23:17,043 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Photo save
+2023-06-13 16:23:17,043 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Frame save
+2023-06-13 16:23:17,043 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Apartment save
+2023-06-13 16:23:17,044 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Document save
+2023-06-13 16:23:17,044 INFO  [main] c.e.S.service.impl.LCDServiceImpl - News save
+2023-06-13 16:23:17,044 INFO  [main] c.e.S.service.impl.LCDServiceImpl - Lcd save
+2023-06-13 16:23:17,083 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News update  1
+2023-06-13 16:23:17,085 INFO  [main] c.e.S.service.impl.NewsServiceImpl - All news
+2023-06-13 16:23:17,087 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News find 5
+2023-06-13 16:23:17,088 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News save
+2023-06-13 16:23:17,090 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News find 5
+2023-06-13 16:23:17,091 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News not find 5
+2023-06-13 16:23:17,092 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News delete 1
+2023-06-13 16:23:17,094 INFO  [main] c.e.S.service.impl.NewsServiceImpl - News not find 5
+2023-06-13 16:23:17,115 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo update 1
+2023-06-13 16:23:17,118 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - All photo
+2023-06-13 16:23:17,120 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo find 1
+2023-06-13 16:23:17,121 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo save
+2023-06-13 16:23:17,122 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo not find 1
+2023-06-13 16:23:17,124 INFO  [main] c.e.S.s.impl.PhotosServiceImpl - Photo delete 1
+2023-06-13 16:23:17,144 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo update 1
+2023-06-13 16:23:17,146 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - All userAddInfo
+2023-06-13 16:23:17,147 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - Find userAddInfo 1
+2023-06-13 16:23:17,147 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - Find userAddInfo 2
+2023-06-13 16:23:17,148 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo save
+2023-06-13 16:23:17,149 INFO  [main] c.e.S.s.impl.UserAddInfoServiceImpl - UserAddInfo delete 1
+2023-06-13 16:23:17,192 INFO  [main] c.e.S.service.impl.UserServiceImpl - UserAddInfo update 0
+2023-06-13 16:23:17,193 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent update 1
+2023-06-13 16:23:17,193 INFO  [main] c.e.S.service.impl.UserServiceImpl - User update 1
+2023-06-13 16:23:17,205 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent update 1
+2023-06-13 16:23:17,206 INFO  [main] c.e.S.service.impl.UserServiceImpl - User update 1
+2023-06-13 16:23:17,207 INFO  [main] c.e.S.service.impl.UserServiceImpl - All user
+2023-06-13 16:23:17,209 INFO  [main] c.e.S.service.impl.UserServiceImpl - User find 1
+2023-06-13 16:23:17,209 INFO  [main] c.e.S.service.impl.UserServiceImpl - User not find 2
+2023-06-13 16:23:17,210 INFO  [main] c.e.S.service.impl.UserServiceImpl - All NOTARY
+2023-06-13 16:23:17,212 INFO  [main] c.e.S.service.impl.UserServiceImpl - User save
+2023-06-13 16:23:17,213 INFO  [main] c.e.S.service.impl.UserServiceImpl - User find 1
+2023-06-13 16:23:17,213 INFO  [main] c.e.S.service.impl.UserServiceImpl - User not find 2
+2023-06-13 16:23:17,214 INFO  [main] c.e.S.service.impl.UserServiceImpl - All NOTARY
+2023-06-13 16:23:17,215 INFO  [main] c.e.S.service.impl.UserServiceImpl - User add to blackList 1
+2023-06-13 16:23:17,216 INFO  [main] c.e.S.service.impl.UserServiceImpl - Blacklist
+2023-06-13 16:23:17,219 INFO  [main] c.e.S.service.impl.UserServiceImpl - Agent for user save
+2023-06-13 16:23:17,219 INFO  [main] c.e.S.service.impl.UserServiceImpl - User save
+2023-06-13 16:23:17,220 INFO  [main] c.e.S.service.impl.UserServiceImpl - User delete 1

@@ -15,17 +15,4 @@ public class SwipeRestApplication {
 		SpringApplication.run(SwipeRestApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner commandLineRunner(
-//			AuthenticationService service
-//	) {
-//		return args -> {
-//			var admin = AuthenticationRequest.builder()
-//					.login("amirbanor@gmail.com")
-//					.password("pass")
-//					.build();
-//			System.out.println("Admin token: " + service.authenticate(admin).getAccessToken());
-//
-//		};
-//	}
 }

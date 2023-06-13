@@ -1,6 +1,6 @@
 package com.example.SwipeRest.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 //import javax.validation.constraints.NotBlank;

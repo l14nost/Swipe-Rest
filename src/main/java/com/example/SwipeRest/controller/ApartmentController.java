@@ -3,7 +3,7 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,5 +63,10 @@ public class ApartmentController {
         }
         else{ log.info("Apartment not found "+id);
             return ResponseEntity.badRequest().body("Apartment not found");}
+    }
+
+    @GetMapping("/")
+    public String hello(){
+        return "Hello";
     }
 }

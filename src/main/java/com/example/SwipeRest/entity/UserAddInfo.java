@@ -1,7 +1,7 @@
 package com.example.SwipeRest.entity;
 
 import com.example.SwipeRest.enums.TypeNotification;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;

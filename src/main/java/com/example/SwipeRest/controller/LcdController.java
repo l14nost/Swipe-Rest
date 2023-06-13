@@ -3,7 +3,7 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.dto.LcdDTO;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

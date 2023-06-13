@@ -1,7 +1,7 @@
 package com.example.SwipeRest.config;
 
 import com.example.SwipeRest.repository.UserRepo;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,8 +35,7 @@ public class SecurityConfig {
                 .disable()
 
                 .authorizeHttpRequests()
-                .requestMatchers(
-                        "/api/v1/auth/**",
+                .antMatchers("/api/v1/auth/**",
                         "/v2/api-docs",
                         "/v3/api-docs",
                         "/v3/api-docs/**",
@@ -46,8 +45,7 @@ public class SecurityConfig {
                         "/configuration/security",
                         "/swagger-ui/**",
                         "/webjars/**",
-                        "/swagger-ui.html"
-                )
+                        "/swagger-ui.html")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

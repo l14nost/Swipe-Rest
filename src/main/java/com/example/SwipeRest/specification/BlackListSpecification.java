@@ -1,7 +1,7 @@
 package com.example.SwipeRest.specification;
 
 import com.example.SwipeRest.entity.User;
-import jakarta.persistence.criteria.*;
+import javax.persistence.criteria.*;
 import lombok.Builder;
 import org.springframework.data.jpa.domain.Specification;
 

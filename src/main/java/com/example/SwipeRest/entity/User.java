@@ -3,7 +3,7 @@ package com.example.SwipeRest.entity;
 
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

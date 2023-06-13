@@ -6,7 +6,7 @@ import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

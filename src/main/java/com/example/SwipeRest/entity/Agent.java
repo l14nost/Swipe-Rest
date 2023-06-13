@@ -1,10 +1,10 @@
 package com.example.SwipeRest.entity;
 
 import com.example.SwipeRest.enums.TypeAgent;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.Builder;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

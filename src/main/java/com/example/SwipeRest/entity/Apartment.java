@@ -1,7 +1,7 @@
 package com.example.SwipeRest.entity;
 
 import com.example.SwipeRest.enums.*;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import lombok.Builder;
 
