@@ -152,6 +152,7 @@ class UserServiceImplTest {
                 .mail("123@gmail.com")
                 .name("User")
                 .surname("Surname")
+                .role(Role.USER)
                 .agent(AgentDTO.builder().idAgent(1).build())
                 .build();
         userService.addDTO(user);
