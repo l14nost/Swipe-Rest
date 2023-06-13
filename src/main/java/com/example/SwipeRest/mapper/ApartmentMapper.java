@@ -3,6 +3,8 @@ package com.example.SwipeRest.mapper;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.entity.Apartment;
 
+import java.util.stream.Collectors;
+
 
 public class ApartmentMapper{
     public static Apartment toEntity(ApartmentDTO apartmentDTO){
@@ -27,8 +29,7 @@ public class ApartmentMapper{
                 .description(apartmentDTO.getDescription())
                 .build();
         if (apartmentDTO.getPhotos()!=null){
-            apartment.setPhotoList(apartmentDTO.getPhotos().stream().map(PhotoMapper::toEntity).toList());
-        }
+            apartment.setPhotoList(apartmentDTO.getPhotos().stream().map(PhotoMapper::toEntity).collect(Collectors.toList()));        }
         return apartment;
     }
 
@@ -57,7 +58,7 @@ public class ApartmentMapper{
             apartmentDTO.setClient(apartment.getUser().getIdUser());
         }
         if (apartment.getPhotoList()!=null){
-            apartmentDTO.setPhotos(apartment.getPhotoList().stream().map(PhotoMapper::apply).toList());
+            apartmentDTO.setPhotos(apartment.getPhotoList().stream().map(PhotoMapper::apply).collect(Collectors.toList()));
         }
         return apartmentDTO;
 

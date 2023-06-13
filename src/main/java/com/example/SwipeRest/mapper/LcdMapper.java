@@ -3,6 +3,8 @@ package com.example.SwipeRest.mapper;
 import com.example.SwipeRest.dto.LcdDTO;
 import com.example.SwipeRest.entity.LCD;
 
+import java.util.stream.Collectors;
+
 
 public class LcdMapper  {
 
@@ -33,16 +35,16 @@ public class LcdMapper  {
                 .typePayment(lcdDTO.getTypePayment())
                 .build();
         if (lcdDTO.getDocuments()!=null){
-            lcd.setDocuments(lcdDTO.getDocuments().stream().map(DocumentMapper::toEntity).toList());
+            lcd.setDocuments(lcdDTO.getDocuments().stream().map(DocumentMapper::toEntity).collect(Collectors.toList()));
         }
         if (lcdDTO.getFrames()!=null){
-            lcd.setFrames(lcdDTO.getFrames().stream().map(FrameMapper::toEntity).toList());
+            lcd.setFrames(lcdDTO.getFrames().stream().map(FrameMapper::toEntity).collect(Collectors.toList()));
         }
         if (lcdDTO.getPhotos()!=null){
-            lcd.setPhotoList(lcdDTO.getPhotos().stream().map(PhotoMapper::toEntity).toList());
+            lcd.setPhotoList(lcdDTO.getPhotos().stream().map(PhotoMapper::toEntity).collect(Collectors.toList()));
         }
         if (lcdDTO.getNewsList()!=null){
-            lcd.setNewsList(lcdDTO.getNewsList().stream().map(NewsMapper::toEntity).toList());
+            lcd.setNewsList(lcdDTO.getNewsList().stream().map(NewsMapper::toEntity).collect(Collectors.toList()));
         }
         return lcd;
     }
@@ -77,13 +79,13 @@ public class LcdMapper  {
             lcdDTO.setContractor(lcd.getUser().getIdUser());
         }
         if (lcd.getFrames()!=null){
-            lcdDTO.setFrames(lcd.getFrames().stream().map(FrameMapper::apply).toList());
+            lcdDTO.setFrames(lcd.getFrames().stream().map(FrameMapper::apply).collect(Collectors.toList()));
         }
         if (lcd.getPhotoList()!=null){
-            lcdDTO.setPhotos(lcd.getPhotoList().stream().map(PhotoMapper::apply).toList());
+            lcdDTO.setPhotos(lcd.getPhotoList().stream().map(PhotoMapper::apply).collect(Collectors.toList()));
         }
         if (lcd.getDocuments()!=null){
-            lcdDTO.setDocuments(lcd.getDocuments().stream().map(DocumentMapper::apply).toList());
+            lcdDTO.setDocuments(lcd.getDocuments().stream().map(DocumentMapper::apply).collect(Collectors.toList()));
         }
         return lcdDTO;
 

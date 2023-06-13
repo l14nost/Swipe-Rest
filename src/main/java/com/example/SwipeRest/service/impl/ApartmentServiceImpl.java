@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +39,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     public List<ApartmentDTO> findAllDTO(){
         log.info("All apartmentDTO");
-        return apartmentRepo.findAllByFrameIsNull().stream().map(ApartmentMapper::apply).toList();
+        return apartmentRepo.findAllByFrameIsNull().stream().map(ApartmentMapper::apply).collect(Collectors.toList());
     }
     public ApartmentDTO findByIdDTO(int id) {
         Optional<Apartment> apartment = apartmentRepo.findById(id);

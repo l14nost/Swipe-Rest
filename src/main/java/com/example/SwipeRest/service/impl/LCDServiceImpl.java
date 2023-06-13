@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class LCDServiceImpl implements LCDService {
@@ -43,7 +45,7 @@ public class LCDServiceImpl implements LCDService {
 
     public List<LcdDTO> findAllDTO() {
         log.info("All lcdDto");
-        return lcdRepo.findAll().stream().map(LcdMapper::apply).toList();
+        return lcdRepo.findAll().stream().map(LcdMapper::apply).collect(Collectors.toList());
     }
     @Override
     public List<LCD> findAll() {

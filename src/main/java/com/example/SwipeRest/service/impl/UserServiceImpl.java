@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     public List<ClientDTO> findAllByType(TypeUser typeUser){
         log.info("All "+typeUser);
-        return userRepo.findAllByTypeUserAndBlackListIsFalse(typeUser).stream().map(UserMapper::apply).toList();
+        return userRepo.findAllByTypeUserAndBlackListIsFalse(typeUser).stream().map(UserMapper::apply).collect(Collectors.toList());
     }
 
     public String addDTO(ClientDTO clientDTO){
@@ -50,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
     public List<BlackListDTO> blackListDTO(){
         log.info("Blacklist");
-        return userRepo.findAllByBlackListIsTrue().stream().map(BlackLIstMapper::apply).toList();
+        return userRepo.findAllByBlackListIsTrue().stream().map(BlackLIstMapper::apply).collect(Collectors.toList());
     }
     @Override
     public List<User> findAll() {

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 public class FrameMapper  {
@@ -17,7 +18,7 @@ public class FrameMapper  {
                 .num(frameDTO.getNum())
                 .build();
         if (frameDTO.getApartments()!=null){
-            frame.setApartmentList(frameDTO.getApartments().stream().map(ApartmentMapper::toEntity).toList());
+            frame.setApartmentList(frameDTO.getApartments().stream().map(ApartmentMapper::toEntity).collect(Collectors.toList()));
         }
         return frame;
     }
@@ -26,7 +27,7 @@ public class FrameMapper  {
         return FrameDTO.builder()
                 .idFrame(frame.getIdFrame())
                 .num(frame.getNum())
-                .apartments(frame.getApartmentList().stream().map(ApartmentMapper::apply).toList())
+                .apartments(frame.getApartmentList().stream().map(ApartmentMapper::apply).collect(Collectors.toList()))
                 .build();
 
     }

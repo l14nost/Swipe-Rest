@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .disable()
 
                 .authorizeHttpRequests()
-                .antMatchers("/api/v1/auth/**",
+                .antMatchers("/","/api/v1/auth/**",
                         "/v2/api-docs",
                         "/v3/api-docs",
                         "/v3/api-docs/**",
