@@ -1,16 +1,31 @@
+ssh:
+  host: 'kino.avada-media-dev1.od.ua'
+  user: 'avada_kino'
+  port: '22'
+  password: '#Es84!4lZ0P7'
+
 spring:
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/swipe'
-    username: 'root'
-    password: 'amir22828_Sql'
+    url: 'jdbc:mysql://kino.avada-media-dev1.od.ua:3306/avada_slj_swipe'
+    username: 'avada_slj_swipe'
+    password: 'zenIvTZqu6'
     driver-class-name: com.mysql.cj.jdbc.Driver
-server:
-  port: 8082
-
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#  datasource:
+#    url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/swipe'
+#    username: 'root'
+#    password:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#server:
+#  port: 8080
 upload:
   path: '/C:/Users/Amir Banov/IdeaProjects/Swipe-Admin/uploads/'
 

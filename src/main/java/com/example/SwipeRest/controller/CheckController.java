@@ -9,4 +9,8 @@ public class CheckController {
     public String helloTest(){
         return "Hello";
     }
+    @GetMapping("/1")
+    public String byeTest(){
+        return "Bye";
+    }
 }

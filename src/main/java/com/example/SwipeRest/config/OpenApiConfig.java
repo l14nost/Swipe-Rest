@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "Swipe",
-                        url = "http://localhost:8082"
+                        url = "http://localhost:8080"
                 )
         },
         security = {
