@@ -2,6 +2,7 @@ package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.dto.LcdDTO;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.*;
 public class LcdController {
     private Logger log = LoggerFactory.getLogger(LcdController.class);
     private final LCDServiceImpl lcdService;
-
+    @Operation(summary = "Get all lcd")
     @GetMapping("/all")
     public ResponseEntity findAllLcd(){
         log.info("Request all lcd");
         return ResponseEntity.ok(lcdService.findAllDTO());
     }
-
+    @Operation(summary = "Get lcd by id")
     @GetMapping("/{id}")
     public ResponseEntity findByIdLcd(@PathVariable int id) {
         LcdDTO lcdDTO = lcdService.findByIdDTO(id);
@@ -35,13 +36,14 @@ public class LcdController {
             return ResponseEntity.badRequest().body("LCD not found");
         }
     }
+    @Operation(summary = "Add lcd")
     @PostMapping("/add")
     public ResponseEntity saveLcd(@RequestBody @Valid LcdDTO lcdDTO){
         log.info("Request save lcd");
         return ResponseEntity.ok(lcdService.saveDTO(lcdDTO));
     }
 
-
+    @Operation(summary = "Delete lcd by id")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable int id){
         LcdDTO lcdDTO = lcdService.findByIdDTO(id);
@@ -55,6 +57,7 @@ public class LcdController {
             return ResponseEntity.badRequest().body("Lcd not found");
         }
     }
+    @Operation(summary = "Update lcd by id")
     @PutMapping("/update/{id}")
     public ResponseEntity update(@PathVariable int id, @RequestBody @Valid LcdDTO lcdDTO){
         LcdDTO lcd = lcdService.findByIdDTO(id);

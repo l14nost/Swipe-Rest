@@ -2,6 +2,7 @@ package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.*;
 public class ApartmentController {
     private final ApartmentServiceImpl apartmentService;
     private Logger log = LoggerFactory.getLogger(ApartmentController.class);
-
+    @Operation(summary = "Get all apartment")
     @GetMapping("/all")
     public ResponseEntity findAllApartment(){
         log.info("Request all apartment");
         return ResponseEntity.ok(apartmentService.findAllDTO());
     }
-
+    @Operation(summary = "Find apartment by id")
     @GetMapping("/{id}")
     public ResponseEntity findByIdApartment(@PathVariable int id){
         ApartmentDTO apartmentDTO = apartmentService.findByIdDTO(id);
@@ -36,11 +37,13 @@ public class ApartmentController {
             return ResponseEntity.badRequest().body("Apartment not found");
         }
     }
+    @Operation(summary = "Add apartment")
     @PostMapping("/add")
     public ResponseEntity saveApartment(@RequestBody @Valid ApartmentDTO apartmentDTO){
         log.info("Request save apartment");
         return ResponseEntity.ok("Success:\n"+apartmentService.saveDTO(apartmentDTO));
     }
+    @Operation(summary = "Delete apartment by id")
     @DeleteMapping("/delete/{id}")
     public  ResponseEntity deleteApartment(@PathVariable int id){
         ApartmentDTO apartmentDTO = apartmentService.findByIdDTO(id);
@@ -54,6 +57,7 @@ public class ApartmentController {
             return ResponseEntity.badRequest().body("Apartment not found");}
 
     }
+    @Operation(summary = "Update apartment by id")
     @PutMapping("/update/{id}")
     public ResponseEntity updateApartment(@PathVariable int id, @RequestBody @Valid ApartmentDTO apartmentDTO){
         ApartmentDTO apartmentDTO1 = apartmentService.findByIdDTO(id);

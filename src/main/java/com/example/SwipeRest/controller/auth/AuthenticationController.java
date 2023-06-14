@@ -2,6 +2,7 @@ package com.example.SwipeRest.controller.auth;
 
 import com.example.SwipeRest.token.TokenRepo;
 import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
         return ResponseEntity.ok(authenticationService.register(request));
     }
+    @Operation(summary = "Authenticate")
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
         return ResponseEntity.ok(authenticationService.authenticate(request));
@@ -46,11 +48,13 @@ public class AuthenticationController {
 //        model.addAttribute("token", token);
 //        return "admin/admin_main";
 //    }
+    @Operation(summary = "Logout")
     @PostMapping("/logout")
     public String logout(){
         return "admin/login";
     }
 
+    @Operation(summary = "Refresh token")
     @PostMapping("/refresh-token")
     public void refresh(
             HttpServletRequest request,

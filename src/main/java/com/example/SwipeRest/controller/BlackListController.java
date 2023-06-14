@@ -3,6 +3,7 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.*;
 public class BlackListController {
     private Logger log = LoggerFactory.getLogger(BlackListController.class);
     private final UserServiceImpl userService;
-
+    @Operation(summary = "Get all users who are blacklisted")
     @GetMapping("/all")
     public ResponseEntity findAllBlackList(){
         log.info("Request blacklist");
         return ResponseEntity.ok(userService.blackListDTO());
     }
-
+    @Operation(summary = "Add user to blacklist")
     @PostMapping("/add/{id}")
     public ResponseEntity addToBlackList(@PathVariable int id){
         ClientDTO user = userService.findByIdDTO(id);

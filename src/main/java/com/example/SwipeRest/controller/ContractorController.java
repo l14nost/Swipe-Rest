@@ -4,6 +4,7 @@ import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
@@ -20,11 +21,13 @@ import org.springframework.web.bind.annotation.*;
 public class ContractorController {
     private Logger log = LoggerFactory.getLogger(ContractorController.class);
     private final UserServiceImpl userService;
+    @Operation(summary = "Get all contractor")
     @GetMapping("/all")
     public ResponseEntity findAllContractor(){
         log.info("Request all Contractor");
         return ResponseEntity.ok(userService.findAllByType(TypeUser.CONTRACTOR));
     }
+    @Operation(summary = "Get contractor by id")
     @GetMapping("/{id}")
     public ResponseEntity findByIdContractor(@PathVariable @Schema(example = "90") int id){
         ClientDTO user = userService.findByIdDTO(id);
@@ -47,6 +50,8 @@ public class ContractorController {
             return ResponseEntity.badRequest().body("User by this id not found");
         }
     }
+
+    @Operation(summary = "Add contractor")
     @PostMapping("/add")
     public ResponseEntity addContractor(@Valid
                                             @RequestBody
@@ -73,6 +78,7 @@ public class ContractorController {
         log.info("Request save Contractor");
         return ResponseEntity.ok(userService.addDTO(clientDTO));
     }
+    @Operation(summary = "Delete contractor by id")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "89") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
@@ -94,6 +100,7 @@ public class ContractorController {
             return ResponseEntity.badRequest().body("User NOT found");
         }
     }
+    @Operation(summary = "Update contractor by id")
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable @Schema(example = "90") int id, @Valid @RequestBody @Schema(
             example = "{\n" +

@@ -4,6 +4,7 @@ import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
@@ -20,11 +21,13 @@ import org.springframework.web.bind.annotation.*;
 public class NotaryController {
     private Logger log = LoggerFactory.getLogger(NotaryController.class);
     private final UserServiceImpl userService;
+    @Operation(summary = "Get all notary")
     @GetMapping("/all")
     public ResponseEntity findAllNotary(){
         log.info("Request all Notary");
         return ResponseEntity.ok(userService.findAllByType(TypeUser.NOTARY));
     }
+    @Operation(summary = "Get notary by id")
     @GetMapping("/{id}")
     public ResponseEntity findByIdNotary(@PathVariable int id){
         ClientDTO user = userService.findByIdDTO(id);
@@ -45,6 +48,7 @@ public class NotaryController {
             return ResponseEntity.badRequest().body("User by this id not found");
         }
     }
+    @Operation(summary = "Add notary")
     @PostMapping("/add")
     public ResponseEntity addNotary(@Valid @RequestBody @Schema(
             example = "{\n" +
@@ -62,6 +66,7 @@ public class NotaryController {
         log.info("Request save Notary");
         return ResponseEntity.ok(userService.addDTO(clientDTO));
     }
+    @Operation(summary = "Delete notary by id")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
@@ -84,6 +89,7 @@ public class NotaryController {
             return ResponseEntity.badRequest().body("User NOT found");
         }
     }
+    @Operation(summary = "Update notary by id")
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable int id, @Valid @RequestBody @Schema(
             example = "{\n" +

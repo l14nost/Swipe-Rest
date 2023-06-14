@@ -4,6 +4,7 @@ import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
@@ -20,11 +21,13 @@ import org.springframework.web.bind.annotation.*;
 public class ClientController {
     private Logger log = LoggerFactory.getLogger(ClientController.class);
     private final UserServiceImpl userService;
+    @Operation(summary = "Get all client")
     @GetMapping("/all")
     public ResponseEntity findAllClient(){
         log.info("Request all Client");
         return ResponseEntity.ok(userService.findAllByType(TypeUser.CLIENT));
     }
+    @Operation(summary = "Get client by id")
     @GetMapping("/{id}")
     public ResponseEntity findByIdClient(@PathVariable int id){
         ClientDTO user = userService.findByIdDTO(id);
@@ -45,6 +48,7 @@ public class ClientController {
             return ResponseEntity.badRequest().body("User by this id not found");
         }
     }
+    @Operation(summary = "Add client")
     @PostMapping("/add")
     public ResponseEntity addClient( @Valid @RequestBody  @Schema(
             example = "{\n" +
@@ -72,7 +76,7 @@ public class ClientController {
         log.info("Request save Client");
         return ResponseEntity.ok(userService.addDTO(clientDTO));
     }
-
+    @Operation(summary = "Delete client by id")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "92") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
@@ -94,6 +98,7 @@ public class ClientController {
             return ResponseEntity.badRequest().body("User NOT found");
         }
     }
+    @Operation(summary = "Update client by id")
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable int id, @Valid @RequestBody @Schema(
             example = "{\n" +
