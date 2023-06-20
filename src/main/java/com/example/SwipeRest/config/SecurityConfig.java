@@ -1,6 +1,8 @@
 package com.example.SwipeRest.config;
 
 import com.example.SwipeRest.repository.UserRepo;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,29 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable()
+                .csrf().disable()
+//                .csrf()
+//                .ignoringAntMatchers(
+//                        "/api/v1/auth/**",
+//                        "/v2/api-docs",
+//                        "/v3/api-docs",
+//                        "/v3/api-docs/**",
+//                        "/swagger-resources",
+//                        "/swagger-resources/**",
+//                        "/configuration/ui",
+//                        "/configuration/security",
+//                        "/swagger-ui/**",
+//                        "/webjars/**",
+//                        "/swagger-ui.html"
+//                )
+//                .and()
+//                .csrf()
+//                .requireCsrfProtectionMatcher((HttpServletRequest request) -> {
+//                    // Вернуть true, если CSRF-токен требуется для данного запроса, иначе false
+//                    // Например, можно проверить тип запроса или URL
+//                    return true;
+//                })
+//                .and()
                 .authorizeHttpRequests()
                 .antMatchers("/api/v1/auth/**",
                         "/v2/api-docs",
@@ -44,7 +67,8 @@ public class SecurityConfig {
                         "/configuration/security",
                         "/swagger-ui/**",
                         "/webjars/**",
-                        "/swagger-ui.html")
+                        "/swagger-ui.html",
+                        "/")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

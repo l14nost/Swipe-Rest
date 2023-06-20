@@ -1,8 +1,4 @@
-ssh:
-  host: 'kino.avada-media-dev1.od.ua'
-  user: 'avada_kino'
-  port: '22'
-  password: '#Es84!4lZ0P7'
+
 
 spring:
   jpa:
@@ -10,7 +6,7 @@ spring:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: 'jdbc:mysql://kino.avada-media-dev1.od.ua:3306/avada_slj_swipe'
+    url: 'jdbc:mysql://localhost:3306/avada_slj_swipe'
     username: 'avada_slj_swipe'
     password: 'zenIvTZqu6'
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -22,13 +18,12 @@ spring:
 #  datasource:
 #    url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/swipe'
 #    username: 'root'
-#    password:
+#    password: 'amir22828_Sql'
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #server:
 #  port: 8080
 upload:
   path: '/C:/Users/Amir Banov/IdeaProjects/Swipe-Admin/uploads/'
-
 application:
   security:
     jwt:
@@ -36,8 +31,16 @@ application:
       expiration: '86400000'
       refresh-token:
         expiration: '604800000'
-
 logging:
   config: classpath:logback.xml
+
+
 #  file:
 #    name: '/C:/Users/Amir Banov/IdeaProjects/Swipe-Rest/logging/logRest.log'
+server:
+  ssl:
+    enabled: false
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: "/"

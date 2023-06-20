@@ -19,9 +19,14 @@ import io.swagger.v3.oas.annotations.servers.Server;
         ),
         servers = {
                 @Server(
+                        description = "tomcat",
+                        url = "http://kino.avada-media-dev1.od.ua/Swipe-Rest"
+                ),
+                @Server(
                         description = "Swipe",
                         url = "http://localhost:8080"
-                )
+                ),
+
         },
         security = {
                 @SecurityRequirement(name = "bearerAuth")
