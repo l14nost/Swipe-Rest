@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthenticationRequest {
-    @Schema(example = "amirbanor@gmail.com")
+    @Schema(example = "admin@gmail.com")
     private String login;
     @Schema(example = "pass")
     private String password;

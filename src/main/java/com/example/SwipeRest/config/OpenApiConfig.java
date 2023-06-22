@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "tomcat",
-                        url = "http://kino.avada-media-dev1.od.ua/Swipe-Rest"
+                        url = "http://slj.avada-media-dev1.od.ua/Swipe-Rest"
                 ),
                 @Server(
                         description = "Swipe",
