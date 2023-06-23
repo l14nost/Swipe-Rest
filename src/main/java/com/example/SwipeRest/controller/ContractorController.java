@@ -6,6 +6,8 @@ import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +24,22 @@ public class ContractorController {
     private Logger log = LoggerFactory.getLogger(ContractorController.class);
     private final UserServiceImpl userService;
     @Operation(summary = "Get all contractor")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/all")
     public ResponseEntity findAllContractor(){
         log.info("Request all Contractor");
         return ResponseEntity.ok(userService.findAllByType(TypeUser.CONTRACTOR));
     }
     @Operation(summary = "Get contractor by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/{id}")
     public ResponseEntity findByIdContractor(@PathVariable @Schema(example = "4") int id){
         ClientDTO user = userService.findByIdDTO(id);
@@ -52,6 +64,11 @@ public class ContractorController {
     }
 
     @Operation(summary = "Add contractor")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PostMapping("/add")
     public ResponseEntity addContractor(@Valid
                                             @RequestBody
@@ -79,6 +96,11 @@ public class ContractorController {
         return ResponseEntity.ok(userService.addDTO(clientDTO));
     }
     @Operation(summary = "Delete contractor by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "0") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
@@ -101,6 +123,11 @@ public class ContractorController {
         }
     }
     @Operation(summary = "Update contractor by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable @Schema(example = "4") int id, @Valid @RequestBody @Schema(
             example = "{\n" +

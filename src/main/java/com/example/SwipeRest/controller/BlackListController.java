@@ -4,6 +4,8 @@ import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -19,12 +21,22 @@ public class BlackListController {
     private Logger log = LoggerFactory.getLogger(BlackListController.class);
     private final UserServiceImpl userService;
     @Operation(summary = "Get all users who are blacklisted")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/all")
     public ResponseEntity findAllBlackList(){
         log.info("Request blacklist");
         return ResponseEntity.ok(userService.blackListDTO());
     }
     @Operation(summary = "Add user to blacklist")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PostMapping("/add/{id}")
     public ResponseEntity addToBlackList(@PathVariable int id){
         ClientDTO user = userService.findByIdDTO(id);
@@ -47,6 +59,11 @@ public class BlackListController {
     }
 
     @Operation(summary = "Remove user from blacklist")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PostMapping("/remove/{id}")
     public ResponseEntity removeFromBlackList(@PathVariable int id){
         ClientDTO user = userService.findByIdDTO(id);

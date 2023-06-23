@@ -34,6 +34,11 @@ public class ApartmentController {
         return ResponseEntity.ok(apartmentService.findAllDTO());
     }
     @Operation(summary = "Find apartment by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/{id}")
     public ResponseEntity findByIdApartment(@PathVariable @Schema(example = "2")int id){
         ApartmentDTO apartmentDTO = apartmentService.findByIdDTO(id);
@@ -47,12 +52,22 @@ public class ApartmentController {
         }
     }
     @Operation(summary = "Add apartment")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PostMapping("/add")
     public ResponseEntity saveApartment(@RequestBody @Valid ApartmentDTO apartmentDTO){
         log.info("Request save apartment");
         return ResponseEntity.ok("Success:\n"+apartmentService.saveDTO(apartmentDTO));
     }
     @Operation(summary = "Delete apartment by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @DeleteMapping("/delete/{id}")
     public  ResponseEntity deleteApartment(@PathVariable @Schema(example = "0") int id){
         ApartmentDTO apartmentDTO = apartmentService.findByIdDTO(id);
@@ -67,6 +82,11 @@ public class ApartmentController {
 
     }
     @Operation(summary = "Update apartment by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PutMapping("/update/{id}")
     public ResponseEntity updateApartment(@PathVariable @Schema(example = "2") int id, @RequestBody @Valid ApartmentDTO apartmentDTO){
         ApartmentDTO apartmentDTO1 = apartmentService.findByIdDTO(id);

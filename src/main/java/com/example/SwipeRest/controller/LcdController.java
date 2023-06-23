@@ -4,6 +4,8 @@ import com.example.SwipeRest.dto.LcdDTO;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +22,22 @@ public class LcdController {
     private Logger log = LoggerFactory.getLogger(LcdController.class);
     private final LCDServiceImpl lcdService;
     @Operation(summary = "Get all lcd")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/all")
     public ResponseEntity findAllLcd(){
         log.info("Request all lcd");
         return ResponseEntity.ok(lcdService.findAllDTO());
     }
     @Operation(summary = "Get lcd by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/{id}")
     public ResponseEntity findByIdLcd(@PathVariable @Schema(example = "9") int id) {
         LcdDTO lcdDTO = lcdService.findByIdDTO(id);
@@ -38,6 +50,11 @@ public class LcdController {
         }
     }
     @Operation(summary = "Add lcd")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PostMapping("/add")
     public ResponseEntity saveLcd(@RequestBody @Valid LcdDTO lcdDTO){
         log.info("Request save lcd");
@@ -45,6 +62,11 @@ public class LcdController {
     }
 
     @Operation(summary = "Delete lcd by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable @Schema(example = "0") int id){
         LcdDTO lcdDTO = lcdService.findByIdDTO(id);
@@ -59,6 +81,11 @@ public class LcdController {
         }
     }
     @Operation(summary = "Update lcd by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PutMapping("/update/{id}")
     public ResponseEntity update(@PathVariable @Schema(example = "1") int id, @RequestBody @Valid LcdDTO lcdDTO){
         LcdDTO lcd = lcdService.findByIdDTO(id);

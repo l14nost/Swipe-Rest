@@ -6,6 +6,8 @@ import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +24,22 @@ public class NotaryController {
     private Logger log = LoggerFactory.getLogger(NotaryController.class);
     private final UserServiceImpl userService;
     @Operation(summary = "Get all notary")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/all")
     public ResponseEntity findAllNotary(){
         log.info("Request all Notary");
         return ResponseEntity.ok(userService.findAllByType(TypeUser.NOTARY));
     }
     @Operation(summary = "Get notary by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @GetMapping("/{id}")
     public ResponseEntity findByIdNotary(@PathVariable @Schema(example = "6") int id){
         ClientDTO user = userService.findByIdDTO(id);
@@ -49,6 +61,11 @@ public class NotaryController {
         }
     }
     @Operation(summary = "Add notary")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PostMapping("/add")
     public ResponseEntity addNotary(@Valid @RequestBody @Schema(
             example = "{\n" +
@@ -67,6 +84,11 @@ public class NotaryController {
         return ResponseEntity.ok(userService.addDTO(clientDTO));
     }
     @Operation(summary = "Delete notary by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "0") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
@@ -90,6 +112,11 @@ public class NotaryController {
         }
     }
     @Operation(summary = "Update notary by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable @Schema(example = "6") int id, @Valid @RequestBody @Schema(
             example = "{\n" +
