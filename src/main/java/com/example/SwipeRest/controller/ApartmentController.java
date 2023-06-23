@@ -27,7 +27,7 @@ public class ApartmentController {
     }
     @Operation(summary = "Find apartment by id")
     @GetMapping("/{id}")
-    public ResponseEntity findByIdApartment(@PathVariable @Schema(example = "9")int id){
+    public ResponseEntity findByIdApartment(@PathVariable @Schema(example = "2")int id){
         ApartmentDTO apartmentDTO = apartmentService.findByIdDTO(id);
         if (apartmentDTO!=null) {
             log.info("Request find apartment "+id);
@@ -60,7 +60,7 @@ public class ApartmentController {
     }
     @Operation(summary = "Update apartment by id")
     @PutMapping("/update/{id}")
-    public ResponseEntity updateApartment(@PathVariable @Schema(example = "9") int id, @RequestBody @Valid ApartmentDTO apartmentDTO){
+    public ResponseEntity updateApartment(@PathVariable @Schema(example = "2") int id, @RequestBody @Valid ApartmentDTO apartmentDTO){
         ApartmentDTO apartmentDTO1 = apartmentService.findByIdDTO(id);
         if (apartmentDTO1!=null){
             log.info("Request update apartment "+id);
