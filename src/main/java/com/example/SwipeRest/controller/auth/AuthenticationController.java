@@ -54,7 +54,7 @@ public class AuthenticationController {
         return "admin/login";
     }
 
-    @Operation(summary = "Refresh token")
+    @Operation(summary = "Refresh Token")
     @PostMapping("/refresh-token")
     public void refresh(
             HttpServletRequest request,
