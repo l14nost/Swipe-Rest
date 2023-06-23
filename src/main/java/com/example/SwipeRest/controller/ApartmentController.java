@@ -68,9 +68,4 @@ public class ApartmentController {
         else{ log.info("Apartment not found "+id);
             return ResponseEntity.badRequest().body("Apartment not found");}
     }
-
-    @GetMapping("/")
-    public String hello(){
-        return "Hello";
-    }
 }
