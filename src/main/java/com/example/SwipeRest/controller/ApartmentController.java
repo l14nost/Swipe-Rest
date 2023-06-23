@@ -5,6 +5,7 @@ import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,12 @@ public class ApartmentController {
     private final ApartmentServiceImpl apartmentService;
     private Logger log = LoggerFactory.getLogger(ApartmentController.class);
     @Operation(summary = "Get all apartment")
-    @ApiResponse(responseCode = "401",description = "Unauthorized")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
+
     @GetMapping("/all")
     public ResponseEntity findAllApartment(){
         log.info("Request all apartment");
