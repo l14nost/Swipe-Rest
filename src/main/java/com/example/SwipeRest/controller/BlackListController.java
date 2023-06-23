@@ -45,4 +45,26 @@ public class BlackListController {
         log.info("User not found "+id);
         return ResponseEntity.badRequest().body("User not found");
     }
+
+    @Operation(summary = "Remove user from blacklist")
+    @PostMapping("/remove/{id}")
+    public ResponseEntity removeFromBlackList(@PathVariable int id){
+        ClientDTO user = userService.findByIdDTO(id);
+        if (user!=null) {
+            if (user.getTypeUser().equals(TypeUser.NOTARY)) {
+                log.info("User not valid for add to blacklist");
+                return ResponseEntity.badRequest().body("User by this id is Notary");
+            } else {
+                if (!user.isBlackList()){
+                    log.info("User not valid for remove to blacklist");
+                    return ResponseEntity.badRequest().body("User isn't in blacklist");
+                }
+                log.info("Request add to blacklist");
+                userService.removeFromBlackList(id);
+                return ResponseEntity.ok("Success remove");
+            }
+        }
+        log.info("User not found "+id);
+        return ResponseEntity.badRequest().body("User not found");
+    }
 }

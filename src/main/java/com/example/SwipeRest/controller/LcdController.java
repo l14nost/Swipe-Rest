@@ -3,6 +3,7 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.dto.LcdDTO;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class LcdController {
     }
     @Operation(summary = "Get lcd by id")
     @GetMapping("/{id}")
-    public ResponseEntity findByIdLcd(@PathVariable int id) {
+    public ResponseEntity findByIdLcd(@PathVariable @Schema(example = "9") int id) {
         LcdDTO lcdDTO = lcdService.findByIdDTO(id);
         if (lcdDTO != null) {
             log.info("Request find lcd " + id);
@@ -45,7 +46,7 @@ public class LcdController {
 
     @Operation(summary = "Delete lcd by id")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable int id){
+    public ResponseEntity delete(@PathVariable @Schema(example = "0") int id){
         LcdDTO lcdDTO = lcdService.findByIdDTO(id);
         if (lcdDTO!=null) {
             log.info("Request delete lcd " + id);
@@ -59,7 +60,7 @@ public class LcdController {
     }
     @Operation(summary = "Update lcd by id")
     @PutMapping("/update/{id}")
-    public ResponseEntity update(@PathVariable int id, @RequestBody @Valid LcdDTO lcdDTO){
+    public ResponseEntity update(@PathVariable @Schema(example = "1") int id, @RequestBody @Valid LcdDTO lcdDTO){
         LcdDTO lcd = lcdService.findByIdDTO(id);
         if (lcd!=null) {
             log.info("Request update lcd " + id);

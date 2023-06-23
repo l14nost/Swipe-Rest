@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Builder
 public class PhotoDTO {
-    @Schema(example = "1")
+    @Schema(example = "0")
     int idPhoto;
     @Schema(example = "../admin/dist/img/default.jpg")
     @NotBlank

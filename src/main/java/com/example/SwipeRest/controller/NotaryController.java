@@ -29,7 +29,7 @@ public class NotaryController {
     }
     @Operation(summary = "Get notary by id")
     @GetMapping("/{id}")
-    public ResponseEntity findByIdNotary(@PathVariable int id){
+    public ResponseEntity findByIdNotary(@PathVariable @Schema(example = "6") int id){
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
             if (user.getRole().equals(Role.USER)) {
@@ -68,7 +68,7 @@ public class NotaryController {
     }
     @Operation(summary = "Delete notary by id")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteClient(@PathVariable int id){
+    public ResponseEntity deleteClient(@PathVariable @Schema(example = "0") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
         if (clientDTO != null) {
             if (clientDTO.getRole().equals(Role.USER)) {
@@ -91,7 +91,7 @@ public class NotaryController {
     }
     @Operation(summary = "Update notary by id")
     @PutMapping("/update/{id}")
-    public ResponseEntity updateClient(@PathVariable int id, @Valid @RequestBody @Schema(
+    public ResponseEntity updateClient(@PathVariable @Schema(example = "6") int id, @Valid @RequestBody @Schema(
             example = "{\n" +
                     "  \"mail\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Notary\",\n" +

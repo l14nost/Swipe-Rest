@@ -29,7 +29,7 @@ public class ContractorController {
     }
     @Operation(summary = "Get contractor by id")
     @GetMapping("/{id}")
-    public ResponseEntity findByIdContractor(@PathVariable @Schema(example = "90") int id){
+    public ResponseEntity findByIdContractor(@PathVariable @Schema(example = "4") int id){
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
             if (user.getRole().equals(Role.USER)) {
@@ -80,7 +80,7 @@ public class ContractorController {
     }
     @Operation(summary = "Delete contractor by id")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteClient(@PathVariable @Schema(example = "89") int id){
+    public ResponseEntity deleteClient(@PathVariable @Schema(example = "0") int id){
         ClientDTO clientDTO = userService.findByIdDTO(id);
         if (clientDTO != null) {
             if (clientDTO.getRole().equals(Role.USER)) {
@@ -102,7 +102,7 @@ public class ContractorController {
     }
     @Operation(summary = "Update contractor by id")
     @PutMapping("/update/{id}")
-    public ResponseEntity updateClient(@PathVariable @Schema(example = "90") int id, @Valid @RequestBody @Schema(
+    public ResponseEntity updateClient(@PathVariable @Schema(example = "4") int id, @Valid @RequestBody @Schema(
             example = "{\n" +
                     "  \"mail\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Contractor\",\n" +

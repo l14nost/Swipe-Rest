@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @Builder
 public class LcdDTO {
-    @Schema(example = "1")
+    @Schema(example = "0")
     int idLcd;
     @Schema(example = "Advantages")
     @NotBlank
@@ -52,7 +52,7 @@ public class LcdDTO {
     @Schema(example = "APARTMENT")
     @NotNull
     StatusLCDType status;
-    @Schema(example = "Sum Contract")
+    @Schema(example = "Sum")
     @NotBlank
     @NotEmpty
     @Size(min = 3,max = 150)
@@ -71,7 +71,7 @@ public class LcdDTO {
     @Schema(example = "AUTONOMOUS")
     @NotNull
     HeatingType watterSupply;
-    @Schema(example = "12")
+    @Schema(example = "4")
     int contractor;
     @Schema(example = "../admin/dist/img/default.jpg")
     @NotBlank

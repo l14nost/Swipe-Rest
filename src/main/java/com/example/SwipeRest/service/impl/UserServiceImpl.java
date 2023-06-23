@@ -182,4 +182,11 @@ public class UserServiceImpl implements UserService {
         log.info("User add to blackList "+id);
         return "Success add";
     }
+    public String removeFromBlackList(int id) {
+        User user = userRepo.findById(id).orElseThrow();
+        user.setBlackList(false);
+        userRepo.saveAndFlush(user);
+        log.info("User remove from blackList "+id);
+        return "Success remove";
+    }
 }

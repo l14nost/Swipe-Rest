@@ -3,6 +3,7 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class ApartmentController {
     }
     @Operation(summary = "Find apartment by id")
     @GetMapping("/{id}")
-    public ResponseEntity findByIdApartment(@PathVariable int id){
+    public ResponseEntity findByIdApartment(@PathVariable @Schema(example = "9")int id){
         ApartmentDTO apartmentDTO = apartmentService.findByIdDTO(id);
         if (apartmentDTO!=null) {
             log.info("Request find apartment "+id);
@@ -45,7 +46,7 @@ public class ApartmentController {
     }
     @Operation(summary = "Delete apartment by id")
     @DeleteMapping("/delete/{id}")
-    public  ResponseEntity deleteApartment(@PathVariable int id){
+    public  ResponseEntity deleteApartment(@PathVariable @Schema(example = "0") int id){
         ApartmentDTO apartmentDTO = apartmentService.findByIdDTO(id);
         if (apartmentDTO!=null){
             log.info("Request delete apartment "+id);
@@ -59,7 +60,7 @@ public class ApartmentController {
     }
     @Operation(summary = "Update apartment by id")
     @PutMapping("/update/{id}")
-    public ResponseEntity updateApartment(@PathVariable int id, @RequestBody @Valid ApartmentDTO apartmentDTO){
+    public ResponseEntity updateApartment(@PathVariable @Schema(example = "9") int id, @RequestBody @Valid ApartmentDTO apartmentDTO){
         ApartmentDTO apartmentDTO1 = apartmentService.findByIdDTO(id);
         if (apartmentDTO1!=null){
             log.info("Request update apartment "+id);

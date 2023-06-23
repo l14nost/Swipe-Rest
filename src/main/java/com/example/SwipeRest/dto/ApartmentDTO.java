@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApartmentDTO {
-    @Schema(example = "1")
+    @Schema(example = "0")
     int idApartment;
     @Schema(example = "RECEIPT")
     @NotNull
@@ -40,7 +40,7 @@ public class ApartmentDTO {
     @Schema(example = "CLASSICAL")
     @NotNull
     LayoutType layout;
-    @Schema(example = "10000")
+    @Schema(example = "200001")
     @Min(200000)
     @Max(2000000)
     int price;
@@ -53,7 +53,7 @@ public class ApartmentDTO {
     int totalArea;
     @Schema(example = "COMMUNAL")
     TypeApartment type;
-    @Schema(example = "4")
+    @Schema(example = "0")
     int idLcd;
     @Schema(example = "100")
     @Min(1)
@@ -76,7 +76,7 @@ public class ApartmentDTO {
     BalconyType balcony;
     @Valid
     List<PhotoDTO> photos;
-    @Schema(example = "7")
+    @Schema(example = "9")
     int client;
 
 }
