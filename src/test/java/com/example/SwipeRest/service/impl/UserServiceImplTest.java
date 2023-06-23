@@ -273,4 +273,14 @@ class UserServiceImplTest {
         User userBlackList = User.builder().idUser(1).blackList(true).build();
         verify(userRepo).saveAndFlush(userBlackList);
     }
+    @Test
+    void removeFromBlackList() {
+        User user = User.builder().idUser(1).blackList(true).build();
+        when(userRepo.findById(1)).thenReturn(Optional.of(user));
+        userService.removeFromBlackList(1);
+        User userBlackList = User.builder().idUser(1).blackList(false).build();
+        verify(userRepo).saveAndFlush(userBlackList);
+    }
+
+
 }

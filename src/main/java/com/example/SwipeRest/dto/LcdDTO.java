@@ -85,10 +85,10 @@ public class LcdDTO {
     @Schema(example = "ELITE")
     @NotNull
     ClassType classType;
-    @Schema(example = "г.Город, р.Район, вул.Вулиця,1")
+    @Schema(example = "г.Город, р.Район, ул.Улица,1")
     @NotBlank
     @NotEmpty
-    @Pattern(message = "г.Город, р.Район, вул.Вулиця,1",regexp = "г\\.[A-Za-zА-Яа-я]+, р\\.[A-Za-zА-Яа-я]+, вул\\.[A-Za-zА-Яа-я]+,\\d+")
+    @Pattern(message = "г.Город, р.Район, ул.Улица,1",regexp = "г\\.[A-Za-zА-Яа-я]+, р\\.[A-Za-zА-Яа-я]+, вул\\.[A-Za-zА-Яа-я]+,\\d+")
     String address;
     @Schema(example = "MANY")
     @NotNull
