@@ -29,6 +29,7 @@ public class LcdController {
     })
     @GetMapping("/all")
     public ResponseEntity findAllLcd(){
+
         log.info("Request all lcd");
         return ResponseEntity.ok(lcdService.findAllDTO());
     }
