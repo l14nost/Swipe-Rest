@@ -154,6 +154,7 @@ class LCDServiceImplTest {
 
     @Test
     void deleteById() {
+        when(lcdRepo.findById(1)).thenReturn(Optional.of(LCD.builder().build()));
         lcdService.deleteById(1);
         verify(lcdRepo).deleteById(1);
     }
