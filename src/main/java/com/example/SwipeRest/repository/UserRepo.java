@@ -14,6 +14,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User>  {
     Optional<User> findByMail(String mail);
+
+    List<User> findAllByMail(String mail);
     List<User> findAllByBlackListIsTrue();
     List<User> findAllByTypeUserAndBlackListIsFalse(TypeUser typeUser);
     Page<User> findAllByBlackListIsTrue(Pageable pageable);

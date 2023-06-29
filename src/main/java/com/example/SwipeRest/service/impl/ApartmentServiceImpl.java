@@ -36,7 +36,10 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     }
 
-
+    public void lcdIdToNull(Apartment apartment){
+        apartment.setLcd(null);
+        apartmentRepo.saveAndFlush(apartment);
+    }
     public List<ApartmentDTO> findAllDTO(){
         log.info("All apartmentDTO");
         return apartmentRepo.findAllByFrameIsNull().stream().map(ApartmentMapper::apply).collect(Collectors.toList());

@@ -29,6 +29,7 @@ public class LCDServiceImpl implements LCDService {
     private final FrameServiceImpl frameService;
     private final DocumentsServiceImpl documentsService;
     private final NewsServiceImpl newsService;
+    private final ApartmentServiceImpl apartmentService;
 
     public LcdDTO findByIdDTO(int id) {
         Optional<LCD> lcd = lcdRepo.findById(id);
@@ -132,6 +133,12 @@ public class LCDServiceImpl implements LCDService {
 
     @Override
     public void deleteById(int id) {
+        LCD lcd  = findById(id);
+        if (lcd.getApartmentList()!=null){
+            for (int i = 0; i<lcd.getApartmentList().size();i++) {
+                apartmentService.lcdIdToNull(lcd.getApartmentList().get(i));
+            }
+        }
         lcdRepo.deleteById(id);
         log.info("Lcd delete");
     }

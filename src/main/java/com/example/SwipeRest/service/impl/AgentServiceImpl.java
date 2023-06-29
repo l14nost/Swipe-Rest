@@ -8,6 +8,8 @@ import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +41,25 @@ public class AgentServiceImpl implements AgentService {
             log.info("Not find agent:"+id);
             return null;
         }
+    }
+    public BindingResult uniqueEmail(String mail, BindingResult result, int id, String method,String object){
+        List<Agent> agents = agentRepo.findAllByMail(mail);
+        if (agents.size()>=2){
+            result.addError(new FieldError(object, "agent.mail", "Email already exists"));
+            return result;
+        }
+        else if (method.equals("update")&&agents.size()==1){
+            if (agents.get(0).getIdAgent()==id){
+                return result;
+            }
+            result.addError(new FieldError(object, "agent.mail", "Email already exists"));
+            return result;
+        }
+        else if (method.equals("add")&&agents.size()!=0){
+            result.addError(new FieldError(object, "agent.mail", "Email already exists"));
+            return result;
+        }
+        else return result;
     }
 
     @Override

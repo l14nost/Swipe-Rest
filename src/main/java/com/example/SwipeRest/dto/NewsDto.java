@@ -16,12 +16,12 @@ public class NewsDto {
     int idNews;
     @NotBlank
     @NotEmpty
-    @Size(min = 3,max = 500)
+    @Size(min = 3,max = 255)
     @Schema(example = "Description")
     String description;
     @NotBlank
     @NotEmpty
-    @Size(min = 3,max = 200)
+    @Size(min = 3,max = 50)
     @Schema(example = "Title")
     String title;
     @NotNull

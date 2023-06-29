@@ -17,6 +17,8 @@ import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +32,25 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
-
+    public BindingResult uniqueMail(String email, BindingResult result, int id, String method,String object){
+        List<User> users = userRepo.findAllByMail(email);
+        if (users.size()>=2){
+            result.addError(new FieldError(object, "mail", "Email already exists"));
+            return result;
+        }
+        else if (method.equals("update")&&users.size()==1){
+            if (users.get(0).getIdUser()==id){
+                return result;
+            }
+            result.addError(new FieldError(object, "mail", "Email already exists"));
+            return result;
+        }
+        else if (method.equals("add")&&users.size()!=0){
+            result.addError(new FieldError(object, "mail", "Email already exists"));
+            return result;
+        }
+        else return result;
+    }
 
     public List<ClientDTO> findAllByType(TypeUser typeUser){
         log.info("All "+typeUser);

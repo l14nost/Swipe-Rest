@@ -28,7 +28,7 @@ public class ApartmentDTO {
     CountRoom countRoom;
     @Schema(example = "Description")
     @NotNull
-            @Size(min = 3,max = 1000)
+            @Size(min = 3,max = 255)
     String description;
     @Schema(example = "AUTONOMOUS")
     @NotNull
@@ -60,13 +60,13 @@ public class ApartmentDTO {
     @Max(500)
     int number;
     @Schema(example = "../admin/dist/img/default.jpg")
-    @NotBlank
-    @NotEmpty
+    @Size( max = 255)
     String mainPhoto;
     @Schema(example = "г.Город, р.Район, ул.Улица,1")
     @NotBlank
     @NotEmpty
     @Pattern(message = "г.Город, р.Район, ул.Улица,1",regexp = "г\\.[A-Za-zА-Яа-я]+, р\\.[A-Za-zА-Яа-я]+, ул\\.[A-Za-zА-Яа-я]+,\\d+")
+    @Size(min = 5, max = 255)
     String address;
     @Schema(example = "TREATY")
     @NotNull

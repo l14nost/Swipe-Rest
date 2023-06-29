@@ -24,14 +24,15 @@ public class AgentDTO {
     )
     @Email( regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     @NotBlank
+    @Size(min = 5, max = 255)
     String mail;
     @Schema(
             type = "string",
             example = "Agent"
     )
     @NotBlank
-    @NotEmpty
     @Pattern(regexp = "^[А-ЯЁA-Z][а-яёa-zA-Z]*$")
+    @Size(min = 2, max = 255)
     String name;
     @Schema(
             type = "string",
@@ -39,7 +40,6 @@ public class AgentDTO {
             description = "only 9 numbers"
     )
     @NotBlank
-    @NotEmpty
     @Size(min = 9, max = 9)
     String number;
     @Schema(
@@ -47,8 +47,8 @@ public class AgentDTO {
             example = "Agentov"
     )
     @NotBlank
-    @NotEmpty
     @Pattern(regexp = "^[А-ЯЁA-Z][а-яёa-zA-Z]*$")
+    @Size(min = 2, max = 255)
     String surname;
     @Schema(
             type = "string",

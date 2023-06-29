@@ -3,6 +3,8 @@ package com.example.SwipeRest.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,11 +14,11 @@ public class DocumentDTO {
     @Schema(example = "1")
     int idDocuments;
     @NotBlank
-    @NotEmpty
     @Schema(example = "../admin/dist/img/document.jpg")
+    @Size(min = 1, max = 255)
     String fileName;
     @NotBlank
-    @NotEmpty
     @Schema(example = "document.jpg")
+    @Size(min = 1, max = 255)
     String name;
 }
