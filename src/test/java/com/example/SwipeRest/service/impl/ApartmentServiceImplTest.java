@@ -67,7 +67,7 @@ class ApartmentServiceImplTest {
     @Test
     void findByIdDTO() {
         ApartmentDTO apartmentDTO = ApartmentDTO.builder()
-                .idApartment(6)
+                .id(6)
                 .number(122)
                 .build();
         Apartment apartment = Apartment.builder()
@@ -105,7 +105,7 @@ class ApartmentServiceImplTest {
         ApartmentDTO apartmentDTO = ApartmentDTO.builder()
                 .number(500)
                 .photos(Arrays.asList(
-                        PhotoDTO.builder().idPhoto(1).fileName("").build()
+                        PhotoDTO.builder().id(1).fileName("").build()
                 ))
                 .build();
         Apartment apartment = Apartment.builder()
@@ -245,7 +245,7 @@ class ApartmentServiceImplTest {
                 .description("")
                 .totalArea(100)
                 .client(7)
-                .photos(Arrays.asList(PhotoDTO.builder().idPhoto(1).fileName("").build()))
+                .photos(Arrays.asList(PhotoDTO.builder().id(1).fileName("").build()))
                 .type(TypeApartment.APARTMENT)
                 .layout(LayoutType.STUDIO)
                 .state(State.REPAIR)

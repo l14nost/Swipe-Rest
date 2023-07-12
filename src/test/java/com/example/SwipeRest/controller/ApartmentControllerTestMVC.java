@@ -3,8 +3,12 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.config.JWTAuthenticationFilter;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.dto.PhotoDTO;
+import com.example.SwipeRest.entity.LCD;
+import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.*;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
+import com.example.SwipeRest.service.impl.LCDServiceImpl;
+import com.example.SwipeRest.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -38,6 +42,10 @@ public class ApartmentControllerTestMVC {
     @MockBean
     private ApartmentServiceImpl apartmentService;
     @MockBean
+    private LCDServiceImpl lcdService;
+    @MockBean
+    private UserServiceImpl userService;
+    @MockBean
     private JWTAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
     private ObjectMapper objectMapper;
@@ -64,13 +72,89 @@ public class ApartmentControllerTestMVC {
                 .heatingType(HeatingType.INDIVIDUAL)
                 .mainPhoto("123")
                 .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(1)
+                .client(1)
                 .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findById(1)).thenReturn(LCD.builder().build());
         given(apartmentService.saveDTO(ArgumentMatchers.any())).willAnswer((invocation -> invocation.getArgument(0)));
         String json = objectMapper.writeValueAsString(apartmentDTO);
         ResultActions response = mockMvc.perform(post("/api/apartment/add")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isOk());
+
+    }
+
+    @Test
+    public void saveApartment_lcd_Not_Found() throws Exception{
+        ApartmentDTO  apartmentDTO = ApartmentDTO.builder()
+                .number(101)
+                .description("1123")
+                .totalArea(100)
+                .type(TypeApartment.APARTMENT)
+                .layout(LayoutType.STUDIO)
+                .state(State.REPAIR)
+                .price(200020)
+                .kitchenArea(20)
+                .calculation(Calculation.CAPITAL)
+                .foundingDocument(FoundingDocument.TREATY)
+                .countRoom(CountRoom.K1)
+                .communicationType(CommunicationType.SMS)
+                .commission(Commission.K10)
+                .address("г.Город, р.Район, ул.Улица,1")
+                .balcony(BalconyType.NO)
+                .heatingType(HeatingType.INDIVIDUAL)
+                .mainPhoto("123")
+                .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(2)
+                .client(1)
+                .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findById(1)).thenReturn(LCD.builder().build());
+        given(apartmentService.saveDTO(ArgumentMatchers.any())).willAnswer((invocation -> invocation.getArgument(0)));
+        String json = objectMapper.writeValueAsString(apartmentDTO);
+        ResultActions response = mockMvc.perform(post("/api/apartment/add")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("idLcd wrong"));
+
+    }
+
+    @Test
+    public void saveApartment_client_Not_Found() throws Exception{
+        ApartmentDTO  apartmentDTO = ApartmentDTO.builder()
+                .number(101)
+                .description("1123")
+                .totalArea(100)
+                .type(TypeApartment.APARTMENT)
+                .layout(LayoutType.STUDIO)
+                .state(State.REPAIR)
+                .price(200020)
+                .kitchenArea(20)
+                .calculation(Calculation.CAPITAL)
+                .foundingDocument(FoundingDocument.TREATY)
+                .countRoom(CountRoom.K1)
+                .communicationType(CommunicationType.SMS)
+                .commission(Commission.K10)
+                .address("г.Город, р.Район, ул.Улица,1")
+                .balcony(BalconyType.NO)
+                .heatingType(HeatingType.INDIVIDUAL)
+                .mainPhoto("123")
+                .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(1)
+                .client(2)
+                .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findById(1)).thenReturn(LCD.builder().build());
+        given(apartmentService.saveDTO(ArgumentMatchers.any())).willAnswer((invocation -> invocation.getArgument(0)));
+        String json = objectMapper.writeValueAsString(apartmentDTO);
+        ResultActions response = mockMvc.perform(post("/api/apartment/add")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("idClient wrong"));
 
     }
     @Test
@@ -125,7 +209,11 @@ public class ApartmentControllerTestMVC {
                 .heatingType(HeatingType.INDIVIDUAL)
                 .mainPhoto("123")
                 .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(1)
+                .client(1)
                 .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findById(1)).thenReturn(LCD.builder().build());
         given(apartmentService.saveDTO(ArgumentMatchers.any())).willAnswer((invocation -> invocation.getArgument(0)));
         String json = objectMapper.writeValueAsString(apartmentDTO);
         ResultActions response = mockMvc.perform(put("/api/apartment/update/1")
@@ -133,6 +221,114 @@ public class ApartmentControllerTestMVC {
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("Apartment not found"));
+
+    }
+
+
+    @Test
+    public void updateApartment_Not_Found1() throws Exception{
+        ApartmentDTO  apartmentDTO = ApartmentDTO.builder()
+                .number(101)
+                .description("1123")
+                .totalArea(100)
+                .type(TypeApartment.APARTMENT)
+                .layout(LayoutType.STUDIO)
+                .state(State.REPAIR)
+                .price(200200)
+                .kitchenArea(20)
+                .calculation(Calculation.CAPITAL)
+                .foundingDocument(FoundingDocument.TREATY)
+                .countRoom(CountRoom.K1)
+                .communicationType(CommunicationType.SMS)
+                .commission(Commission.K10)
+                .address("г.Город, р.Район, ул.Улица,1")
+                .balcony(BalconyType.NO)
+                .heatingType(HeatingType.INDIVIDUAL)
+                .mainPhoto("123")
+                .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(1)
+                .client(1)
+                .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findById(1)).thenReturn(LCD.builder().build());
+        given(apartmentService.saveDTO(ArgumentMatchers.any())).willAnswer((invocation -> invocation.getArgument(0)));
+        String json = objectMapper.writeValueAsString(apartmentDTO);
+        ResultActions response = mockMvc.perform(put("/api/apartment/update/-11")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
+    @Test
+    public void updateApartment_fail1() throws Exception{
+        ApartmentDTO  apartmentDTO = ApartmentDTO.builder()
+                .number(101)
+                .description("1123")
+                .totalArea(100)
+                .type(TypeApartment.APARTMENT)
+                .layout(LayoutType.STUDIO)
+                .state(State.REPAIR)
+                .price(200200)
+                .kitchenArea(20)
+                .calculation(Calculation.CAPITAL)
+                .foundingDocument(FoundingDocument.TREATY)
+                .countRoom(CountRoom.K1)
+                .communicationType(CommunicationType.SMS)
+                .commission(Commission.K10)
+                .address("г.Город, р.Район, ул.Улица,1")
+                .balcony(BalconyType.NO)
+                .heatingType(HeatingType.INDIVIDUAL)
+                .mainPhoto("123")
+                .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(1)
+                .client(1)
+                .build();
+        when(userService.findById(2)).thenReturn(User.builder().build());
+        when(lcdService.findById(1)).thenReturn(LCD.builder().build());
+        given(apartmentService.saveDTO(ArgumentMatchers.any())).willAnswer((invocation -> invocation.getArgument(0)));
+        String json = objectMapper.writeValueAsString(apartmentDTO);
+        ResultActions response = mockMvc.perform(put("/api/apartment/update/11")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("idClient wrong"));
+
+    }
+
+    @Test
+    public void updateApartment_fail2() throws Exception{
+        ApartmentDTO  apartmentDTO = ApartmentDTO.builder()
+                .number(101)
+                .description("1123")
+                .totalArea(100)
+                .type(TypeApartment.APARTMENT)
+                .layout(LayoutType.STUDIO)
+                .state(State.REPAIR)
+                .price(200200)
+                .kitchenArea(20)
+                .calculation(Calculation.CAPITAL)
+                .foundingDocument(FoundingDocument.TREATY)
+                .countRoom(CountRoom.K1)
+                .communicationType(CommunicationType.SMS)
+                .commission(Commission.K10)
+                .address("г.Город, р.Район, ул.Улица,1")
+                .balcony(BalconyType.NO)
+                .heatingType(HeatingType.INDIVIDUAL)
+                .mainPhoto("123")
+                .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(1)
+                .client(1)
+                .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findById(2)).thenReturn(LCD.builder().build());
+        given(apartmentService.saveDTO(ArgumentMatchers.any())).willAnswer((invocation -> invocation.getArgument(0)));
+        String json = objectMapper.writeValueAsString(apartmentDTO);
+        ResultActions response = mockMvc.perform(put("/api/apartment/update/11")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("idLcd wrong"));
 
     }
     @Test
@@ -187,7 +383,11 @@ public class ApartmentControllerTestMVC {
                 .heatingType(HeatingType.INDIVIDUAL)
                 .mainPhoto("123")
                 .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                .idLcd(1)
+                .client(1)
                 .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findById(1)).thenReturn(LCD.builder().build());
         when(apartmentService.findByIdDTO(1)).thenReturn(ApartmentDTO.builder().build());
         when(apartmentService.updateDto(apartmentDTO,1)).thenReturn(apartmentDTO);
         String json = objectMapper.writeValueAsString(apartmentDTO);
@@ -225,7 +425,7 @@ public class ApartmentControllerTestMVC {
         ResultActions response = mockMvc.perform(delete("/api/apartment/delete/1")
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().string("Success:\n"+apartmentDTO));
+                .andExpect(content().string("Success"));
 
     }
     @Test
@@ -235,6 +435,15 @@ public class ApartmentControllerTestMVC {
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("Apartment not found"));
+
+    }
+
+    @Test
+    public void deleteApartment_NotFound1() throws Exception{
+        ResultActions response = mockMvc.perform(delete("/api/apartment/delete/-11")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
 
     }
 
@@ -264,10 +473,18 @@ public class ApartmentControllerTestMVC {
                 .andExpect(content().string("Apartment not found"));
 
     }
+    @Test
+    public void findByIdApartment_NotFound1() throws Exception{
+        ResultActions response = mockMvc.perform(get("/api/apartment/-1")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
 
     @Test
     public void findByIdApartment() throws Exception{
-        ApartmentDTO apartmentDTO = ApartmentDTO.builder().idApartment(1).build();
+        ApartmentDTO apartmentDTO = ApartmentDTO.builder().id(1).build();
         when(apartmentService.findByIdDTO(1)).thenReturn(apartmentDTO);
         ResultActions response = mockMvc.perform(get("/api/apartment/1")
                 .contentType(MediaType.APPLICATION_JSON));

@@ -3,7 +3,6 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
-import com.example.SwipeRest.service.impl.AgentServiceImpl;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;

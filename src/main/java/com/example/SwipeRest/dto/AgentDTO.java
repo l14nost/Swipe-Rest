@@ -1,14 +1,10 @@
 package com.example.SwipeRest.dto;
 
 import com.example.SwipeRest.enums.TypeAgent;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @Builder

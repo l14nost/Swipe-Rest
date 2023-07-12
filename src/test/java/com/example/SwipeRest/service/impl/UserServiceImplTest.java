@@ -52,7 +52,7 @@ class UserServiceImplTest {
         List<ClientDTO> users = userService.findAllByType(TypeUser.NOTARY);
         assertEquals(5,users.size());
         for (ClientDTO user : users) {
-            assertEquals(TypeUser.NOTARY, user.getTypeUser());
+            assertEquals(TypeUser.NOTARY, user.getUserType());
         }
 
     }
@@ -70,7 +70,7 @@ class UserServiceImplTest {
         List<ClientDTO> users = userService.findAllByType(TypeUser.NOTARY);
         assertEquals(5,users.size());
         for (ClientDTO user : users) {
-            assertEquals(TypeUser.NOTARY, user.getTypeUser());
+            assertEquals(TypeUser.NOTARY, user.getUserType());
         }
     }
 
@@ -116,9 +116,9 @@ class UserServiceImplTest {
                 .build();
         when(userRepo.findById(1)).thenReturn(Optional.of(user));
         ClientDTO clientDTO = userService.findByIdDTO(1);
-        assertEquals(1,clientDTO.getIdUser());
+        assertEquals(1,clientDTO.getId());
         assertEquals("123123123",clientDTO.getNumber());
-        assertEquals("123@gmail.com",clientDTO.getMail());
+        assertEquals("123@gmail.com",clientDTO.getEmail());
         assertEquals("User",clientDTO.getName());
         assertEquals("Surname",clientDTO.getSurname());
         ClientDTO clientNull = userService.findByIdDTO(2);
@@ -150,13 +150,13 @@ class UserServiceImplTest {
     @Test
     void saveEntityDTO() {
         ClientDTO user = ClientDTO.builder()
-                .idUser(1)
+                .id(1)
                 .number("123123123")
-                .mail("123@gmail.com")
+                .email("123@gmail.com")
                 .name("User")
                 .surname("Surname")
                 .role(Role.USER)
-                .agent(AgentDTO.builder().idAgent(1).build())
+                .agent(AgentDTO.builder().id(1).build())
                 .build();
         userService.addDTO(user);
         User userSave = User.builder()
@@ -247,12 +247,12 @@ class UserServiceImplTest {
         when(userRepo.findById(1)).thenReturn(Optional.of(user));
         ClientDTO userUpdate = ClientDTO.builder()
                 .number("123123123")
-                .mail("124@gmail.com")
+                .email("124@gmail.com")
                 .name("User1")
                 .surname("Surname1")
                 .fileName("../uploads/804059ae-eba1-49a0-8e06-ccf3f6b545fa-stock3.jpg")
-                .agent(AgentDTO.builder().idAgent(1).name("Name1").build())
-                .userAddInfo(UserAddInfoDTO.builder().typeNotification(TypeNotification.ME).build())
+                .agent(AgentDTO.builder().id(1).name("Name1").build())
+                .userAddInfo(UserAddInfoDTO.builder().notificationType(TypeNotification.ME).build())
                 .build();
         userService.updateDto(userUpdate,1);
         User userSave = User.builder()

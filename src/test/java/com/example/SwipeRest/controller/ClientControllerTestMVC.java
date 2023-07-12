@@ -5,15 +5,12 @@ import com.example.SwipeRest.dto.*;
 import com.example.SwipeRest.entity.Agent;
 import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.*;
-import com.example.SwipeRest.mapper.UserMapper;
 import com.example.SwipeRest.service.impl.AgentServiceImpl;
-import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willAnswer;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -59,9 +55,9 @@ public class ClientControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123112")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -87,13 +83,13 @@ public class ClientControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123112")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .agent(AgentDTO.builder()
-                        .mail("newmail@gmail.com")
+                        .email("newmail@gmail.com")
                         .name("AgentTest")
                         .surname("MockTest")
                         .number("123123123").build())
@@ -126,12 +122,12 @@ public class ClientControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
@@ -154,12 +150,12 @@ public class ClientControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("1011231")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
@@ -182,20 +178,20 @@ public class ClientControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("1011231")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .agent(AgentDTO.builder()
-                        .mail("newmail@gmail.com")
+                        .email("newmail@gmail.com")
                         .name("AgentTest")
                         .surname("MockTest")
                         .number("123123123").build())
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
-        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().role(Role.USER).typeUser(TypeUser.CLIENT).build());
+        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().role(Role.USER).userType(TypeUser.CLIENT).build());
         when(userService.findById(1)).thenReturn(User.builder().role(Role.USER).typeUser(TypeUser.CLIENT).agent(Agent.builder().idAgent(1).build()).build());
         String json = objectMapper.writeValueAsString(clientDTO);
         BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
@@ -222,12 +218,12 @@ public class ClientControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(1)).thenReturn(null);
         String json = objectMapper.writeValueAsString(clientDTO);
@@ -238,18 +234,68 @@ public class ClientControllerTestMVC {
                 .andExpect(content().string("User NOT found"));
 
     }
+
+
+
+    @Test
+    public void updateClient_idNotFound() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.CLIENT)
+                .role(Role.USER)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
+                .build();
+        when(userService.findByIdDTO(1)).thenReturn(null);
+        String json = objectMapper.writeValueAsString(clientDTO);
+        ResultActions response = mockMvc.perform(put("/api/client/update/-100")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
+
+    @Test
+    public void updateClient_roleNull() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.CLIENT)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
+                .build();
+        when(userService.findByIdDTO(1)).thenReturn(null);
+        String json = objectMapper.writeValueAsString(clientDTO);
+        ResultActions response = mockMvc.perform(put("/api/client/update/1")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Role cannot be null"));
+
+    }
+
+
+
     @Test
     public void updateClient_Admin() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
         String json = objectMapper.writeValueAsString(clientDTO);
@@ -265,12 +311,12 @@ public class ClientControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         String json = objectMapper.writeValueAsString(clientDTO);
@@ -284,16 +330,16 @@ public class ClientControllerTestMVC {
     @Test
     public void updateClient_Success() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         when(userService.updateDto(clientDTO,2)).thenReturn("Success update:\n" +
@@ -316,16 +362,16 @@ public class ClientControllerTestMVC {
     @Test
     public void deleteApartment_Success() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(delete("/api/client/delete/2")
@@ -336,16 +382,16 @@ public class ClientControllerTestMVC {
     @Test
     public void deleteApartment_NotFound() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(delete("/api/client/delete/1")
@@ -353,19 +399,44 @@ public class ClientControllerTestMVC {
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("User NOT found"));
     }
+
+
+
     @Test
-    public void deleteApartment_ADMIN() throws Exception{
+    public void deleteClient_NotFound() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(1)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
-                .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .userType(TypeUser.CLIENT)
+                .role(Role.USER)
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
+                .build();
+        when(userService.findByIdDTO(2)).thenReturn(clientDTO);
+        ResultActions response = mockMvc.perform(delete("/api/client/delete/-1")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+    }
+
+
+    @Test
+    public void deleteApartment_ADMIN() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .id(1)
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.CLIENT)
+                .role(Role.ADMIN)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(delete("/api/client/delete/1")
@@ -377,16 +448,16 @@ public class ClientControllerTestMVC {
     @Test
     public void deleteApartment_NotClient() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
-                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
+                .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).notificationType(TypeNotification.ME).build())
                 .build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(delete("/api/client/delete/2")
@@ -411,20 +482,9 @@ public class ClientControllerTestMVC {
         List<ClientDTO> lists = objectMapper.readValue(response.andReturn().getResponse().getContentAsString(),new TypeReference<List<ClientDTO>>() {});
         assertEquals(5,lists.size());
     }
-//
-//    @Test
-//    public void findByIdApartment_NotFound() throws Exception{
-//        when(apartmentService.findByIdDTO(1)).thenReturn(null);
-//        ResultActions response = mockMvc.perform(get("/api/apartment/1")
-//                .contentType(MediaType.APPLICATION_JSON));
-//        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
-//                .andExpect(content().string("Apartment not found"));
-//
-//    }
-//
     @Test
     public void findByIdClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.CLIENT).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/client/2")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -434,7 +494,7 @@ public class ClientControllerTestMVC {
     }
     @Test
     public void findByIdClient_NotFound() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.CLIENT).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/client/1")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -442,9 +502,20 @@ public class ClientControllerTestMVC {
                 .andExpect(content().string("User by this id not found"));
 
     }
+
+    @Test
+    public void findByIdClient_idNotFound() throws Exception{
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.CLIENT).build();
+        when(userService.findByIdDTO(2)).thenReturn(clientDTO);
+        ResultActions response = mockMvc.perform(get("/api/client/-100")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
     @Test
     public void findByIdClient_ADMIN() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CLIENT).role(Role.ADMIN).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(1).userType(TypeUser.CLIENT).role(Role.ADMIN).build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/client/1")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -454,7 +525,7 @@ public class ClientControllerTestMVC {
     }
     @Test
     public void findByIdClient_NotClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.NOTARY).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/client/2")
                 .contentType(MediaType.APPLICATION_JSON));

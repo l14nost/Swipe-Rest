@@ -2,16 +2,15 @@ package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.config.JWTAuthenticationFilter;
 import com.example.SwipeRest.dto.*;
-import com.example.SwipeRest.entity.*;
+import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.*;
-import com.example.SwipeRest.mapper.LcdMapper;
-import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
+import com.example.SwipeRest.service.impl.FrameServiceImpl;
 import com.example.SwipeRest.service.impl.LCDServiceImpl;
+import com.example.SwipeRest.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,7 +25,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -40,6 +38,8 @@ public class LCDControllerTestMVC {
     private MockMvc mockMvc;
     @MockBean
     private LCDServiceImpl lcdService;
+    @MockBean
+    private  UserServiceImpl userService;
     @MockBean
     private JWTAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
@@ -68,29 +68,50 @@ public class LCDControllerTestMVC {
                 .communal(CommunalType.HALF)
                 .formalization("123123")
                 .distanceSea(12)
-                .typePayment("123123")
+                .paymentType("123123")
                 .mainPhoto("123123")
                 .contractor(12)
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).build()
+                        FrameDTO.builder().id(0).num(1).apartments(List.of(ApartmentDTO.builder()
+                                .number(101)
+                                .description("1123")
+                                .totalArea(100)
+                                .type(TypeApartment.APARTMENT)
+                                .layout(LayoutType.STUDIO)
+                                .state(State.REPAIR)
+                                .price(200020)
+                                .kitchenArea(20)
+                                .calculation(Calculation.CAPITAL)
+                                .foundingDocument(FoundingDocument.TREATY)
+                                .countRoom(CountRoom.K1)
+                                .communicationType(CommunicationType.SMS)
+                                .commission(Commission.K10)
+                                .address("г.Город, р.Район, ул.Улица,1")
+                                .balcony(BalconyType.NO)
+                                .heatingType(HeatingType.INDIVIDUAL)
+                                .mainPhoto("123")
+                                .photos(List.of(PhotoDTO.builder().fileName("asdasd").build()))
+                                .idLcd(0)
+                                .client(1)
+                                .build())).build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).name("a123").fileName("qqweq").build()
+                        DocumentDTO.builder().id(0).name("a123").fileName("qqweq").build()
                 ))
                 .photos(Arrays.asList(
                         PhotoDTO.builder().fileName("qqweq").build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("qqweq").build()
+                        NewsDto.builder().id(0).title("qqweq").build()
                 ))
                 .build();
-        when(lcdService.saveDTO(lcdDTO)).thenReturn("Lcd save");
+        when(lcdService.saveDTO(lcdDTO)).thenReturn("Success save");
         String json = objectMapper.writeValueAsString(lcdDTO);
         ResultActions response = mockMvc.perform(post("/api/lcd/add")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().string("Lcd save"));
+                .andExpect(content().string("Success save"));
 
     }
 
@@ -116,20 +137,20 @@ public class LCDControllerTestMVC {
                 .communal(CommunalType.HALF)
                 .formalization("123123")
                 .distanceSea(12)
-                .typePayment("123123")
+                .paymentType("123123")
                 .mainPhoto("123123")
                 .contractor(12)
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).build()
+                        FrameDTO.builder().id(1).num(1).build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).name("a123").fileName("qqweq").build()
+                        DocumentDTO.builder().id(1).name("a123").fileName("qqweq").build()
                 ))
                 .photos(Arrays.asList(
                         PhotoDTO.builder().fileName("qqweq").build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("qqweq").build()
+                        NewsDto.builder().id(1).title("qqweq").build()
                 ))
                 .build();
         when(lcdService.saveDTO(lcdDTO)).thenReturn("Lcd save");
@@ -163,20 +184,20 @@ public class LCDControllerTestMVC {
                 .communal(CommunalType.HALF)
                 .formalization("123123")
                 .distanceSea(12)
-                .typePayment("123123")
+                .paymentType("123123")
                 .mainPhoto("123123")
                 .contractor(12)
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).build()
+                        FrameDTO.builder().id(1).num(1).build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).name("a123").fileName("qqweq").build()
+                        DocumentDTO.builder().id(1).name("a123").fileName("qqweq").build()
                 ))
                 .photos(Arrays.asList(
                         PhotoDTO.builder().fileName("qqweq").build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("qqweq").build()
+                        NewsDto.builder().id(1).title("qqweq").build()
                 ))
                 .build();
         when(lcdService.findByIdDTO(1)).thenReturn(lcdDTO);
@@ -212,22 +233,23 @@ public class LCDControllerTestMVC {
                 .communal(CommunalType.HALF)
                 .formalization("123123")
                 .distanceSea(12)
-                .typePayment("123123")
+                .paymentType("123123")
                 .mainPhoto("123123")
-                .contractor(12)
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).build()
+                        FrameDTO.builder().id(1).num(1).build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).name("a123").fileName("qqweq").build()
+                        DocumentDTO.builder().id(1).name("a123").fileName("qqweq").build()
                 ))
                 .photos(Arrays.asList(
                         PhotoDTO.builder().fileName("qqweq").build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("qqweq").build()
+                        NewsDto.builder().id(1).title("qqweq").build()
                 ))
+                .contractor(1)
                 .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
         when(lcdService.findByIdDTO(1)).thenReturn(lcdDTO);
         when(lcdService.updateDTO(lcdDTO,1)).thenReturn("Success:\n"+ lcdDTO);
         String json = objectMapper.writeValueAsString(lcdDTO);
@@ -236,6 +258,110 @@ public class LCDControllerTestMVC {
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(content().string("Success:\n"+ lcdDTO));
+
+    }
+
+
+    @Test
+    public void updateLcd_Contractor_not_found() throws Exception{
+        LcdDTO lcdDTO = LcdDTO.builder()
+                .name("Name")
+                .description("Description1")
+                .sumContractor("Sum1")
+                .territory(TerritoryType.CLOSE)
+                .technology(TechnologyType.PANEL)
+                .gasType(GasType.NO)
+                .watterSupply(HeatingType.AUTONOMOUS)
+                .classType(ClassType.MASS)
+                .type(LCDType.FIVE)
+                .address("г.Город, р.Район, ул.Улица,1")
+                .heatingType(HeatingType.AUTONOMOUS)
+                .sewerage(HeatingType.CENTRAL)
+                .appointment("123123")
+                .height(2)
+                .status(StatusLCDType.APARTMENT)
+                .advantages("123")
+                .communal(CommunalType.HALF)
+                .formalization("123123")
+                .distanceSea(12)
+                .paymentType("123123")
+                .mainPhoto("123123")
+
+                .frames(Arrays.asList(
+                        FrameDTO.builder().id(1).num(1).build()
+                ))
+                .documents(Arrays.asList(
+                        DocumentDTO.builder().id(1).name("a123").fileName("qqweq").build()
+                ))
+                .photos(Arrays.asList(
+                        PhotoDTO.builder().fileName("qqweq").build()
+                ))
+                .newsList(Arrays.asList(
+                        NewsDto.builder().id(1).title("qqweq").build()
+                ))
+                .contractor(2)
+                .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findByIdDTO(1)).thenReturn(lcdDTO);
+        when(lcdService.updateDTO(lcdDTO,1)).thenReturn("Success:\n"+ lcdDTO);
+        String json = objectMapper.writeValueAsString(lcdDTO);
+        ResultActions response = mockMvc.perform(put("/api/lcd/update/1")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("idClient wrong"));
+
+    }
+
+
+    @Test
+    public void updateLcd_id_not_found() throws Exception{
+        LcdDTO lcdDTO = LcdDTO.builder()
+                .name("Name")
+                .description("Description1")
+                .sumContractor("Sum1")
+                .territory(TerritoryType.CLOSE)
+                .technology(TechnologyType.PANEL)
+                .gasType(GasType.NO)
+                .watterSupply(HeatingType.AUTONOMOUS)
+                .classType(ClassType.MASS)
+                .type(LCDType.FIVE)
+                .address("г.Город, р.Район, ул.Улица,1")
+                .heatingType(HeatingType.AUTONOMOUS)
+                .sewerage(HeatingType.CENTRAL)
+                .appointment("123123")
+                .height(2)
+                .status(StatusLCDType.APARTMENT)
+                .advantages("123")
+                .communal(CommunalType.HALF)
+                .formalization("123123")
+                .distanceSea(12)
+                .paymentType("123123")
+                .mainPhoto("123123")
+
+                .frames(Arrays.asList(
+                        FrameDTO.builder().id(1).num(1).build()
+                ))
+                .documents(Arrays.asList(
+                        DocumentDTO.builder().id(1).name("a123").fileName("qqweq").build()
+                ))
+                .photos(Arrays.asList(
+                        PhotoDTO.builder().fileName("qqweq").build()
+                ))
+                .newsList(Arrays.asList(
+                        NewsDto.builder().id(1).title("qqweq").build()
+                ))
+                .contractor(2)
+                .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
+        when(lcdService.findByIdDTO(1)).thenReturn(lcdDTO);
+        when(lcdService.updateDTO(lcdDTO,1)).thenReturn("Success:\n"+ lcdDTO);
+        String json = objectMapper.writeValueAsString(lcdDTO);
+        ResultActions response = mockMvc.perform(put("/api/lcd/update/-2")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
 
     }
     @Test
@@ -260,22 +386,24 @@ public class LCDControllerTestMVC {
                 .communal(CommunalType.HALF)
                 .formalization("123123")
                 .distanceSea(12)
-                .typePayment("123123")
+                .paymentType("123123")
                 .mainPhoto("123123")
                 .contractor(12)
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).build()
+                        FrameDTO.builder().id(1).num(1).build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).name("a123").fileName("qqweq").build()
+                        DocumentDTO.builder().id(1).name("a123").fileName("qqweq").build()
                 ))
                 .photos(Arrays.asList(
                         PhotoDTO.builder().fileName("qqweq").build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("qqweq").build()
+                        NewsDto.builder().id(1).title("qqweq").build()
                 ))
+                .contractor(1)
                 .build();
+        when(userService.findById(1)).thenReturn(User.builder().build());
         when(lcdService.findByIdDTO(1)).thenReturn(lcdDTO);
         when(lcdService.updateDTO(lcdDTO,1)).thenReturn("Success:\n"+ lcdDTO);
         String json = objectMapper.writeValueAsString(lcdDTO);
@@ -312,20 +440,20 @@ public class LCDControllerTestMVC {
                 .communal(CommunalType.HALF)
                 .formalization("123123")
                 .distanceSea(12)
-                .typePayment("123123")
+                .paymentType("123123")
                 .mainPhoto("123123")
                 .contractor(12)
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).build()
+                        FrameDTO.builder().id(1).num(1).build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).name("a123").fileName("qqweq").build()
+                        DocumentDTO.builder().id(1).name("a123").fileName("qqweq").build()
                 ))
                 .photos(Arrays.asList(
                         PhotoDTO.builder().fileName("qqweq").build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("qqweq").build()
+                        NewsDto.builder().id(1).title("qqweq").build()
                 ))
                 .build();
         when(lcdService.findByIdDTO(1)).thenReturn(lcdDTO);
@@ -342,6 +470,16 @@ public class LCDControllerTestMVC {
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("Lcd not found"));
+
+    }
+
+    @Test
+    public void deleteLcd_IdNotFound() throws Exception{
+        when(lcdService.findByIdDTO(1)).thenReturn(null);
+        ResultActions response = mockMvc.perform(delete("/api/lcd/delete/-2")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
 
     }
 
@@ -373,8 +511,19 @@ public class LCDControllerTestMVC {
     }
 
     @Test
+    public void findByIdLcd_idNotFound() throws Exception{
+        when(lcdService.findByIdDTO(1)).thenReturn(null);
+        ResultActions response = mockMvc.perform(get("/api/lcd/-2")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
+
+
+    @Test
     public void findByIdLcd() throws Exception{
-        LcdDTO lcdDTO = LcdDTO.builder().idLcd(1).build();
+        LcdDTO lcdDTO = LcdDTO.builder().id(1).build();
         when(lcdService.findByIdDTO(1)).thenReturn(lcdDTO);
         ResultActions response = mockMvc.perform(get("/api/lcd/1")
                 .contentType(MediaType.APPLICATION_JSON));

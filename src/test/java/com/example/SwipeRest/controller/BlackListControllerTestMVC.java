@@ -66,7 +66,7 @@ public class BlackListControllerTestMVC {
 
     @Test
     public void addToBlackList_Notary() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.NOTARY).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.NOTARY).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/add/2")
@@ -78,7 +78,7 @@ public class BlackListControllerTestMVC {
 
     @Test
     public void addToBlackList_Already() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.CLIENT).blackList(true).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(true).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/add/2")
@@ -89,7 +89,7 @@ public class BlackListControllerTestMVC {
     }
     @Test
     public void addToBlackList_Success() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.CLIENT).blackList(false).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(false).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/add/2")
@@ -101,7 +101,7 @@ public class BlackListControllerTestMVC {
 
     @Test
     public void addToBlackList_NotFound() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.CLIENT).blackList(false).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(false).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/add/3")
@@ -111,10 +111,22 @@ public class BlackListControllerTestMVC {
 
     }
 
+    @Test
+    public void addToBlackList_idNotFound() throws Exception{
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(false).build();
+        when(userService.findByIdDTO(2)).thenReturn(clientDTO);
+
+        ResultActions response = mockMvc.perform(post("/api/black/list/add/-10")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
+
 
     @Test
     public void removeFromBlackList_Already() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.CLIENT).blackList(false).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(false).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/remove/2")
@@ -125,7 +137,7 @@ public class BlackListControllerTestMVC {
     }
     @Test
     public void removeFromBlackList_Success() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.CLIENT).blackList(true).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(true).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/remove/2")
@@ -137,7 +149,7 @@ public class BlackListControllerTestMVC {
 
     @Test
     public void removeFromBlackList_NotFound() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.CLIENT).blackList(false).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(false).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/remove/3")
@@ -146,9 +158,21 @@ public class BlackListControllerTestMVC {
                 .andExpect(content().string("User not found"));
 
     }
+
+    @Test
+    public void removeFromBlackList_IdNotFound() throws Exception{
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.CLIENT).blackList(false).build();
+        when(userService.findByIdDTO(2)).thenReturn(clientDTO);
+
+        ResultActions response = mockMvc.perform(post("/api/black/list/remove/-10")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
     @Test
     public void removeFromBlackList_Notary() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.NOTARY).build();
+        ClientDTO clientDTO = ClientDTO.builder().userType(TypeUser.NOTARY).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
         ResultActions response = mockMvc.perform(post("/api/black/list/remove/2")

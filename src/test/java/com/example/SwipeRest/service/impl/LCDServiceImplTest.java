@@ -110,16 +110,16 @@ class LCDServiceImplTest {
                 .classType(ClassType.MASS)
                 .contractor(12)
                 .photos(Arrays.asList(
-                        PhotoDTO.builder().idPhoto(1).fileName("").build()
+                        PhotoDTO.builder().id(1).fileName("").build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).fileName("").build()
+                        DocumentDTO.builder().id(1).fileName("").build()
                 ))
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).apartments(Arrays.asList(ApartmentDTO.builder().idApartment(1).number(115).photos(List.of(PhotoDTO.builder().idPhoto(2).fileName("").build())).build())).build()
+                        FrameDTO.builder().id(1).num(1).apartments(Arrays.asList(ApartmentDTO.builder().id(1).number(115).photos(List.of(PhotoDTO.builder().id(2).fileName("").build())).build())).build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("").build()
+                        NewsDto.builder().id(1).title("").build()
                 ))
                 .build();
         lcdService.saveDTO(lcdDTO);
@@ -290,22 +290,22 @@ class LCDServiceImplTest {
                 .communal(CommunalType.HALF)
                 .formalization("")
                 .distanceSea(12)
-                .typePayment("")
+                .paymentType("")
                 .mainPhoto("")
                 .contractor(12)
                 .frames(Arrays.asList(
-                        FrameDTO.builder().idFrame(1).num(1).apartments(Arrays.asList(
-                                ApartmentDTO.builder().idApartment(1).number(115).build()
+                        FrameDTO.builder().id(1).num(1).apartments(Arrays.asList(
+                                ApartmentDTO.builder().id(1).number(115).build()
                         )).build()
                 ))
                 .documents(Arrays.asList(
-                        DocumentDTO.builder().idDocuments(1).fileName("").build()
+                        DocumentDTO.builder().id(1).fileName("").build()
                 ))
                 .photos(Arrays.asList(
                         PhotoDTO.builder().fileName("").build()
                 ))
                 .newsList(Arrays.asList(
-                        NewsDto.builder().idNews(1).title("").build()
+                        NewsDto.builder().id(1).title("").build()
                 ))
                 .build();
         lcdService.updateDTO(lcdUpdate,1);

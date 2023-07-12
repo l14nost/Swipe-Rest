@@ -2,13 +2,10 @@ package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.config.JWTAuthenticationFilter;
 import com.example.SwipeRest.dto.AgentDTO;
-import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.dto.ClientDTO;
-import com.example.SwipeRest.dto.UserAddInfoDTO;
 import com.example.SwipeRest.entity.Agent;
 import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.Role;
-import com.example.SwipeRest.enums.TypeNotification;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.AgentServiceImpl;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
@@ -28,7 +25,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -61,9 +57,9 @@ public class ContractorControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123112")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -89,9 +85,9 @@ public class ContractorControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123112")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -117,9 +113,9 @@ public class ContractorControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -144,13 +140,13 @@ public class ContractorControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("1011231")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .agent(AgentDTO.builder()
-                        .mail("newmail@gmail.com")
+                        .email("newmail@gmail.com")
                         .name("AgentTest")
                         .surname("MockTest")
                         .number("123123123").build())
@@ -181,19 +177,19 @@ public class ContractorControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("1011231")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .agent(AgentDTO.builder()
-                        .mail("newmail@gmail.com")
+                        .email("newmail@gmail.com")
                         .name("AgentTest")
                         .surname("MockTest")
                         .number("123123123").build())
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
-        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().typeUser(TypeUser.CONTRACTOR).role(Role.USER).build());
+        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().userType(TypeUser.CONTRACTOR).role(Role.USER).build());
         when(userService.findById(1)).thenReturn(User.builder().typeUser(TypeUser.CONTRACTOR).role(Role.USER).agent(Agent.builder().idAgent(1).build()).build());
         String json = objectMapper.writeValueAsString(clientDTO);
         BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
@@ -220,9 +216,9 @@ public class ContractorControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -235,15 +231,58 @@ public class ContractorControllerTestMVC {
                 .andExpect(content().string("User NOT found"));
 
     }
+
+    @Test
+    public void updateClient_idNotFound() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.CONTRACTOR)
+                .role(Role.USER)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.findByIdDTO(1)).thenReturn(null);
+        String json = objectMapper.writeValueAsString(clientDTO);
+        ResultActions response = mockMvc.perform(put("/api/contractor/update/-1")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
+
+    @Test
+    public void updateClient_roleNull() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.CONTRACTOR)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.findByIdDTO(1)).thenReturn(null);
+        String json = objectMapper.writeValueAsString(clientDTO);
+        ResultActions response = mockMvc.perform(put("/api/contractor/update/1")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Role cannot be null"));
+
+    }
     @Test
     public void updateClient_Admin() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -261,9 +300,9 @@ public class ContractorControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -279,13 +318,13 @@ public class ContractorControllerTestMVC {
     @Test
     public void updateClient_Success() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -310,13 +349,13 @@ public class ContractorControllerTestMVC {
     @Test
     public void deleteApartment_Success() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -329,13 +368,13 @@ public class ContractorControllerTestMVC {
     @Test
     public void deleteApartment_NotFound() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -345,16 +384,40 @@ public class ContractorControllerTestMVC {
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("User NOT found"));
     }
+
+
     @Test
-    public void deleteApartment_ADMIN() throws Exception{
+    public void deleteApartment_idNotFound() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(1)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CONTRACTOR)
+                .userType(TypeUser.CONTRACTOR)
+                .role(Role.USER)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.findByIdDTO(2)).thenReturn(clientDTO);
+        ResultActions response = mockMvc.perform(delete("/api/contractor/delete/-10")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+    }
+
+
+
+    @Test
+    public void deleteApartment_ADMIN() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .id(1)
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.CONTRACTOR)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -368,13 +431,13 @@ public class ContractorControllerTestMVC {
     @Test
     public void deleteApartment_NotClient() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -403,7 +466,7 @@ public class ContractorControllerTestMVC {
     }
     @Test
     public void findByIdClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.CONTRACTOR).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/contractor/2")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -413,7 +476,7 @@ public class ContractorControllerTestMVC {
     }
     @Test
     public void findByIdClient_NotFound() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CONTRACTOR).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.CONTRACTOR).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/contractor/1")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -423,7 +486,7 @@ public class ContractorControllerTestMVC {
     }
     @Test
     public void findByIdClient_ADMIN() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.CONTRACTOR).role(Role.ADMIN).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(1).userType(TypeUser.CONTRACTOR).role(Role.ADMIN).build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/contractor/1")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -433,7 +496,7 @@ public class ContractorControllerTestMVC {
     }
     @Test
     public void findByIdClient_NotClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.NOTARY).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/contractor/2")
                 .contentType(MediaType.APPLICATION_JSON));

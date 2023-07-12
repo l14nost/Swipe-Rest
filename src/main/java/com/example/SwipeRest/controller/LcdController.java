@@ -25,7 +25,6 @@ public class LcdController {
     private Logger log = LoggerFactory.getLogger(LcdController.class);
     private final LCDServiceImpl lcdService;
     private final UserServiceImpl userService;
-    private final FrameServiceImpl frameService;
     @Operation(summary = "Get all lcd")
     @ApiResponses({
             @ApiResponse(responseCode = "200",description = "OK"),
@@ -71,7 +70,8 @@ public class LcdController {
         lcdDTO.getPhotos().forEach(photoDTO -> photoDTO.setId(0));
         lcdDTO.getDocuments().forEach(documentDTO -> documentDTO.setId(0));
         lcdDTO.getFrames().forEach(frameDTO -> { frameDTO.setId(0);
-            frameDTO.getApartments().forEach(apartmentDTO -> {apartmentDTO.setId(0); apartmentDTO.setIdLcd(0);});});
+            if (frameDTO.getApartments()!=null){
+            frameDTO.getApartments().forEach(apartmentDTO -> {apartmentDTO.setId(0); apartmentDTO.setIdLcd(0);});}});
         return ResponseEntity.ok(lcdService.saveDTO(lcdDTO));
     }
 

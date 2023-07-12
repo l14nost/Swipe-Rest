@@ -1,9 +1,7 @@
 package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.config.JWTAuthenticationFilter;
-import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.dto.ClientDTO;
-import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
@@ -22,7 +20,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
 import java.util.List;
 
@@ -55,9 +52,9 @@ public class NotaryControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -83,9 +80,9 @@ public class NotaryControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("1011231")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -113,9 +110,9 @@ public class NotaryControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123112")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -141,9 +138,9 @@ public class NotaryControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123112")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -170,14 +167,14 @@ public class NotaryControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("1011231")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
-        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().idUser(1).role(Role.USER).typeUser(TypeUser.NOTARY).build());
+        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().id(1).role(Role.USER).userType(TypeUser.NOTARY).build());
         String json = objectMapper.writeValueAsString(clientDTO);
         BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
         given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
@@ -199,9 +196,9 @@ public class NotaryControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -214,15 +211,58 @@ public class NotaryControllerTestMVC {
                 .andExpect(content().string("User NOT found"));
 
     }
+
+
+    @Test
+    public void updateClient_idNotFound() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.NOTARY)
+                .role(Role.USER)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.findByIdDTO(1)).thenReturn(null);
+        String json = objectMapper.writeValueAsString(clientDTO);
+        ResultActions response = mockMvc.perform(put("/api/notary/update/-1")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+    }
+
+
+    @Test
+    public void updateClient_roleNull() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.NOTARY)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.findByIdDTO(1)).thenReturn(null);
+        String json = objectMapper.writeValueAsString(clientDTO);
+        ResultActions response = mockMvc.perform(put("/api/notary/update/1")
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Role cannot be null"));
+    }
     @Test
     public void updateClient_Admin() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -240,9 +280,9 @@ public class NotaryControllerTestMVC {
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -258,13 +298,13 @@ public class NotaryControllerTestMVC {
     @Test
     public void updateClient_Success() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -289,13 +329,13 @@ public class NotaryControllerTestMVC {
     @Test
     public void deleteApartment_Success() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -308,13 +348,13 @@ public class NotaryControllerTestMVC {
     @Test
     public void deleteApartment_NotFound() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -324,16 +364,37 @@ public class NotaryControllerTestMVC {
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("User NOT found"));
     }
+
+
     @Test
-    public void deleteApartment_ADMIN() throws Exception{
+    public void deleteApartment_idNotFound() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(1)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.NOTARY)
+                .userType(TypeUser.NOTARY)
+                .role(Role.USER)
+                .email("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.findByIdDTO(2)).thenReturn(clientDTO);
+        ResultActions response = mockMvc.perform(delete("/api/notary/delete/-1")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+    }
+    @Test
+    public void deleteApartment_ADMIN() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .id(1)
+                .name("Name")
+                .surname("Surname")
+                .number("101123123")
+                .userType(TypeUser.NOTARY)
                 .role(Role.ADMIN)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -347,13 +408,13 @@ public class NotaryControllerTestMVC {
     @Test
     public void deleteApartment_NotClient() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
-                .idUser(2)
+                .id(2)
                 .name("Name")
                 .surname("Surname")
                 .number("101123123")
-                .typeUser(TypeUser.CLIENT)
+                .userType(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail("user@gmail.com")
+                .email("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
                 .build();
@@ -382,7 +443,7 @@ public class NotaryControllerTestMVC {
     }
     @Test
     public void findByIdClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.NOTARY).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/notary/2")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -392,7 +453,7 @@ public class NotaryControllerTestMVC {
     }
     @Test
     public void findByIdClient_NotFound() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.NOTARY).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.NOTARY).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/notary/1")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -400,9 +461,21 @@ public class NotaryControllerTestMVC {
                 .andExpect(content().string("User by this id not found"));
 
     }
+
+
+    @Test
+    public void findByIdClient_idNotFound() throws Exception{
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.NOTARY).role(Role.USER).build();
+        when(userService.findByIdDTO(2)).thenReturn(clientDTO);
+        ResultActions response = mockMvc.perform(get("/api/notary/-1")
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("Id cannot be negative"));
+
+    }
     @Test
     public void findByIdClient_ADMIN() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(1).typeUser(TypeUser.NOTARY).role(Role.ADMIN).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(1).userType(TypeUser.NOTARY).role(Role.ADMIN).build();
         when(userService.findByIdDTO(1)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/notary/1")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -412,7 +485,7 @@ public class NotaryControllerTestMVC {
     }
     @Test
     public void findByIdClient_NotClient() throws Exception{
-        ClientDTO clientDTO = ClientDTO.builder().idUser(2).typeUser(TypeUser.CLIENT).role(Role.USER).build();
+        ClientDTO clientDTO = ClientDTO.builder().id(2).userType(TypeUser.CLIENT).role(Role.USER).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
         ResultActions response = mockMvc.perform(get("/api/notary/2")
                 .contentType(MediaType.APPLICATION_JSON));
