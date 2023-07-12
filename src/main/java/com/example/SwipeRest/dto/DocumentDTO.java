@@ -12,7 +12,7 @@ import lombok.Data;
 @Builder
 public class DocumentDTO {
     @Schema(example = "1")
-    int idDocuments;
+    int id;
     @NotBlank
     @Schema(example = "../admin/dist/img/document.jpg")
     @Size(min = 1, max = 255)

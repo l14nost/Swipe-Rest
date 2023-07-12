@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ApartmentDTO {
     @Schema(example = "0")
-    int idApartment;
+    int id;
     @Schema(example = "RECEIPT")
     @NotNull
     Calculation calculation;

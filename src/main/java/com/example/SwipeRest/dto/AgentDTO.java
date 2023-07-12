@@ -17,7 +17,7 @@ public class AgentDTO {
             type = "int",
             example = "1"
     )
-    int idAgent;
+    int id;
     @Schema(
             type = "string",
             example = "mail@gmail.com"
@@ -25,7 +25,7 @@ public class AgentDTO {
     @Email( regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     @NotBlank
     @Size(min = 5, max = 255)
-    String mail;
+    String email;
     @Schema(
             type = "string",
             example = "Agent"
@@ -55,6 +55,6 @@ public class AgentDTO {
             example = "AGENT",
             description = "If it's CONTRACTOR, input value SALES"
     )
-    TypeAgent typeAgent;
+    TypeAgent agentType;
 
 }

@@ -30,6 +30,8 @@ class LCDServiceImplTest {
     @Mock
     private NewsServiceImpl newsService;
     @Mock
+    private ApartmentServiceImpl apartmentService;
+    @Mock
     private LCDRepo lcdRepo;
     @InjectMocks
     private LCDServiceImpl lcdService;
@@ -154,7 +156,7 @@ class LCDServiceImplTest {
 
     @Test
     void deleteById() {
-        when(lcdRepo.findById(1)).thenReturn(Optional.of(LCD.builder().build()));
+        when(lcdRepo.findById(1)).thenReturn(Optional.of(LCD.builder().apartmentList(List.of(Apartment.builder().build())).build()));
         lcdService.deleteById(1);
         verify(lcdRepo).deleteById(1);
     }

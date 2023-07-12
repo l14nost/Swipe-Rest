@@ -3,11 +3,14 @@ package com.example.SwipeRest.controller.auth;
 import com.example.SwipeRest.token.TokenRepo;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,17 +52,22 @@ public class AuthenticationController {
 //        return "admin/admin_main";
 //    }
     @Operation(summary = "Logout")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "Bad Request"),
+            @ApiResponse(responseCode = "401",description = "Unauthorized")
+    })
     @PostMapping("/logout")
-    public String logout(){
-        return "admin/login";
+    public ResponseEntity logout(){
+        return ResponseEntity.ok("Success logout");
     }
 
     @Operation(summary = "Refresh Token")
     @PostMapping("/refresh-token")
-    public void refresh(
+    public ResponseEntity refresh(
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
-        authenticationService.refreshToken(request, response);
+        return authenticationService.refreshToken(request, response);
     }
 }

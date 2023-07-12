@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class FrameMapper  {
     public static Frame toEntity(FrameDTO frameDTO){
         Frame frame = Frame.builder()
-                .idFrame(frameDTO.getIdFrame())
+                .idFrame(frameDTO.getId())
                 .num(frameDTO.getNum())
                 .build();
         if (frameDTO.getApartments()!=null){
@@ -25,7 +25,7 @@ public class FrameMapper  {
 
     public static FrameDTO apply(Frame frame) {
         return FrameDTO.builder()
-                .idFrame(frame.getIdFrame())
+                .id(frame.getIdFrame())
                 .num(frame.getNum())
                 .apartments(frame.getApartmentList().stream().map(ApartmentMapper::apply).collect(Collectors.toList()))
                 .build();

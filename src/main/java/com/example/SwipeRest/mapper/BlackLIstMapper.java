@@ -9,21 +9,21 @@ import java.util.function.Function;
 public class BlackLIstMapper {
     public static User toEntity(BlackListDTO userDTO){
         return User.builder()
-                .idUser(userDTO.getIdUser())
+                .idUser(userDTO.getId())
                 .name(userDTO.getName())
                 .surname(userDTO.getSurname())
-                .typeUser(userDTO.getTypeUser())
-                .mail(userDTO.getMail())
+                .typeUser(userDTO.getUserType())
+                .mail(userDTO.getEmail())
                 .build();
     }
 
     public static BlackListDTO apply(User user) {
         return BlackListDTO.builder()
-                .idUser(user.getIdUser())
+                .id(user.getIdUser())
                 .name(user.getName())
-                .mail(user.getMail())
+                .email(user.getMail())
                 .surname(user.getSurname())
-                .typeUser(user.getTypeUser())
+                .userType(user.getTypeUser())
                 .build();
 
     }

@@ -147,11 +147,11 @@ public class BlackListControllerTestMVC {
 
     }
     @Test
-    public void removeFromlackList_Notary() throws Exception{
+    public void removeFromBlackList_Notary() throws Exception{
         ClientDTO clientDTO = ClientDTO.builder().typeUser(TypeUser.NOTARY).build();
         when(userService.findByIdDTO(2)).thenReturn(clientDTO);
 
-        ResultActions response = mockMvc.perform(post("/api/black/list/add/2")
+        ResultActions response = mockMvc.perform(post("/api/black/list/remove/2")
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("User by this id is Notary"));

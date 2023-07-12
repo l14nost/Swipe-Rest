@@ -27,7 +27,7 @@ public class UserDtoMapper {
                 .surname(clientDTO.getSurname())
                 .typeUser(TypeUser.CLIENT)
                 .role(Role.USER)
-                .mail(clientDTO.getMail())
+                .mail(clientDTO.getEmail())
                 .filename(clientDTO.getFileName())
                 .build();
 

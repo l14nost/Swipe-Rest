@@ -12,14 +12,14 @@ import java.util.function.Function;
 public class PhotoMapper  {
     public static Photo toEntity(PhotoDTO photoDTO){
         return Photo.builder()
-                .idPhotos(photoDTO.getIdPhoto())
+                .idPhotos(photoDTO.getId())
                 .fileName(photoDTO.getFileName())
                 .build();
     }
 
     public static PhotoDTO apply(Photo photo) {
         return PhotoDTO.builder()
-                .idPhoto(photo.getIdPhotos())
+                .id(photo.getIdPhotos())
                 .fileName(photo.getFileName())
                 .build();
 

@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 public class LcdDTO {
     @Schema(example = "0")
-    int idLcd;
+    int id;
     @Schema(example = "Advantages")
     @NotBlank
     @NotEmpty
@@ -68,7 +68,7 @@ public class LcdDTO {
     @NotBlank
     @NotEmpty
     @Size(min = 3,max = 150)
-    String typePayment;
+    String paymentType;
     @Schema(example = "AUTONOMOUS")
     @NotNull
     HeatingType watterSupply;

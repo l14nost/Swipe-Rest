@@ -51,10 +51,13 @@ public class ClientController {
     })
     @GetMapping("/{id}")
     public ResponseEntity findByIdClient(@PathVariable @Schema(example = "4") int id){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
             if (user.getRole().equals(Role.USER)) {
-                if (user.getTypeUser().equals(TypeUser.CLIENT)) {
+                if (user.getUserType().equals(TypeUser.CLIENT)) {
                     log.info("Request find Client " + id);
                     return ResponseEntity.ok(userService.findByIdDTO(id));
                 } else {
@@ -78,40 +81,39 @@ public class ClientController {
     @PostMapping("/add")
     public ResponseEntity addClient(@Valid @RequestBody  @Schema(
             example = "{\n" +
-                    "  \"mail\": \"mail@gmail.com\",\n" +
+                    "  \"email\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Name\",\n" +
                     "  \"surname\": \"Surname\",\n" +
                     "  \"fileName\": \"../admin/dist/img/default.jpg\",\n" +
                     "  \"number\": \"123123231\",\n" +
                     "  \"agent\": {\n" +
-                    "    \"mail\": \"mail@gmail.com\",\n" +
+                    "    \"email\": \"mail@gmail.com\",\n" +
                     "    \"name\": \"Agent\",\n" +
                     "    \"number\": \"123123123\",\n" +
                     "    \"surname\": \"Agentov\",\n" +
-                    "    \"typeAgent\": \"SALES\"\n" +
+                    "    \"agentType\": \"SALES\"\n" +
                     "  },\n" +
-                    "  \"typeUser\": \"CLIENT\",\n" +
+                    "  \"userType\": \"CLIENT\",\n" +
                     "  \"role\": \"USER\",\n" +
                     " \"userAddInfo\": {\n" +
                     "    \"callSms\": true,\n" +
                     "    \"dateSub\": \"2023-05-05\",\n" +
-                    "    \"typeNotification\": \"ME\"\n" +
+                    "    \"notificationType\": \"ME\"\n" +
                     "  },\n" +
                     "  \"blackList\": false\n" +
                     "}")ClientDTO clientDTO, BindingResult result){
         log.info("Request save Client");
-        if (!clientDTO.getRole().equals(Role.USER) && !clientDTO.getRole().equals(Role.ADMIN)){
-            result.addError(new FieldError("clientDTO", "role", "Роль некорректная"));
+        if (clientDTO.getRole()!=null) {
+            if (!clientDTO.getRole().equals(Role.USER)) {
+                result.addError(new FieldError("clientDTO", "role", "Access denied role must be USER"));
+            }
+            if (clientDTO.getUserType() != TypeUser.CLIENT) {
+                result.addError(new FieldError("clientDTO", "typeUser", "User must be client"));
+            }
         }
-        if (clientDTO.getRole().equals(Role.ADMIN)){
-            result.addError(new FieldError("clientDTO", "role", "Нет прав"));
-        }
-        if (clientDTO.getTypeUser()!=TypeUser.CLIENT){
-            result.addError(new FieldError("clientDTO", "typeUser", "Пользователь должен быть Клиентом"));
-        }
-        result = userService.uniqueMail(clientDTO.getMail(),result,0,"add","clientDTO");
+        result = userService.uniqueMail(clientDTO.getEmail(),result,0,"add","clientDTO");
         if (clientDTO.getAgent()!=null) {
-            result = agentService.uniqueEmail(clientDTO.getAgent().getMail(), result, 0, "add", "agent");
+            result = agentService.uniqueEmail(clientDTO.getAgent().getEmail(), result, 0, "add", "agent");
         }
         if (result.hasErrors()){
             List<String> errors = result.getFieldErrors()
@@ -130,10 +132,13 @@ public class ClientController {
     })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "0") int id){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
         ClientDTO clientDTO = userService.findByIdDTO(id);
         if (clientDTO != null) {
             if (clientDTO.getRole().equals(Role.USER)) {
-                if (clientDTO.getTypeUser().equals(TypeUser.CLIENT)) {
+                if (clientDTO.getUserType().equals(TypeUser.CLIENT)) {
                     log.info("Request delete Client " + id);
                     userService.deleteById(id);
                     return ResponseEntity.ok("Success delete:" + clientDTO);
@@ -158,35 +163,41 @@ public class ClientController {
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable @Schema(example = "9") int id , @Valid @RequestBody @Schema(
             example = "{\n" +
-                    "  \"mail\": \"mail@gmail.com\",\n" +
+                    "  \"email\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Name\",\n" +
                     "  \"surname\": \"Surname\",\n" +
                     "  \"fileName\": \"../admin/dist/img/default.jpg\",\n" +
                     "  \"number\": \"123123231\",\n" +
                     "  \"agent\": {\n" +
-                    "    \"mail\": \"mail@gmail.com\",\n" +
+                    "    \"email\": \"mail@gmail.com\",\n" +
                     "    \"name\": \"Agent\",\n" +
                     "    \"number\": \"123123123\",\n" +
                     "    \"surname\": \"Agentov\",\n" +
-                    "    \"typeAgent\": \"SALES\"\n" +
+                    "    \"agentType\": \"SALES\"\n" +
                     "  },\n" +
-                    "  \"typeUser\": \"CLIENT\",\n" +
+                    "  \"userType\": \"CLIENT\",\n" +
                     "  \"role\": \"USER\",\n" +
                     " \"userAddInfo\": {\n" +
                     "    \"callSms\": true,\n" +
                     "    \"dateSub\": \"2023-05-05\",\n" +
-                    "    \"typeNotification\": \"ME\"\n" +
+                    "    \"notificationType\": \"ME\"\n" +
                     "  },\n" +
                     "  \"blackList\": false\n" +
                     "}") ClientDTO clientDTO,BindingResult result){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
+        if (clientDTO.getRole() == null){
+            return ResponseEntity.badRequest().body("Role cannot be null");
+        }
         ClientDTO client = userService.findByIdDTO(id);
         if(client!=null){
             if (client.getRole().equals(Role.USER)) {
-                if (client.getTypeUser().equals(TypeUser.CLIENT)) {
+                if (client.getUserType().equals(TypeUser.CLIENT)) {
                     log.info("Request update Client " + id);
-                    result = userService.uniqueMail(clientDTO.getMail(),result,id,"update","clientDTO");
+                    result = userService.uniqueMail(clientDTO.getEmail(),result,id,"update","clientDTO");
                     if (clientDTO.getAgent()!=null) {
-                        result = agentService.uniqueEmail(clientDTO.getAgent().getMail(), result, userService.findById(id).getAgent().getIdAgent(), "update", "agent");
+                        result = agentService.uniqueEmail(clientDTO.getAgent().getEmail(), result, userService.findById(id).getAgent().getIdAgent(), "update", "agent");
                     }
                     if (result.hasErrors()){
                         List<String> errors = result.getFieldErrors()

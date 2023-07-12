@@ -7,22 +7,22 @@ import com.example.SwipeRest.entity.Agent;
 public class AgentMapper{
     public static Agent toEntity(AgentDTO agentDTO){
         return Agent.builder()
-                .idAgent(agentDTO.getIdAgent())
+                .idAgent(agentDTO.getId())
                 .number(agentDTO.getNumber())
-                .mail(agentDTO.getMail())
+                .mail(agentDTO.getEmail())
                 .surname(agentDTO.getSurname())
                 .name(agentDTO.getName())
-                .type(agentDTO.getTypeAgent())
+                .type(agentDTO.getAgentType())
 //                .users(agentDTO.getUsers().stream().map(userMapper).toList())
                 .build();
     }
 
     public static AgentDTO apply(Agent agent) {
         return AgentDTO.builder()
-                .idAgent(agent.getIdAgent())
-                .mail(agent.getMail())
+                .id(agent.getIdAgent())
+                .email(agent.getMail())
                 .number(agent.getNumber())
-                .typeAgent(agent.getType())
+                .agentType(agent.getType())
                 .surname(agent.getSurname())
                 .name(agent.getName())
                 .build();

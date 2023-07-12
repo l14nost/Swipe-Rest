@@ -13,7 +13,7 @@ import java.util.function.Function;
 public class DocumentMapper{
     public static Documents toEntity(DocumentDTO documentDTO){
         return Documents.builder()
-                .idDocuments(documentDTO.getIdDocuments())
+                .idDocuments(documentDTO.getId())
                 .name(documentDTO.getName())
                 .fileName(documentDTO.getFileName())
                 .build();
@@ -21,7 +21,7 @@ public class DocumentMapper{
 
     public static DocumentDTO apply(Documents documents) {
         return DocumentDTO.builder()
-                .idDocuments(documents.getIdDocuments())
+                .id(documents.getIdDocuments())
                 .fileName(documents.getFileName())
                 .name(documents.getName())
                 .build();

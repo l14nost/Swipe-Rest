@@ -2,8 +2,11 @@ package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.config.JWTAuthenticationFilter;
 import com.example.SwipeRest.dto.*;
+import com.example.SwipeRest.entity.Agent;
+import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.*;
 import com.example.SwipeRest.mapper.UserMapper;
+import com.example.SwipeRest.service.impl.AgentServiceImpl;
 import com.example.SwipeRest.service.impl.ApartmentServiceImpl;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -20,11 +23,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willAnswer;
 import static org.mockito.Mockito.when;
@@ -41,10 +48,77 @@ public class ClientControllerTestMVC {
     @MockBean
     private UserServiceImpl userService;
     @MockBean
+    private AgentServiceImpl agentService;
+    @MockBean
     private JWTAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
     private ObjectMapper objectMapper;
+    @Test
+    public void saveClient_Not_Valid_Type() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123112")
+                .typeUser(TypeUser.NOTARY)
+                .role(Role.USER)
+                .mail("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.addDTO(clientDTO)).thenReturn("Save");
+        String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        ResultActions response = mockMvc.perform(post("/api/client/add")
+                .flashAttr("result",result)
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("{\"errors\":[\"typeUser: User must be client\"]}"));
 
+    }
+    @Test
+    public void saveClient_Not_Valid_Role() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123112")
+                .typeUser(TypeUser.CLIENT)
+                .role(Role.ADMIN)
+                .mail("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .agent(AgentDTO.builder()
+                        .mail("newmail@gmail.com")
+                        .name("AgentTest")
+                        .surname("MockTest")
+                        .number("123123123").build())
+                .build();
+        when(userService.addDTO(clientDTO)).thenReturn("Save");
+        String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        given(agentService.uniqueEmail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        ResultActions response = mockMvc.perform(post("/api/client/add")
+                .flashAttr("result",result)
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("{\"errors\":[\"role: Access denied role must be USER\"]}"));
+
+    }
 
     @Test
     public void saveClient_Success() throws Exception{
@@ -61,6 +135,12 @@ public class ClientControllerTestMVC {
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(post("/api/client/add")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
@@ -83,6 +163,12 @@ public class ClientControllerTestMVC {
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(post("/api/client/add")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
@@ -100,11 +186,29 @@ public class ClientControllerTestMVC {
                 .role(Role.USER)
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
+                .agent(AgentDTO.builder()
+                        .mail("newmail@gmail.com")
+                        .name("AgentTest")
+                        .surname("MockTest")
+                        .number("123123123").build())
                 .blackList(false)
                 .userAddInfo(UserAddInfoDTO.builder().dateSub(LocalDate.now()).callSms(true).typeNotification(TypeNotification.ME).build())
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
+        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().role(Role.USER).typeUser(TypeUser.CLIENT).build());
+        when(userService.findById(1)).thenReturn(User.builder().role(Role.USER).typeUser(TypeUser.CLIENT).agent(Agent.builder().idAgent(1).build()).build());
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        given(agentService.uniqueEmail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(put("/api/client/update/1")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
@@ -195,6 +299,12 @@ public class ClientControllerTestMVC {
         when(userService.updateDto(clientDTO,2)).thenReturn("Success update:\n" +
                 "Update user:\n"+ clientDTO);
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(put("/api/client/update/2")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));

@@ -39,9 +39,12 @@ public class BlackListController {
     })
     @PostMapping("/add/{id}")
     public ResponseEntity addToBlackList(@PathVariable int id){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
-            if (user.getTypeUser().equals(TypeUser.NOTARY)) {
+            if (user.getUserType().equals(TypeUser.NOTARY)) {
                 log.info("User not valid for add to blacklist");
                 return ResponseEntity.badRequest().body("User by this id is Notary");
             } else {
@@ -66,9 +69,12 @@ public class BlackListController {
     })
     @PostMapping("/remove/{id}")
     public ResponseEntity removeFromBlackList(@PathVariable int id){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
-            if (user.getTypeUser().equals(TypeUser.NOTARY)) {
+            if (user.getUserType().equals(TypeUser.NOTARY)) {
                 log.info("User not valid for add to blacklist");
                 return ResponseEntity.badRequest().body("User by this id is Notary");
             } else {

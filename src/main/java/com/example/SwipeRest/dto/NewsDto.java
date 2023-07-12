@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Builder
 public class NewsDto {
     @Schema(example = "1")
-    int idNews;
+    int id;
     @NotBlank
     @NotEmpty
     @Size(min = 3,max = 255)

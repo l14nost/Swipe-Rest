@@ -13,7 +13,7 @@ import java.util.function.Function;
 public class NewsMapper{
     public static News toEntity(NewsDto newsDto){
         return News.builder()
-                .idNews(newsDto.getIdNews())
+                .idNews(newsDto.getId())
                 .date(newsDto.getDate())
                 .description(newsDto.getDescription())
                 .title(newsDto.getTitle())
@@ -22,7 +22,7 @@ public class NewsMapper{
 
     public static NewsDto apply(News news) {
         return NewsDto.builder()
-                .idNews(news.getIdNews())
+                .id(news.getIdNews())
                 .description(news.getDescription())
                 .date(news.getDate())
                 .title(news.getTitle())

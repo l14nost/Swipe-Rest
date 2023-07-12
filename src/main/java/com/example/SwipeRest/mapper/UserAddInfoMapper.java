@@ -16,7 +16,7 @@ public class UserAddInfoMapper {
         return UserAddInfo.builder()
                 .callSms(userAddInfoDTO.isCallSms())
                 .dateSub(userAddInfoDTO.getDateSub())
-                .typeNotification(userAddInfoDTO.getTypeNotification())
+                .typeNotification(userAddInfoDTO.getNotificationType())
                 .build();
     }
 
@@ -25,7 +25,7 @@ public class UserAddInfoMapper {
         return UserAddInfoDTO.builder()
                 .callSms(userAddInfo.isCallSms())
                 .dateSub(userAddInfo.getDateSub())
-                .typeNotification(userAddInfo.getTypeNotification())
+                .notificationType(userAddInfo.getTypeNotification())
                 .build();
 
     }

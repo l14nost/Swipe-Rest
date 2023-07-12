@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 public class FrameDTO {
     @Schema(example = "1")
-    int idFrame;
+    int id;
     @Schema(example = "1")
     int num;
     @Valid

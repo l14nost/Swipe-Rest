@@ -34,6 +34,13 @@ class ApartmentServiceImplTest {
     private PhotosServiceImpl photosService;
     @InjectMocks
     private ApartmentServiceImpl apartmentService;
+
+
+    @Test
+    void lcdIdToNull(){
+        apartmentService.lcdIdToNull(Apartment.builder().lcd(LCD.builder().idLcd(1).build()).build());
+        verify(apartmentRepo).saveAndFlush(Apartment.builder().lcd(null).build());
+    }
     @Test
     void findAllDTO() {
         List<Apartment> apartments = new ArrayList<>();

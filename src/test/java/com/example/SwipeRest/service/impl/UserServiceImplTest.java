@@ -16,14 +16,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.never;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
@@ -282,5 +285,52 @@ class UserServiceImplTest {
         verify(userRepo).saveAndFlush(userBlackList);
     }
 
+
+    @Test
+    void uniqueMailNull(){
+        when(userRepo.findAllByMail("mail@gmail.com")).thenReturn(List.of(User.builder().build(), User.builder().build()));
+        BindingResult result = mock(BindingResult.class);
+        BindingResult result1 = userService.uniqueMail("mail@gmail.com",result,0,"add","clientDTO");
+
+        assertEquals(result1,result);
+        verify(result, times(1)).addError(any(FieldError.class));
+    }
+
+    @Test
+    void uniqueMailUpdate(){
+        when(userRepo.findAllByMail("mail@gmail.com")).thenReturn(List.of(User.builder().idUser(1).build()));
+        BindingResult result = mock(BindingResult.class);
+        BindingResult result1 = userService.uniqueMail("mail@gmail.com",result,1,"update","clientDTO");
+
+        assertEquals(result1,result);
+        verify(result, never()).addError(any(FieldError.class));
+    }
+
+    @Test
+    void uniqueMailUpdateError(){
+        when(userRepo.findAllByMail("mail@gmail.com")).thenReturn(List.of(User.builder().idUser(1).build()));
+        BindingResult result = mock(BindingResult.class);
+        BindingResult result1 = userService.uniqueMail("mail@gmail.com",result,2,"update","clientDTO");
+        assertEquals(result1,result);
+        verify(result, times(1)).addError(any(FieldError.class));
+    }
+
+    @Test
+    void uniqueMailAddError(){
+        when(userRepo.findAllByMail("mail@gmail.com")).thenReturn(List.of(User.builder().build()));
+        BindingResult result = mock(BindingResult.class);
+        BindingResult result1 = userService.uniqueMail("mail@gmail.com",result,2,"add","clientDTO");
+        assertEquals(result1,result);
+        verify(result, times(1)).addError(any(FieldError.class));
+    }
+
+    @Test
+    void uniqueMailSuccess(){
+        when(userRepo.findAllByMail("mail@gmail.com")).thenReturn(List.of());
+        BindingResult result = mock(BindingResult.class);
+        BindingResult result1 = userService.uniqueMail("mail@gmail.com",result,1,"add","clientDTO");
+        assertEquals(result1,result);
+        verify(result, never()).addError(any(FieldError.class));
+    }
 
 }

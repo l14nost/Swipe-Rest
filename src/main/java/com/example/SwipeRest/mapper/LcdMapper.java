@@ -10,7 +10,7 @@ public class LcdMapper  {
 
     public static LCD toEntity(LcdDTO lcdDTO){
         LCD lcd = LCD.builder()
-                .idLcd(lcdDTO.getIdLcd())
+                .idLcd(lcdDTO.getId())
                 .name(lcdDTO.getName())
                 .description(lcdDTO.getDescription())
                 .distanceSea(lcdDTO.getDistanceSea())
@@ -32,7 +32,7 @@ public class LcdMapper  {
                 .type(lcdDTO.getType())
                 .sumContract(lcdDTO.getSumContractor())
                 .status(lcdDTO.getStatus())
-                .typePayment(lcdDTO.getTypePayment())
+                .typePayment(lcdDTO.getPaymentType())
                 .build();
         if (lcdDTO.getDocuments()!=null){
             lcd.setDocuments(lcdDTO.getDocuments().stream().map(DocumentMapper::toEntity).collect(Collectors.toList()));
@@ -51,7 +51,7 @@ public class LcdMapper  {
 
     public static LcdDTO apply(LCD lcd) {
         LcdDTO lcdDTO = LcdDTO.builder()
-                .idLcd(lcd.getIdLcd())
+                .id(lcd.getIdLcd())
                 .advantages(lcd.getAdvantages())
                 .appointment(lcd.getAppointment())
                 .classType(lcd.getLcdClass())
@@ -69,7 +69,7 @@ public class LcdMapper  {
                 .sumContractor(lcd.getSumContract())
                 .technology(lcd.getTechnology())
                 .territory(lcd.getTerritory())
-                .typePayment(lcd.getTypePayment())
+                .paymentType(lcd.getTypePayment())
                 .watterSupply(lcd.getWaterSupply())
                 .name(lcd.getName())
                 .type(lcd.getType())

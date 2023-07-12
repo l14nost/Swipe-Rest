@@ -10,10 +10,10 @@ import lombok.Data;
 @Builder
 public class BlackListDTO {
 
-    int idUser;
+    int id;
     String name;
     String surname;
-    String mail;
-    TypeUser typeUser;
+    String email;
+    TypeUser userType;
 
 }

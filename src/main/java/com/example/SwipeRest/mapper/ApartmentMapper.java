@@ -2,6 +2,7 @@ package com.example.SwipeRest.mapper;
 
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.entity.Apartment;
+import com.example.SwipeRest.entity.LCD;
 
 import java.util.stream.Collectors;
 
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 public class ApartmentMapper{
     public static Apartment toEntity(ApartmentDTO apartmentDTO){
         Apartment apartment = Apartment.builder()
-                .idApartment(apartmentDTO.getIdApartment())
+                .idApartment(apartmentDTO.getId())
                 .communicationType(apartmentDTO.getCommunicationType())
                 .countRoom(apartmentDTO.getCountRoom())
                 .foundingDocument(apartmentDTO.getFoundingDocument())
@@ -30,12 +31,15 @@ public class ApartmentMapper{
                 .build();
         if (apartmentDTO.getPhotos()!=null){
             apartment.setPhotoList(apartmentDTO.getPhotos().stream().map(PhotoMapper::toEntity).collect(Collectors.toList()));        }
+        if (apartmentDTO.getIdLcd()!=0){
+            apartment.setLcd(LCD.builder().idLcd(apartmentDTO.getIdLcd()).build());
+        }
         return apartment;
     }
 
     public static ApartmentDTO apply(Apartment apartment) {
         ApartmentDTO apartmentDTO = ApartmentDTO.builder()
-                .idApartment(apartment.getIdApartment())
+                .id(apartment.getIdApartment())
                 .calculation(apartment.getCalculation())
                 .commission(apartment.getCommission())
                 .communicationType(apartment.getCommunicationType())

@@ -53,7 +53,7 @@ public class ContractorController {
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
             if (user.getRole().equals(Role.USER)) {
-                if (user.getTypeUser().equals(TypeUser.CONTRACTOR)) {
+                if (user.getUserType().equals(TypeUser.CONTRACTOR)) {
                     log.info("Request find Contractor " + id);
 
                     return ResponseEntity.ok(userService.findByIdDTO(id));
@@ -82,37 +82,37 @@ public class ContractorController {
                                             @RequestBody
                                             @Schema(
             example = "{\n" +
-                    "  \"mail\": \"mail@gmail.com\",\n" +
+                    "  \"email\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Name\",\n" +
                     "  \"surname\": \"Surname\",\n" +
                     "  \"fileName\": \"../admin/dist/img/default.jpg\",\n" +
                     "  \"number\": \"123123231\",\n" +
                     "  \"agent\": {\n" +
-                    "    \"mail\": \"mail@gmail.com\",\n" +
+                    "    \"email\": \"mail@gmail.com\",\n" +
                     "    \"name\": \"Sales\",\n" +
                     "    \"number\": \"123123123\",\n" +
                     "    \"surname\": \"Salesov\",\n" +
-                    "    \"typeAgent\": \"SALES\"\n" +
+                    "    \"agentType\": \"SALES\"\n" +
                     "  },\n" +
-                    "  \"typeUser\": \"CONTRACTOR\",\n" +
+                    "  \"userType\": \"CONTRACTOR\",\n" +
                     "  \"role\": \"USER\",\n" +
                     "  \"userAddInfo\": null,\n" +
                     "  \"blackList\": false\n" +
                     "}"
     ) ClientDTO clientDTO, BindingResult result){
+
         log.info("Request save Contractor");
-        if (!clientDTO.getRole().equals(Role.USER) && !clientDTO.getRole().equals(Role.ADMIN)){
-            result.addError(new FieldError("clientDTO", "role", "Роль некорректная"));
+        if (clientDTO.getRole()!=null) {
+            if (!clientDTO.getRole().equals(Role.USER)) {
+                result.addError(new FieldError("clientDTO", "role", "Access denied role must be USER"));
+            }
+            if (clientDTO.getUserType() != TypeUser.CONTRACTOR) {
+                result.addError(new FieldError("clientDTO", "typeUser", "User must be contractor"));
+            }
         }
-        if (clientDTO.getRole().equals(Role.ADMIN)){
-            result.addError(new FieldError("clientDTO", "role", "Нет прав"));
-        }
-        if (clientDTO.getTypeUser()!=TypeUser.CONTRACTOR){
-            result.addError(new FieldError("clientDTO", "typeUser", "Пользователь должен быть Застройщик"));
-        }
-        result = userService.uniqueMail(clientDTO.getMail(),result,0,"add","clientDTO");
+        result = userService.uniqueMail(clientDTO.getEmail(),result,0,"add","clientDTO");
         if (clientDTO.getAgent()!=null) {
-            result = agentService.uniqueEmail(clientDTO.getAgent().getMail(), result, 0, "add", "sales");
+            result = agentService.uniqueEmail(clientDTO.getAgent().getEmail(), result, 0, "add", "sales");
         }
         if (result.hasErrors()){
             List<String> errors = result.getFieldErrors()
@@ -131,10 +131,13 @@ public class ContractorController {
     })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "0") int id){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
         ClientDTO clientDTO = userService.findByIdDTO(id);
         if (clientDTO != null) {
             if (clientDTO.getRole().equals(Role.USER)) {
-                if (clientDTO.getTypeUser().equals(TypeUser.CONTRACTOR)) {
+                if (clientDTO.getUserType().equals(TypeUser.CONTRACTOR)) {
                     log.info("Request delete Contractor " + id);
                     userService.deleteById(id);
                     return ResponseEntity.ok("Success delete:" + clientDTO);
@@ -159,33 +162,39 @@ public class ContractorController {
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable @Schema(example = "4") int id, @Valid @RequestBody @Schema(
             example = "{\n" +
-                    "  \"mail\": \"mail@gmail.com\",\n" +
+                    "  \"email\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Contractor\",\n" +
                     "  \"surname\": \"Surname\",\n" +
                     "  \"fileName\": \"../admin/dist/img/default.jpg\",\n" +
                     "  \"number\": \"123123231\",\n" +
                     "  \"agent\": {\n" +
                     "    \"idAgent\": 44,\n" +
-                    "    \"mail\": \"mail1@gmail.com\",\n" +
+                    "    \"email\": \"mail1@gmail.com\",\n" +
                     "    \"name\": \"Name\",\n" +
                     "    \"number\": \"123123223\",\n" +
                     "    \"surname\": \"Salesov\",\n" +
-                    "    \"typeAgent\": \"SALES\"\n" +
+                    "    \"agentType\": \"SALES\"\n" +
                     "  },\n" +
-                    "  \"typeUser\": \"CONTRACTOR\",\n" +
+                    "  \"userType\": \"CONTRACTOR\",\n" +
                     "  \"role\": \"USER\",\n" +
                     "  \"userAddInfo\": null,\n"  +
                     "  \"blackList\": false\n" +
                     "}"
     ) ClientDTO clientDTO, BindingResult result){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
+        if (clientDTO.getRole() == null){
+            return ResponseEntity.badRequest().body("Role cannot be null");
+        }
         ClientDTO client = userService.findByIdDTO(id);
         if(client!=null) {
             if (client.getRole().equals(Role.USER)) {
-                if (client.getTypeUser().equals(TypeUser.CONTRACTOR)) {
+                if (client.getUserType().equals(TypeUser.CONTRACTOR)) {
                     log.info("Request update Contractor " + id);
-                    result = userService.uniqueMail(clientDTO.getMail(),result,id,"update","clientDTO");
+                    result = userService.uniqueMail(clientDTO.getEmail(),result,id,"update","clientDTO");
                     if (clientDTO.getAgent()!=null) {
-                        result = agentService.uniqueEmail(clientDTO.getAgent().getMail(), result, userService.findById(id).getAgent().getIdAgent(), "update", "sales");
+                        result = agentService.uniqueEmail(clientDTO.getAgent().getEmail(), result, userService.findById(id).getAgent().getIdAgent(), "update", "sales");
                     }
                     if (result.hasErrors()){
                         List<String> errors = result.getFieldErrors()

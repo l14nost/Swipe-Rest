@@ -20,5 +20,5 @@ public class UserAddInfoDTO {
     LocalDate dateSub;
     @Schema(type = "string",example = "ME")
     @NotNull
-    TypeNotification typeNotification;
+    TypeNotification notificationType;
 }

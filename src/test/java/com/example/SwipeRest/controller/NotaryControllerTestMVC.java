@@ -3,6 +3,7 @@ package com.example.SwipeRest.controller;
 import com.example.SwipeRest.config.JWTAuthenticationFilter;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.dto.ClientDTO;
+import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeUser;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
@@ -19,10 +20,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -56,7 +63,14 @@ public class NotaryControllerTestMVC {
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(post("/api/notary/add")
+                        .flashAttr("result",result)
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isOk())
@@ -77,13 +91,79 @@ public class NotaryControllerTestMVC {
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(post("/api/notary/add")
+                        .flashAttr("result",result)
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().string("{\"errors\":[\"number: size must be between 9 and 9\"]}"));
 
     }
+
+
+    @Test
+    public void saveClient_Not_Valid_Type() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123112")
+                .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
+                .mail("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.addDTO(clientDTO)).thenReturn("Save");
+        String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        ResultActions response = mockMvc.perform(post("/api/notary/add")
+                .flashAttr("result",result)
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("{\"errors\":[\"typeUser: User must be notary\"]}"));
+
+    }
+    @Test
+    public void saveClient_Not_Valid_Role() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123112")
+                .typeUser(TypeUser.NOTARY)
+                .role(Role.ADMIN)
+                .mail("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.addDTO(clientDTO)).thenReturn("Save");
+        String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        ResultActions response = mockMvc.perform(post("/api/notary/add")
+                .flashAttr("result",result)
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("{\"errors\":[\"role: Access denied role must be USER\"]}"));
+
+    }
+
     @Test
     public void updateClient_Not_Valid() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
@@ -97,8 +177,16 @@ public class NotaryControllerTestMVC {
                 .blackList(false)
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
+        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().idUser(1).role(Role.USER).typeUser(TypeUser.NOTARY).build());
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(put("/api/notary/update/1")
+                        .flashAttr("result",result)
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
@@ -184,7 +272,13 @@ public class NotaryControllerTestMVC {
         when(userService.updateDto(clientDTO,2)).thenReturn("Success update:\n" +
                 "Update user:\n"+ clientDTO);
         String json = objectMapper.writeValueAsString(clientDTO);
-        ResultActions response = mockMvc.perform(put("/api/notary/update/2")
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        ResultActions response = mockMvc.perform(put("/api/notary/update/2").flashAttr("result",result)
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
         response.andExpect(MockMvcResultMatchers.status().isOk())

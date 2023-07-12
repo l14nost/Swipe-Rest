@@ -15,12 +15,12 @@ import lombok.Data;
 @Builder
 public class ClientDTO {
     @Schema(type = "int",example = "1")
-    int idUser;
+    int id;
     @Schema(type = "string",example = "mail@gmail.com")
     @NotBlank
     @Email( regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     @Size(min = 2, max = 255)
-    String mail;
+    String email;
     @Schema(type = "string",example = "Name")
     @NotBlank
     @Pattern(regexp = "^[А-ЯЁA-Z][а-яёa-zA-Z]*$")
@@ -42,7 +42,7 @@ public class ClientDTO {
     @Valid
     AgentDTO agent;
     @NotNull
-    TypeUser typeUser;
+    TypeUser userType;
     @NotNull
     Role role;
     @Valid

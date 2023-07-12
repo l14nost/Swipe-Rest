@@ -1,12 +1,16 @@
 package com.example.SwipeRest.controller;
 
 import com.example.SwipeRest.config.JWTAuthenticationFilter;
+import com.example.SwipeRest.dto.AgentDTO;
 import com.example.SwipeRest.dto.ApartmentDTO;
 import com.example.SwipeRest.dto.ClientDTO;
 import com.example.SwipeRest.dto.UserAddInfoDTO;
+import com.example.SwipeRest.entity.Agent;
+import com.example.SwipeRest.entity.User;
 import com.example.SwipeRest.enums.Role;
 import com.example.SwipeRest.enums.TypeNotification;
 import com.example.SwipeRest.enums.TypeUser;
+import com.example.SwipeRest.service.impl.AgentServiceImpl;
 import com.example.SwipeRest.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,11 +25,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -40,11 +49,68 @@ public class ContractorControllerTestMVC {
     @MockBean
     private UserServiceImpl userService;
     @MockBean
+    private AgentServiceImpl agentService;
+    @MockBean
     private JWTAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Test
+    public void saveClient_Not_Valid_Type() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123112")
+                .typeUser(TypeUser.CLIENT)
+                .role(Role.USER)
+                .mail("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.addDTO(clientDTO)).thenReturn("Save");
+        String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        ResultActions response = mockMvc.perform(post("/api/contractor/add")
+                .flashAttr("result",result)
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("{\"errors\":[\"typeUser: User must be contractor\"]}"));
 
+    }
+    @Test
+    public void saveClient_Not_Valid_Role() throws Exception{
+        ClientDTO  clientDTO = ClientDTO.builder()
+                .name("Name")
+                .surname("Surname")
+                .number("101123112")
+                .typeUser(TypeUser.CONTRACTOR)
+                .role(Role.ADMIN)
+                .mail("user@gmail.com")
+                .fileName("../admin/dist/default")
+                .blackList(false)
+                .build();
+        when(userService.addDTO(clientDTO)).thenReturn("Save");
+        String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        ResultActions response = mockMvc.perform(post("/api/contractor/add")
+                .flashAttr("result",result)
+                .content(json)
+                .contentType(MediaType.APPLICATION_JSON));
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(content().string("{\"errors\":[\"role: Access denied role must be USER\"]}"));
+
+    }
     @Test
     public void saveClient_Success() throws Exception{
         ClientDTO  clientDTO = ClientDTO.builder()
@@ -59,6 +125,12 @@ public class ContractorControllerTestMVC {
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(post("/api/contractor/add")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
@@ -77,9 +149,25 @@ public class ContractorControllerTestMVC {
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
+                .agent(AgentDTO.builder()
+                        .mail("newmail@gmail.com")
+                        .name("AgentTest")
+                        .surname("MockTest")
+                        .number("123123123").build())
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        given(agentService.uniqueEmail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(post("/api/contractor/add")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
@@ -98,9 +186,27 @@ public class ContractorControllerTestMVC {
                 .mail("user@gmail.com")
                 .fileName("../admin/dist/default")
                 .blackList(false)
+                .agent(AgentDTO.builder()
+                        .mail("newmail@gmail.com")
+                        .name("AgentTest")
+                        .surname("MockTest")
+                        .number("123123123").build())
                 .build();
         when(userService.addDTO(clientDTO)).thenReturn("Save");
+        when(userService.findByIdDTO(1)).thenReturn(ClientDTO.builder().typeUser(TypeUser.CONTRACTOR).role(Role.USER).build());
+        when(userService.findById(1)).thenReturn(User.builder().typeUser(TypeUser.CONTRACTOR).role(Role.USER).agent(Agent.builder().idAgent(1).build()).build());
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
+        given(agentService.uniqueEmail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(put("/api/contractor/update/1")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));
@@ -187,6 +293,12 @@ public class ContractorControllerTestMVC {
         when(userService.updateDto(clientDTO,2)).thenReturn("Success update:\n" +
                 "Update user:\n"+ clientDTO);
         String json = objectMapper.writeValueAsString(clientDTO);
+        BindingResult result = new BeanPropertyBindingResult(clientDTO,"clientDTO");
+        given(userService.uniqueMail(anyString(), any(BindingResult.class), anyInt(), anyString(), anyString() ))
+                .will(invocation -> {
+                    BindingResult bindingResult = invocation.getArgument(1);
+                    return bindingResult;
+                });
         ResultActions response = mockMvc.perform(put("/api/contractor/update/2")
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON));

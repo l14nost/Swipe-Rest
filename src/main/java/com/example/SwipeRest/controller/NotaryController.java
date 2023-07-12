@@ -49,10 +49,13 @@ public class NotaryController {
     })
     @GetMapping("/{id}")
     public ResponseEntity findByIdNotary(@PathVariable @Schema(example = "6") int id){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
         ClientDTO user = userService.findByIdDTO(id);
         if (user!=null) {
             if (user.getRole().equals(Role.USER)) {
-                if (user.getTypeUser().equals(TypeUser.NOTARY)) {
+                if (user.getUserType().equals(TypeUser.NOTARY)) {
                     log.info("Request find Notary " + id);
                     return ResponseEntity.ok(userService.findByIdDTO(id));
                 } else {
@@ -76,28 +79,27 @@ public class NotaryController {
     @PostMapping("/add")
     public ResponseEntity addNotary(@Valid @RequestBody @Schema(
             example = "{\n" +
-                    "  \"mail\": \"mail@gmail.com\",\n" +
+                    "  \"email\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Name\",\n" +
                     "  \"surname\": \"Surname\",\n" +
                     "  \"fileName\": \"../admin/dist/img/default.jpg\",\n" +
                     "  \"number\": \"123123231\",\n" +
                     "  \"agent\": null,\n" +
-                    "  \"typeUser\": \"NOTARY\",\n" +
+                    "  \"userType\": \"NOTARY\",\n" +
                     "  \"role\": \"USER\",\n" +
                     " \"userAddInfo\": null,\n" +
                     "  \"blackList\": false\n" +
                     "}")ClientDTO clientDTO, BindingResult result){
         log.info("Request save Notary");
-        if (!clientDTO.getRole().equals(Role.USER) && !clientDTO.getRole().equals(Role.ADMIN)){
-            result.addError(new FieldError("clientDTO", "role", "Роль некорректная"));
+        if (clientDTO.getRole()!=null) {
+            if (!clientDTO.getRole().equals(Role.USER)) {
+                result.addError(new FieldError("clientDTO", "role", "Access denied role must be USER"));
+            }
+            if (clientDTO.getUserType() != TypeUser.NOTARY) {
+                result.addError(new FieldError("clientDTO", "typeUser", "User must be notary"));
+            }
         }
-        if (clientDTO.getRole().equals(Role.ADMIN)){
-            result.addError(new FieldError("clientDTO", "role", "Нет прав"));
-        }
-        if (clientDTO.getTypeUser()!=TypeUser.NOTARY){
-            result.addError(new FieldError("clientDTO", "typeUser", "Пользователь должен быть Нотариус"));
-        }
-        result = userService.uniqueMail(clientDTO.getMail(),result,0,"add","clientDTO");
+        result = userService.uniqueMail(clientDTO.getEmail(),result,0,"add","clientDTO");
 
         if (result.hasErrors()){
             List<String> errors = result.getFieldErrors()
@@ -116,10 +118,13 @@ public class NotaryController {
     })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteClient(@PathVariable @Schema(example = "0") int id){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
         ClientDTO clientDTO = userService.findByIdDTO(id);
         if (clientDTO != null) {
             if (clientDTO.getRole().equals(Role.USER)) {
-                if (clientDTO.getTypeUser().equals(TypeUser.NOTARY)) {
+                if (clientDTO.getUserType().equals(TypeUser.NOTARY)) {
                     log.info("Request delete Notary " + id);
                     userService.deleteById(id);
                     return ResponseEntity.ok("Success delete:" + clientDTO);
@@ -145,23 +150,29 @@ public class NotaryController {
     @PutMapping("/update/{id}")
     public ResponseEntity updateClient(@PathVariable @Schema(example = "6") int id, @Valid @RequestBody @Schema(
             example = "{\n" +
-                    "  \"mail\": \"mail@gmail.com\",\n" +
+                    "  \"email\": \"mail@gmail.com\",\n" +
                     "  \"name\": \"Notary\",\n" +
                     "  \"surname\": \"Surname\",\n" +
                     "  \"fileName\": \"../admin/dist/img/default.jpg\",\n" +
                     "  \"number\": \"123123231\",\n" +
                     "  \"agent\": null,\n" +
-                    "  \"typeUser\": \"NOTARY\",\n" +
+                    "  \"userType\": \"NOTARY\",\n" +
                     "  \"role\": \"USER\",\n" +
                     " \"userAddInfo\": null,\n" +
                     "  \"blackList\": false\n" +
                     "}") ClientDTO clientDTO, BindingResult result){
+        if (id<0){
+            return ResponseEntity.badRequest().body("Id cannot be negative");
+        }
+        if (clientDTO.getRole() == null){
+            return ResponseEntity.badRequest().body("Role cannot be null");
+        }
         ClientDTO client = userService.findByIdDTO(id);
         if(client!=null) {
             if (client.getRole().equals(Role.USER)) {
-                if (client.getTypeUser().equals(TypeUser.NOTARY)) {
+                if (client.getUserType().equals(TypeUser.NOTARY)) {
                     log.info("Request update Notary " + id);
-                    result = userService.uniqueMail(clientDTO.getMail(),result,id,"update","clientDTO");
+                    result = userService.uniqueMail(clientDTO.getEmail(),result,id,"update","clientDTO");
 
                     if (result.hasErrors()){
                         List<String> errors = result.getFieldErrors()

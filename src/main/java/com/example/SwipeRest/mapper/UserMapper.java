@@ -7,12 +7,12 @@ import com.example.SwipeRest.enums.Role;
 public class UserMapper{
     public static User toEntity(ClientDTO clientDTO){
         User user = User.builder()
-                .idUser(clientDTO.getIdUser())
+                .idUser(clientDTO.getId())
                 .name(clientDTO.getName())
                 .surname(clientDTO.getSurname())
-                .typeUser(clientDTO.getTypeUser())
+                .typeUser(clientDTO.getUserType())
                 .role(Role.USER)
-                .mail(clientDTO.getMail())
+                .mail(clientDTO.getEmail())
                 .filename(clientDTO.getFileName())
                 .number(clientDTO.getNumber())
                 .blackList(false)
@@ -29,13 +29,13 @@ public class UserMapper{
 
     public static ClientDTO apply(User user) {
 
-        ClientDTO build = ClientDTO.builder().idUser(user.getIdUser())
+        ClientDTO build = ClientDTO.builder().id(user.getIdUser())
                 .name(user.getName())
-                .mail(user.getMail())
+                .email(user.getMail())
                 .surname(user.getSurname())
 //                .agentDTO(agentMapper.apply(user.getAgent()))
 //                .userAddInfoDTO(userAddInfoMapper.apply(user.getUserAddInfo()))
-                .typeUser(user.getTypeUser())
+                .userType(user.getTypeUser())
                 .fileName(user.getFilename())
                 .number(user.getNumber())
                 .blackList(user.isBlackList())
